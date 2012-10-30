@@ -61,8 +61,7 @@ namespace PushmoLevelEditor
             comboBox12.SelectedIndex = 0;
             numericUpDown1.Value = 0;
             textBox1.Text = "New Denpa";
-            checkBox1.Checked = false;
-            checkBox1_CheckedChanged(sender, e);
+            comboBox13.SelectedIndex = 0;
             button3_Click_1(sender, e);
             
         }
@@ -779,32 +778,7 @@ namespace PushmoLevelEditor
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                hexBox1.ByteProvider.WriteByte(0x00, 0x62);
-                hexBox1.ByteProvider.WriteByte(0x01, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x02, 0x58);
-                hexBox1.ByteProvider.WriteByte(0x03, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x04, 0x38);
-                hexBox1.ByteProvider.WriteByte(0x05, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x06, 0x30);
-                hexBox1.ByteProvider.WriteByte(0x07, 0x00);
-                checkBox1.Text = "Japanese Denpa";
-            }
-            else
-            {
-                hexBox1.ByteProvider.WriteByte(0x00, 0x41);
-                hexBox1.ByteProvider.WriteByte(0x01, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x02, 0x68);
-                hexBox1.ByteProvider.WriteByte(0x03, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x04, 0x34);
-                hexBox1.ByteProvider.WriteByte(0x05, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x06, 0x33);
-                hexBox1.ByteProvider.WriteByte(0x07, 0x00);
-                checkBox1.Text = "American Denpa";
-            }
-            hexBox1.Refresh();
-            hexBox1_KeyPress(null, null);
+            
         }
 
         private void newDenpaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1621,6 +1595,34 @@ namespace PushmoLevelEditor
         {
             AboutBox1 box = new AboutBox1();
             box.ShowDialog();
+        }
+
+        private void comboBox13_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox13.SelectedIndex == 1)
+            {
+                hexBox1.ByteProvider.WriteByte(0x00, 0x62);
+                hexBox1.ByteProvider.WriteByte(0x01, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x02, 0x58);
+                hexBox1.ByteProvider.WriteByte(0x03, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x04, 0x38);
+                hexBox1.ByteProvider.WriteByte(0x05, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x06, 0x30);
+                hexBox1.ByteProvider.WriteByte(0x07, 0x00);
+            }
+            else
+            {
+                hexBox1.ByteProvider.WriteByte(0x00, 0x41);
+                hexBox1.ByteProvider.WriteByte(0x01, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x02, 0x68);
+                hexBox1.ByteProvider.WriteByte(0x03, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x04, 0x34);
+                hexBox1.ByteProvider.WriteByte(0x05, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x06, 0x33);
+                hexBox1.ByteProvider.WriteByte(0x07, 0x00);
+            }
+            hexBox1.Refresh();
+            hexBox1_KeyPress(null, null);
         }
     }
 }
