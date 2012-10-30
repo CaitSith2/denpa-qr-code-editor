@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E8C3C4FC-55DC-4F0B-999C-CDC2E56BED95}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PushmoLevelEditor</RootNamespace>
+    <AssemblyName>denpa_editor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>denpa icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Be.Windows.Forms.HexBox, Version=1.4.8.23985, Culture=neutral, PublicKeyToken=e0e5adf0ebc99863, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Be.Windows.Forms.HexBox.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing">
+      <HintPath>.\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localization.cs" />
+    <Compile Include="MarshalUtil.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimplePaletteQuantizer\Extensions\Extend.Image.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimplePaletteQuantizer\Extensions\Extend.PixelFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimplePaletteQuantizer\Helpers\Pixel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimplePaletteQuantizer\Helpers\QuantizationHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimplePaletteQuantizer\Quantizers\IColorQuantizer.cs" />
+    <Compile Include="SimplePaletteQuantizer\Quantizers\XiaolinWu\WuColorCube.cs" />
+    <Compile Include="SimplePaletteQuantizer\Quantizers\XiaolinWu\WuColorQuantizer.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="en-US.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="denpa icon.ico" />
+    <None Include="Resources\nose_F.png" />
+    <None Include="Resources\nose_E.png" />
+    <None Include="Resources\nose_D.png" />
+    <None Include="Resources\nose_C.png" />
+    <None Include="Resources\nose_B.png" />
+    <None Include="Resources\nose_A.png" />
+    <None Include="Resources\nose_9.png" />
+    <None Include="Resources\nose_8.png" />
+    <None Include="Resources\nose_7.png" />
+    <None Include="Resources\nose_6.png" />
+    <None Include="Resources\nose_5.png" />
+    <None Include="Resources\nose_4.png" />
+    <None Include="Resources\nose_3.png" />
+    <None Include="Resources\nose_2.png" />
+    <None Include="Resources\nose_1.png" />
+    <None Include="Resources\nose_0.png" />
+    <None Include="Resources\mouth_19.png" />
+    <None Include="Resources\mouth_18.png" />
+    <None Include="Resources\mouth_17.png" />
+    <None Include="Resources\mouth_16.png" />
+    <None Include="Resources\mouth_15.png" />
+    <None Include="Resources\mouth_14.png" />
+    <None Include="Resources\mouth_13.png" />
+    <None Include="Resources\mouth_12.png" />
+    <None Include="Resources\mouth_11.png" />
+    <None Include="Resources\mouth_10.png" />
+    <None Include="Resources\mouth_09.png" />
+    <None Include="Resources\mouth_08.png" />
+    <None Include="Resources\mouth_07.png" />
+    <None Include="Resources\mouth_06.png" />
+    <None Include="Resources\mouth_05.png" />
+    <None Include="Resources\mouth_04.png" />
+    <None Include="Resources\mouth_03.png" />
+    <None Include="Resources\mouth_02.png" />
+    <None Include="Resources\mouth_1F.png" />
+    <None Include="Resources\mouth_1E.png" />
+    <None Include="Resources\mouth_1D.png" />
+    <None Include="Resources\mouth_1C.png" />
+    <None Include="Resources\mouth_1B.png" />
+    <None Include="Resources\mouth_1A.png" />
+    <None Include="Resources\mouth_01.png" />
+    <None Include="Resources\mouth_0F.png" />
+    <None Include="Resources\mouth_0E.png" />
+    <None Include="Resources\mouth_0D.png" />
+    <None Include="Resources\mouth_0C.png" />
+    <None Include="Resources\mouth_0B.png" />
+    <None Include="Resources\mouth_0A.png" />
+    <None Include="Resources\mouth_00.png" />
+    <None Include="Resources\cheek_0.png" />
+    <None Include="Resources\cheek_1.png" />
+    <None Include="Resources\cheek_2.png" />
+    <None Include="Resources\cheek_3.png" />
+    <None Include="Resources\cheek_4.png" />
+    <None Include="Resources\cheek_5.png" />
+    <None Include="Resources\cheek_6.png" />
+    <None Include="Resources\cheek_7.png" />
+    <None Include="Resources\eye_brow_0.png" />
+    <None Include="Resources\eye_brow_1.png" />
+    <None Include="Resources\eye_brow_2.png" />
+    <None Include="Resources\eye_brow_3.png" />
+    <None Include="Resources\eye_brow_4.png" />
+    <None Include="Resources\eye_brow_5.png" />
+    <None Include="Resources\eye_brow_6.png" />
+    <None Include="Resources\eye_brow_7.png" />
+    <None Include="Resources\eyes_00.png" />
+    <None Include="Resources\eyes_0A.png" />
+    <None Include="Resources\eyes_0B.png" />
+    <None Include="Resources\eyes_0C.png" />
+    <None Include="Resources\eyes_0D.png" />
+    <None Include="Resources\eyes_0E.png" />
+    <None Include="Resources\eyes_0F.png" />
+    <None Include="Resources\eyes_01.png" />
+    <None Include="Resources\eyes_1A.png" />
+    <None Include="Resources\eyes_1B.png" />
+    <None Include="Resources\eyes_1C.png" />
+    <None Include="Resources\eyes_1D.png" />
+    <None Include="Resources\eyes_1E.png" />
+    <None Include="Resources\eyes_1F.png" />
+    <None Include="Resources\eyes_02.png" />
+    <None Include="Resources\eyes_03.png" />
+    <None Include="Resources\eyes_04.png" />
+    <None Include="Resources\eyes_05.png" />
+    <None Include="Resources\eyes_06.png" />
+    <None Include="Resources\eyes_07.png" />
+    <None Include="Resources\eyes_08.png" />
+    <None Include="Resources\eyes_09.png" />
+    <None Include="Resources\eyes_10.png" />
+    <None Include="Resources\eyes_11.png" />
+    <None Include="Resources\eyes_12.png" />
+    <None Include="Resources\eyes_13.png" />
+    <None Include="Resources\eyes_14.png" />
+    <None Include="Resources\eyes_15.png" />
+    <None Include="Resources\eyes_16.png" />
+    <None Include="Resources\eyes_17.png" />
+    <None Include="Resources\eyes_18.png" />
+    <None Include="Resources\eyes_19.png" />
+    <None Include="Resources\face_color_0.png" />
+    <None Include="Resources\face_color_1.png" />
+    <None Include="Resources\face_color_2.png" />
+    <None Include="Resources\face_color_3.png" />
+    <None Include="Resources\face_color_4.png" />
+    <None Include="Resources\face_color_5.png" />
+    <None Include="Resources\face_shape_0.png" />
+    <None Include="Resources\face_shape_1.png" />
+    <None Include="Resources\face_shape_2.png" />
+    <None Include="Resources\face_shape_3.png" />
+    <None Include="Resources\face_shape_4.png" />
+    <None Include="Resources\face_shape_5.png" />
+    <None Include="Resources\face_shape_6.png" />
+    <None Include="Resources\face_shape_7.png" />
+    <None Include="Resources\face_shape_8.png" />
+    <None Include="Resources\glasses_0.png" />
+    <None Include="Resources\glasses_1.png" />
+    <None Include="Resources\glasses_2.png" />
+    <None Include="Resources\glasses_3.png" />
+    <None Include="Resources\glasses_4.png" />
+    <None Include="Resources\glasses_5.png" />
+    <None Include="Resources\glasses_6.png" />
+    <None Include="Resources\glasses_7.png" />
+    <None Include="Resources\glasses_8.png" />
+    <None Include="Resources\glasses_9.png" />
+    <None Include="Resources\glasses_A.png" />
+    <None Include="Resources\glasses_B.png" />
+    <None Include="Resources\glasses_C.png" />
+    <None Include="Resources\glasses_D.png" />
+    <None Include="Resources\glasses_E.png" />
+    <None Include="Resources\glasses_F.png" />
+    <None Include="Resources\hair_color_0.png" />
+    <None Include="Resources\hair_color_1.png" />
+    <None Include="Resources\hair_color_2.png" />
+    <None Include="Resources\hair_color_3.png" />
+    <None Include="Resources\hair_color_4.png" />
+    <None Include="Resources\hair_color_5.png" />
+    <None Include="Resources\hair_color_6.png" />
+    <None Include="Resources\hair_color_7.png" />
+    <None Include="Resources\hair_color_8.png" />
+    <None Include="Resources\hair_color_9.png" />
+    <None Include="Resources\hair_color_A.png" />
+    <None Include="Resources\hair_color_B.png" />
+    <None Include="Resources\hair_style_00.png" />
+    <None Include="Resources\hair_style_0A.png" />
+    <None Include="Resources\hair_style_0B.png" />
+    <None Include="Resources\hair_style_0C.png" />
+    <None Include="Resources\hair_style_0D.png" />
+    <None Include="Resources\hair_style_0E.png" />
+    <None Include="Resources\hair_style_0F.png" />
+    <None Include="Resources\hair_style_01.png" />
+    <None Include="Resources\hair_style_02.png" />
+    <None Include="Resources\hair_style_03.png" />
+    <None Include="Resources\hair_style_04.png" />
+    <None Include="Resources\hair_style_05.png" />
+    <None Include="Resources\hair_style_06.png" />
+    <None Include="Resources\hair_style_07.png" />
+    <None Include="Resources\hair_style_08.png" />
+    <None Include="Resources\hair_style_09.png" />
+    <None Include="Resources\hair_style_10.png" />
+    <None Include="Resources\hair_style_11.png" />
+    <None Include="Resources\hair_style_12.png" />
+    <None Include="Resources\hair_style_13.png" />
+    <None Include="Resources\hair_style_14.png" />
+    <None Include="Resources\hair_style_15.png" />
+    <None Include="Resources\hair_style_16.png" />
+    <Content Include="Resources\head 0-0.png" />
+    <Content Include="Resources\head 0-1.png" />
+    <Content Include="Resources\head 0-2.png" />
+    <Content Include="Resources\head 0-3.png" />
+    <Content Include="Resources\head 0-4.png" />
+    <Content Include="Resources\head 0-5.png" />
+    <Content Include="Resources\head 0-6.png" />
+    <Content Include="Resources\head 0-7.png" />
+    <Content Include="Resources\head 0-8.png" />
+    <Content Include="Resources\head 0-9.png" />
+    <Content Include="Resources\head 0-A.png" />
+    <Content Include="Resources\head 1-0.png" />
+    <Content Include="Resources\head 1-1.png" />
+    <Content Include="Resources\head 1-2.png" />
+    <Content Include="Resources\head 1-3.png" />
+    <Content Include="Resources\head 1-4.png" />
+    <Content Include="Resources\head 1-5.png" />
+    <Content Include="Resources\head 1-6.png" />
+    <Content Include="Resources\head 2-0.png" />
+    <Content Include="Resources\head 2-1.png" />
+    <Content Include="Resources\head 2-2.png" />
+    <Content Include="Resources\head 2-3.png" />
+    <Content Include="Resources\head 2-4.png" />
+    <Content Include="Resources\head 2-5.png" />
+    <None Include="Resources\barcode-2d.png" />
+    <None Include="Resources\strawberry.png" />
+    <None Include="Resources\ico_grid.png" />
+    <None Include="Resources\layout_content.png" />
+    <None Include="Resources\folder_picture.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\door_in.png" />
+    <None Include="Resources\page_white_copy.png" />
+    <None Include="Resources\page_white.png" />
+    <None Include="Resources\magnifier.png" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\bin_closed.png" />
+    <None Include="Resources\arrow_up.png" />
+    <None Include="Resources\arrow_down.png" />
+    <None Include="Resources\arrow_right.png" />
+    <None Include="Resources\arrow_left.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
