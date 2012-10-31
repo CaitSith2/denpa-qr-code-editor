@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
@@ -47,43 +48,29 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider = null;
             }
             hexBox1.ByteProvider = new Be.Windows.Forms.DynamicByteProvider(QRByteArray);
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
-            comboBox3.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
-            comboBox5.SelectedIndex = 0;
-            comboBox6.SelectedIndex = 0;
-            comboBox7.SelectedIndex = 0;
-            comboBox8.SelectedIndex = 0;
-            comboBox9.SelectedIndex = 0;
-            comboBox10.SelectedIndex = 0;
-            comboBox11.SelectedIndex = 0;
-            comboBox12.SelectedIndex = 0;
-            numericUpDown1.Value = 0;
-            textBox1.Text = "New Denpa";
-            comboBox13.SelectedIndex = 0;
-            button3_Click_1(sender, e);
+            cboColor.SelectedIndex = -1;
             
-        }
+            cboHeadShape.SelectedIndex = -1;
+            cboFaceShapeHairStyle.SelectedIndex = -1;
+            cboHairColor.SelectedIndex = -1;
+            cboEyes.SelectedIndex = -1;
+            cboEyeBrows.SelectedIndex = -1;
+            cboNose.SelectedIndex = -1;
+            cboFaceColor.SelectedIndex = -1;
+            cboMouth.SelectedIndex = -1;
+            cboCheeks.SelectedIndex = -1;
+            cboGlasses.SelectedIndex = -1;
+            cboAntennaPower.SelectedIndex = -1;
+            nudStats.Value = -1;
+            txtName.Text = "New Denpa";    //Cannot leave the name field in the QR data totally blank or else the game locks up instantly.
 
-        private void menuFileOpen_Click(object sender, EventArgs e)
-        {
-        }
+            if ((CultureInfo.CurrentCulture.Name == "ja") || (CultureInfo.CurrentCulture.Name == "ja-JP"))
+                cboRegion.SelectedIndex = 1;
+            else
+                cboRegion.SelectedIndex = 0;
 
-        private void SavePushmo()
-        {
-        }
-
-        private void menuFileSave_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void menuFileSaveAs_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void menuFileImport_Click(object sender, EventArgs e)
-        {
+            btnChangeID_Click(sender, e);
+            
         }
 
         private void menuFileExit_Click(object sender, EventArgs e)
@@ -307,11 +294,6 @@ namespace PushmoLevelEditor
             return bytearray;
         }
 
-        private void menuQRCodeRead_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private ByteMatrix GetQRMatrix(int size)
         {
             var writer = new QRCodeWriter();
@@ -338,55 +320,8 @@ namespace PushmoLevelEditor
             return writer.encode(str, BarcodeFormat.QR_CODE, size, size, hints); 
         }
 
-        private void menuQRCodeMake_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void menuQRCodeMakeCard_Click(object sender, EventArgs e)
-        {
-            
-        }
         #endregion
 
-        #region Grid Events
-
-        #endregion
-
-        private void RadioColorCheckedChange(object sender, EventArgs e)
-        {
-        }
-        
-        private void TbtnToolClick(object sender, EventArgs e)
-        {
-        }
-
-        private void btnEditPalette_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnDeleteSwitch_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnDeleteManhole_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void RadioSwitchCheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void RadioManholeCheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void ShiftButtonClick(object sender, EventArgs e)
-        {
-        }
-
-        private void chkGrid_CheckedChanged(object sender, EventArgs e)
-        {
-        }
 
         #region Check for updates
         private void bwCheckForUpdates_DoWork(object sender, DoWorkEventArgs e)
@@ -445,14 +380,14 @@ namespace PushmoLevelEditor
             var matrix = GetQRMatrix(100);
             if (matrix == null)
                 return;
-            var img = new Bitmap(200, 200);
+            var img = new Bitmap(100,100);
             var g = Graphics.FromImage(img);
             g.Clear(Color.White);
             for (var y = 0; y < matrix.Height; ++y)
                 for (var x = 0; x < matrix.Width; ++x)
                     if (matrix.get_Renamed(x, y) != -1)
-                        g.FillRectangle(Brushes.Black, x * 2, y * 2, 2, 2);
-            if (button1.Text == "Feature")
+                        g.FillRectangle(Brushes.Black, x * 1, y * 1, 1, 1);
+            if (btnSwitchPicBox.Text == "Feature")
                 picBox.Image = img;
             else
                 picBox.Image = picBox2.Image;
@@ -502,7 +437,10 @@ namespace PushmoLevelEditor
                 var bmp = new Bitmap(Image.FromFile(ofd.FileName));
                 var binary = new BinaryBitmap(new HybridBinarizer(new RGBLuminanceSource(bmp, bmp.Width, bmp.Height)));
                 var reader = new QRCodeReader();
-                var result = reader.decode(binary);
+                var hashtable = new Hashtable();
+                hashtable.Add(DecodeHintType.POSSIBLE_FORMATS,BarcodeFormat.QR_CODE);
+                hashtable.Add(DecodeHintType.TRY_HARDER,true);
+                var result = reader.decode(binary, hashtable);
                 var byteArray = (byte[])((ArrayList)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS])[0];
                 QRByteArray = decrypt_byte_array(byteArray);
                 if (hexBox1.ByteProvider != null)
@@ -514,6 +452,13 @@ namespace PushmoLevelEditor
                 }
                 hexBox1.ByteProvider = new Be.Windows.Forms.DynamicByteProvider(QRByteArray);
                 hexBox1_KeyPress(sender, null);
+
+                var temp = new byte[0];
+                temp = new Byte[QRByteArray.Length];
+                QRByteArray.CopyTo(temp, 0);    //Make sure any tampering with the combo boxes do NOT mess with this data.
+
+                
+
             }
             catch (ReaderException ex)
             {
@@ -525,12 +470,15 @@ namespace PushmoLevelEditor
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             byte temp;
-            int color_index = comboBox1.SelectedIndex;
+            int color_index = cboColor.SelectedIndex;
             bool solid_color_enable;
-            int antenna_index = comboBox2.SelectedIndex;
+            int antenna_index = cboAntennaPower.SelectedIndex;
+
+            if (antenna_index == -1) MessageBox.Show("Please select an Antenna power");
+            if ((color_index == -1) || (antenna_index == -1)) return;
 
             if ((color_index <= 6))
             {
@@ -566,7 +514,7 @@ namespace PushmoLevelEditor
             {
                 temp = hexBox1.ByteProvider.ReadByte(0x12);
                 temp &= 0x07;
-                temp |= (byte)((comboBox1.SelectedIndex - 7) << 3);
+                temp |= (byte)((cboColor.SelectedIndex - 7) << 3);
                 hexBox1.ByteProvider.WriteByte(0x12, temp);
                 hexBox1.ByteProvider.WriteByte(0x13, 0);
                 hexBox1.ByteProvider.WriteByte(0x24, 0xDF);
@@ -576,11 +524,12 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboAntennaPower_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox1_SelectedIndexChanged(sender, e);  //Colors depend on Antenna power
-            comboBox4_SelectedIndexChanged(sender, e);  //So does the Hair style.
-            int index = comboBox2.SelectedIndex;
+            cboColor_SelectedIndexChanged(sender, e);  //Colors depend on Antenna power
+            cboFaceShapeHairStyle_SelectedIndexChanged(sender, e);  //So does the Hair style.
+            int index = cboAntennaPower.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x10) & 0xC0;
             if (index == 0)
             {
@@ -615,61 +564,46 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtName_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.TextLength > 0)
+            if (txtName.TextLength > 0)
             {
-                byte[] unicode_str = System.Text.Encoding.Unicode.GetBytes(textBox1.Text);
+                byte[] unicode_str = System.Text.Encoding.Unicode.GetBytes(txtName.Text);
                 
-                for (int i = 0; i < textBox1.TextLength; i++)
+                for (int i = 0; i < txtName.TextLength; i++)
                 {
                     hexBox1.ByteProvider.WriteByte(0x34 + (i*4), unicode_str[(i*2)]);
                     hexBox1.ByteProvider.WriteByte(0x35 + (i * 4), 0);
                     hexBox1.ByteProvider.WriteByte(0x36 + (i * 4), unicode_str[(i*2)+1]);
                     hexBox1.ByteProvider.WriteByte(0x37 + (i * 4), 0);
                 }
-                hexBox1.ByteProvider.WriteByte(0x34 + (textBox1.TextLength * 4), 0);
-                hexBox1.ByteProvider.WriteByte(0x35 + (textBox1.TextLength * 4), 0);
-                hexBox1.ByteProvider.WriteByte(0x36 + (textBox1.TextLength * 4), 0);
-                hexBox1.ByteProvider.WriteByte(0x37 + (textBox1.TextLength * 4), 0);
+                hexBox1.ByteProvider.WriteByte(0x34 + (txtName.TextLength * 4), 0);
+                hexBox1.ByteProvider.WriteByte(0x35 + (txtName.TextLength * 4), 0);
+                hexBox1.ByteProvider.WriteByte(0x36 + (txtName.TextLength * 4), 0);
+                hexBox1.ByteProvider.WriteByte(0x37 + (txtName.TextLength * 4), 0);
                 hexBox1.Refresh();
                 hexBox1_KeyPress(null, null);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSwitchPicBox_Click(object sender, EventArgs e)
         {
-            if (button1.Text == "QR Code")
+            if (btnSwitchPicBox.Text == "QR Code")
             {
                 picBox.Image = qr_code;
-                button1.Text = "Feature";
+                btnSwitchPicBox.Text = "Feature";
             }
             else
             {
                 picBox.Image = picBox2.Image;
-                button1.Text = "QR Code";
+                btnSwitchPicBox.Text = "QR Code";
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void cboHeadShape_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            string[] all = System.Reflection.Assembly.GetEntryAssembly().
-            GetManifestResourceNames();
-
-            foreach (string one in all)
-            {
-                MessageBox.Show(one);
-            }
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = comboBox3.SelectedIndex;
+            int index = cboHeadShape.SelectedIndex;
+            if (index == -1) return;
             int temp;
             temp = hexBox1.ByteProvider.ReadByte(0x14);
             temp &= 0xE0;
@@ -698,7 +632,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x27, 0);
             }
             hexBox1.Refresh();
-            switch (comboBox3.SelectedIndex)
+            switch (cboHeadShape.SelectedIndex)
             {
                 case 0:
                     picBox2.Image = new Bitmap(Resources.head_0_0);
@@ -776,24 +710,9 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void newDenpaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             menuFileNew_Click(sender, e);
-        }
-
-        private void openQRCodeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            menuFileOpen_Click(sender, e);
-        }
-
-        private void saveQRCodeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            menuFileSave_Click(sender, e);
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -806,27 +725,8 @@ namespace PushmoLevelEditor
 
         }
 
-        private void newDenpaToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            menuFileNew_Click(sender, e);
-        }
-
-        private void openQRCodeToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            openQRCodeToolStripMenuItem_Click(sender, e);
-        }
-
-        private void saveQRCodeToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            saveQRCodeToolStripMenuItem_Click(sender, e);
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuFileExit_Click(sender, e);
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
+      
+        private void btnChangeID_Click(object sender, EventArgs e)
         {
             hexBox1.ByteProvider.WriteByte(0x0D, 0x00);
             hexBox1.ByteProvider.WriteByte(0x0F, 0x00);
@@ -840,10 +740,12 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboFaceShapeHairStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox4.SelectedIndex;
-            int antenna = comboBox2.SelectedIndex;
+            int index = cboFaceShapeHairStyle.SelectedIndex;
+            int antenna = cboAntennaPower.SelectedIndex;
+            if (antenna == -1) MessageBox.Show("Please select an Antenna power.");
+            if ((index == -1) || (antenna == -1)) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x14) & 0x1F;
             int temp2 = hexBox1.ByteProvider.ReadByte(0x16) & 0xF8;
             if (index < 9)
@@ -974,9 +876,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboHairColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox5.SelectedIndex;
+            int index = cboHairColor.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x18) & 0xE0;
             temp |= (index & 0x1F);
             hexBox1.ByteProvider.WriteByte(0x18, (byte)temp);
@@ -1024,9 +927,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboEyes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox6.SelectedIndex;
+            int index = cboEyes.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x18) & 0x1F;
             temp |= ((index & 0x07) << 5);
             hexBox1.ByteProvider.WriteByte(0x18, (byte)temp);
@@ -1138,9 +1042,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboEyeBrows_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox7.SelectedIndex;
+            int index = cboEyeBrows.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x1C) & 0x3F;
             temp |= ((index & 0x03) << 6);
             hexBox1.ByteProvider.WriteByte(0x1C, (byte)temp);
@@ -1180,9 +1085,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboNose_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox8.SelectedIndex;
+            int index = cboNose.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x1C) & 0x87;
             temp |= ((index & 0x0F) << 3);
             hexBox1.ByteProvider.WriteByte(0x1A, (byte)temp);
@@ -1242,9 +1148,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboFaceColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox9.SelectedIndex;
+            int index = cboFaceColor.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x16) & 0xE7;
             if (index < 2)
             {
@@ -1287,9 +1194,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboMouth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox10.SelectedIndex;
+            int index = cboMouth.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x1C) & 0xC0;
             temp |= (index & 0x1F);
             hexBox1.ByteProvider.WriteByte(0x1C, (byte)temp);
@@ -1397,9 +1305,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboCheeks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox11.SelectedIndex;
+            int index = cboCheeks.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x1E) & 0x07;
             if (index < 1)
             {
@@ -1448,9 +1357,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void comboBox12_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboGlasses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = comboBox12.SelectedIndex;
+            int index = cboGlasses.SelectedIndex;
+            if (index == -1) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x20) & 0xE0;
             if (index < 1)
             {
@@ -1523,9 +1433,10 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void nudStats_ValueChanged(object sender, EventArgs e)
         {
-            int index = (int)numericUpDown1.Value;
+            int index = (int)nudStats.Value;
+            if (index < 0) return;
             int temp = hexBox1.ByteProvider.ReadByte(0x10) & 0x3F;
             temp |= ((index & 0x03) << 6);
             hexBox1.ByteProvider.WriteByte(0x10, (byte)temp);
@@ -1540,9 +1451,11 @@ namespace PushmoLevelEditor
             hexBox1_KeyPress(null, null);
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void btnRandomDenpa_Click(object sender, EventArgs e)
         {
-            String[] names = new String[] {
+            
+            String[] north_america_names = new String[] {
+                #region north_america_names
                 "Abe","Abraham","Agustin","Ahmed","Al","Ali","Amado",
                 "Andre","Angel","Antonia","Arlie","Benedict","Benjamin","Blaine","Bob",
                 "Bobbie","Branden","Brant","Bruce","Bryant","Bryon","Buck","Bud",
@@ -1561,34 +1474,169 @@ namespace PushmoLevelEditor
                 "Otha","Quentin","Quinn","Refugio","Rich","Richie","Rickey","Rod",
                 "Rodolfo","Rodrick","Sammy","Scotty","Seth","Shad","Shawn","Shon",
                 "Taylor","Thurman","Wade","Walter","Walton","Wiley","Wilson","Zachary"
+                #endregion
             };
-            button3_Click_1(sender, e);
+            
+            
+            String[] jap_names = new String[] {
+                #region japanese_names
+                "あかね", "あかり", "あきとら", "あさひ", "あおと", "あると", "あずま", "いお", "いかん", 
+                "いきる", "いく", "いくお", "いくし", "いくま", "いくまさ", "いくむ", "いさじ", "いざむ", 
+                "いちか", "いちき", "いちご", "いちせい", "いちた", "いちだい", "いちと", "いちは", "いちひろ",
+                "いちや", "いちよう", "いちる", "いちろ", "いちろうた", "いつお", "いつひと", "いとし", 
+                "いっこう", "いっさ", "いっせい", "いぶみ", "いわお", "いった", "うきょう", "うこん", "うしお", 
+                "うじやす", "うちゅう", "うてな", "うみたろう", "うみのすけ", "うみや", "うめたろう", "うめじろう", 
+                "うゆう", "うめた", "うりゅう", "うん", "えいき", "えいきち", "えいご", "えいし", "えいじ", 
+                "えいしゅん", "えいす", "えいすけ", "えいだい", "えいたろう", "えいのすけ", "えいま", "えいや", 
+                "えつお", "えつろう", "えにし", "えびぞう", "えんぞう", "おういち", "おういちろう", "おうが", 
+                "おうし", "おうしろう", "おうじ", "おうじろう", "おうや", "おおぞら", "おおや", "おと", "おとき", 
+                "おとや", "おりと", "かいお", "かいが", "かいき", "かいこう", "かいし", "かいじ", "かいと", 
+                "がいと", "かいへい", "かいや", "かおる", "がくた", "がくや", "かげと", "かげひろ", "かざと", 
+                "かずお", "かずおみ", "かずき", "かずさ", "かずし", "かずしげ", "かずたか", "かずたけ", 
+                "かずただ", "かずちか", "かずと", "かずとら", "かずのすけ", "かずは", "かずひさ", "かずひと", 
+                "かずひろ", "かずふみ", "かずまさ", "かずみつ", "かずむ", "かずや", "かずやす", "かつ", 
+                "かつあき", "かつお", "かつじ", "かつと", "かつなり", "かつひこ", "かつひと", "かつら", 
+                "かなた", "かなと", "かなで", "かなや", "がもん", "かをる", "かんいち", "かんくろう", "がんじ", 
+                "かんすけ", "かんぞう", "かんたろう", "ぎいちろう", "きおのすけ", "きくたろう", "きさぶろう", 
+                "きしん", "きっぺい", "きひと", "きひろ", "きみのぶ", "きょうが", "きょうき", "きょうじろう", 
+                "きょうすけ", "ぎょうすけ", "きょうたろう", "きょうと", "きょうま", "きよし", "きよしげ", "きよすみ", 
+                "きよた", "きよと", "きよなり", "きよのり", "きよのぶ", "きよひと", "きよひら", "きよふみ", 
+                "きよま", "きりや", "ぎんが", "きんじろう", "ぎんじろう", "きんたろう", "ぎんと", "きんぺい", 
+                "くうご", "くうと", "くすお", "くにとりまる", "くにのり", "くにひこ", "くにひで", "くにひと", 
+                "くまたろう", "くらのすけ", "くらま", "くろうど", "くんた", "けい", "けいいちろう", "けいえつ", 
+                "けいか", "けいじ", "けいじゅ", "けいしん", "けいすけ", "けいた", "けいだい", "けいん", 
+                "けんいちすけ", "けんいちろう", "けんき", "げんき", "けんさく", "けんしろう", "けんじ", "げんじ", 
+                "けんすけ", "げんすけ", "けんせい", "けんた", "けんたすけ", "けんたひ", "けんたひこ", 
+                "げんたろう", "げんと", "げんのすけ", "けんま", "げんき", "こいちろう", "こう", "こういち", 
+                "こういちろう", "こうえい", "こうえつ", "こうお", "こうし", "こうじ", "ごうすけ", "こうた", 
+                "ごうだい", "ごうたろう", "こうふ", "こうま", "こうめい", "こうよう", "こうりゅう", "ごくう", "こころ", 
+                "こじろう", "コタロー", "こてつ", "ことや", "ごろう", "ごんべえ", "さいき", "さいた", "さいと", 
+                "さかえ", "さくいち", "さくお", "さくじ", "さくた", "さくたろう", "さくはる", "さくへい", "さくも", 
+                "さくや", "さくら", "さだむ", "さだゆき", "さちお", "さちと", "さちひろ", "さちや", "さとゆき", 
+                "さとる", "さねひと", "さのすけ", "さへい", "さまのしん", "さわお", "しあら", "しいち", 
+                "じいちろう", "しおり", "しげお", "しげかず", "しげき", "しげなり", "しげひこ", "しげひさ", 
+                "しげひろ", "しげまつ", "しこう", "しさお", "じじろう", "しずお", "しのすけ", "しのび", "しのぶ", 
+                "しひろ", "しゅう", "しゅうう", "しゅうが", "しゅうげつ", "しゅうご", "じゅうたろう", "しゅうのすけ", 
+                "しゅうへい", "しゅうや", "しゅうよ", "しゅうわ", "じゅり", "しゅんいち", "じゅんきち", "じゅんすけ", 
+                "じゅんせい", "しゅんた", "じゅんのすけ", "しゅんぺい", "しゅんま", "じゅんま", "しょう", 
+                "しょうせい", "しょうた", "しょうだい", "じょうた", "しょうのすけ", "しょうりゅう", "しりゅう", "しろと", 
+                "しろう", "じろう", "しんいち", "じんいち", "しんご", "しんざぶろう", "しんじ", "じんぺい", 
+                "しんめい", "しんや", "すい", "すいた", "すいと", "すけろく", "すずし", "すばる", "すみと", 
+                "すみひこ", "すみはる", "せいあ", "せいご", "せいざぶろう", "せいじ", "せいじろう", "せいしん", 
+                "せいすけ", "せいたろう", "せいと", "せいよう", "せいら", "せが", "せつお", "せつや", "せな", 
+                "せんいちろう", "せんと", "せんま", "せんご", "せいすけ", "せつお", "そういちろう", "そうが", 
+                "そうけん", "そうご", "そうし", "そうじろう", "そうせき", "そうた", "そうだい", "そうたろう", 
+                "そうと", "そうま", "そうや", "そらお", "そらき", "そらじろう", "そらや", "たいかい", "だいき", 
+                "だいごろう", "だいさく", "たいじゅ", "だいしょう", "だいじろう", "だいすけ", "たいち", "たいと", 
+                "だいと", "だいもん", "だいや", "たかいち", "たかお", "たかおみ", "たかつぐ", "たかと", 
+                "たかとし", "たかな", "たかね", "たかのぶ", "たかひこ", "たかひさ", "たかひろ", "たかま", 
+                "たかみち", "たかみつ", "たかむ", "たかゆき　", "たきお　", "たくい", "たくや", "たくし", 
+                "たくすけ", "たくた", "たくたろう", "たくのすけ", "たくふみ", "たくむ", "たくろう", "たけお", 
+                "たけき", "たけし", "たけじろう", "たけとも", "たけのぶ", "たけひさ", "たけひと", "たけふみ", 
+                "たけまつ", "たけみつ", "たけゆき", "たける", "たすけ", "ただあき", "ただずみ", "ただたか", 
+                "ただのぶ", "ただむね", "たつ", "たつおみ", "たつし", "たっと", "たつなり", "たつひこ", 
+                "たつひさ", "たつひと", "たっぺい", "たつま", "たつや", "たつよし", "たへい", "たみや", 
+                "たみひで", "たもつ", "たろう", "ちあき", "ちおん", "ちかと", "ちかひさ", "ちかゆき", "ちせい", 
+                "ちづる", "ちづお", "ちとせ", "ちひろ", "ちゅうすけ", "ちょういち", "ちょうた", "つかさ", 
+                "つづみ", "つね", "つねのり", "つねひと", "つねゆき", "つねろう", "つばき", "つばさ", 
+                "ていた", "ていと", "てつ", "てつき", "てっせい", "てつた", "てつひさ", "てつひで", "てつひと", 
+                "てつま", "テル", "てるあき", "てるお", "てるかず", "てると", "てるとし", "てるのり", "てるま", 
+                "てるまさ", "てるみ", "てるみち", "てるよし", "てん", "てんいち", "てんさく", "でんじ", 
+                "てんせい", "てんたろう", "てんと", "てんどう", "とうじろう", "とうた", "とうたろう", "とうま", 
+                "とうや", "とおる", "ときつぐ", "ときじろう", "ときと", "ときひさ", "ときむね", "ときや", "とくひろ", 
+                "としいえ", "としたか", "としなり", "としのぶ", "としまさ", "としみち", "としやす", "としゆき", 
+                "とま", "とみお", "とみなり", "とみひさ", "ともかず", "ともき", "ともし", "ともたろう", "ともちか", 
+                "ともと", "とものすけ", "とものり", "ともひで", "ともひと", "ともみつ", "ともゆき", "ともよし", 
+                "ともろう", "とよき", "とらきち", "とらじろう", "とらひと", "とらお", "なおえ", "なおかず", 
+                "なおざね", "なおじろう", "なおた", "なおたか", "なおたろう", "なおとし", "なおはる", 
+                "なおひこ", "なおひろ", "なおま", "ながひさ", "なぎと", "なごみ", "なごむ", "なつ", 
+                "なついち", "なつお", "なつた", "なつたろう", "なつひと", "なつめ", "ななき", "ななせ", 
+                "ななみ", "なゆた", "なり", "なりたつ", "なりひろ", "なりゆき", "なるひと", "なるみ", 
+                "にじひこ", "にじや", "にじろう", "にや", "にんざぶろう", "ねおん", "のあ", "ノエル", "のびた", 
+                "のぶお", "のぶき", "のぶたか", "のぶてる", "のぶなが", "のぶひろ", "のりかず", "のりたか", 
+                "のりひと", "のりゆき", "のりまさ", "はいとく", "はかる", "ばく", "はじめ", "はちろう", "はつき", 
+                "はづき", "はつね", "はつま", "ははや", "はやき", "はやたか", "はやと", "はやとし", 
+                "はやとも", "はやぶさ", "はゆま", "はゆる", "はるあき", "はるお", "はるか", "はるかず", 
+                "はるきよ", "はるすけ", "はるたけ", "はるただ", "はるたろう", "はるとも", "はるとら", "はるなお", 
+                "はるなり", "はるね", "はるのり", "はるひ", "はるひこ", "はるひで", "はるま", "はるみち", 
+                "はるむ", "はんた", "ばんたろう", "ばんり", "ひかり", "ひかる", "ひこの", "ひさ", "ひさあき", 
+                "ひさお", "ひさたか", "ひさのり", "ひさのぶ", "ひさひろ", "ひさや", "ひさよし", "ひじり", 
+                "ピッド", "ひづき", "ひさはろ", "ひで", "ひでちか", "ひでとし", "ひでとも", "ひでなり", 
+                "ひでひさ", "ひでゆき", "ひでよし", "ひなき", "ひなた", "ひなと", "ひのき", "ひゅう", "ひょう", 
+                "ひょうえ", "ひょうが", "ひらお", "ひろかつ", "ひろさき", "ひろき", "ひろこ", "ひろたろう", 
+                "ひろひこ", "ひろひで", "ひろまさ", "ひろみつ", "びん", "ふうすけ", "ふうたろう", "ふうと", 
+                "ふきち", "ふく", "ふくすけ", "ふくと", "ふくや", "ふじお", "ふたば", "ぶどう", "ふみたけ", 
+                "ふみひさ", "ふみひと", "ふゆ", "ふゆと", "ぶんじ", "ぶんたろう", "ぶんや", "べんぞう", 
+                "へいた", "へんたい", "ポール", "ほずき", "ほづみ", "ほまれ", "ほうせい", "ほの", "マイケル", 
+                "まいじろう", "まいたろう", "まお", "まきた", "まこ", "まさ", "まさおみ", "まさかつ", "まさかど", 
+                "まさき", "まさじ", "まさしげ", "まさた", "まこと", "まさたか", "まさただ", "まさちか", "まさと", 
+                "まさひろ", "まさほ", "まさむね", "まさみ", "まさみつ", "まさゆき", "まさゆみ", "まさよし", 
+                "まさる", "ますお", "またさぶろう", "またざぶろう", "まつたろう", "まどか", "まなつ", "まなと", 
+                "まなぶ", "まはる", "まほ", "まみち", "まもる", "まゆき", "まるも", "まれすけ", "まんえい", 
+                "まんじろう", "まんぺい", "みお", "みおと", "みかど", "みき", "みきたろう", "みきたか", "みく", 
+                "みくや", "みこと", "みさきまる", "みずと", "みずほ", "みずや", "みち", "みちお", "みちき", 
+                "みちた", "みちと", "みちなり", "みちはる", "みちひこ", "みちひと", "みちまさ", "みちる", 
+                "みちろう", "みつあき", "みつお", "みつき", "みつくに", "みつたか", "みつと", "みつなが", 
+                "みつはる", "みつひこ", "みつひさ", "みつひで", "みつまさ", "みつろう", "みどう", "みどり", 
+                "みのや", "みのる", "みやび", "みゆき", "みわたくろう", "むが", "むくなが", "むつお", 
+                "むつや", "むねお", "むさし", "むねじ", "めいとく", "めかのすけ", "めぐむ", "メグウィン", 
+                "もとき", "もぎき", "もときよ", "もとのり", "もとのぶ", "もとひろ", "モンきち", "もんきゅー", 
+                "やいち", "やいちろう", "やくも", "やすあき", "やすお", "やすさぶろう", "やすし", "やすとし", 
+                "やすなり", "やすひこ", "やすひで", "やすひと", "やすひろ", "やすま", "やすまさ", "やすや", 
+                "やすろう", "やひこ", "やまと", "やわら", "ゆいいちろう", "ゆいのすけ", "ゆいと", "ゆいや", 
+                "ゆう", "ゆうあ", "ゆうあき", "ゆういち", "ゆうさ", "ゆうさく", "ゆうざぶろう", "ゆうじゅ", 
+                "ゆうしょう", "ゆうしん", "ゆうせい", "ゆうだい", "ゆうほ", "ゆうま", "ゆうや", "ゆかり", 
+                "ゆきお", "ゆきち", "ゆきとも", "ゆきとら", "ゆきのしん", "ゆきのぶ", "ゆきひと", "ゆきま", 
+                "ゆきのすけ", "ゆずる", "ゆみと", "ゆめ", "ゆめき", "ゆめじ", "ゆめた", "ゆらい", "ユウナ", 
+                "よういち", "ようく", "ようたろう", "ようと", "よこたる", "よしいえ", "よしお", "よしき", "よしくに", 
+                "よした", "よしたろう", "よしちか", "よしつぐ", "よしなお", "よしひこ", "よしひろ", "よしまさ", 
+                "よしみつ", "よみ", "よりひと", "ヨン", "らいじ", "らいち", "らいと", "らいな", "ライヤ", "らん", 
+                "らんた", "らんぽ", "らんのすけ", "ライト", "りおと", "りきあ", "りきいち", "りきお", "りきと", 
+                "りく", "りくたろう", "りくと", "りくのすけ", "りくひろ", "りくへい", "りくみ", "りくや", "りたろう", 
+                "りつき", "りつし", "りつじ", "りつたろう", "りつと", "りっと　", "りつま", "りと", "りゅう", 
+                "りゅういち", "りゅうし", "りゅうすけ", "りゅうじゅ", "りゅうた", "りゅうたろう", "りゅうだい", 
+                "りゅうのすけ", "りゅうほ", "りゅうほう", "りょうい", "りょうえい", "りょうすけ", "りょうた", 
+                "りょうたろう", "りょうのしん", "りょうのすけ", "りょうご", "りょうこう", "りょうじろう", "りょうふう", 
+                "りょうま", "りょうきち", "りょお", "りんいち", "りんいちろう", "りんご", "りんぞう", "りんた", 
+                "りんや", "りくや", "りつき", "りくみ", "ルイス", "るうま", "るおん", "るか", "るきあ", "るな", 
+                "るり", "るろ", "れいいち", "れいき", "れいし", "れいのすけ", "れいや", "れいめい", "レイン", 
+                "れお", "れき", "レン", "れんいちろう", "れんじ", "れんじゅ", "えいき", "えいき", "えいき", 
+                "れんじゅ", "れんじろう", "れんたろう", "れんぺい", "れんま", "れんや", "レレレのおじさん", 
+                "ろうた", "ろく", "ろくろう", "ろまん", "ろん", "わいち", "わかき", "わかぎ", "わかさぎ", 
+                "わかと", "わかな", "わかひろ", "わく", "わしひと", "わりと"
+                #endregion
+            };
+            
+            btnChangeID_Click(sender, e);
             Random random = new Random();
-            comboBox1.SelectedIndex = random.Next(comboBox1.Items.Count);
-            comboBox2.SelectedIndex = random.Next(comboBox2.Items.Count);
-            comboBox3.SelectedIndex = random.Next(comboBox3.Items.Count);
-            comboBox4.SelectedIndex = random.Next(comboBox4.Items.Count);
-            comboBox5.SelectedIndex = random.Next(comboBox5.Items.Count);
-            comboBox6.SelectedIndex = random.Next(comboBox6.Items.Count);
-            comboBox7.SelectedIndex = random.Next(comboBox7.Items.Count);
-            comboBox8.SelectedIndex = random.Next(comboBox8.Items.Count);
-            comboBox9.SelectedIndex = random.Next(comboBox9.Items.Count);
-            comboBox10.SelectedIndex = random.Next(comboBox10.Items.Count);
-            comboBox11.SelectedIndex = random.Next(comboBox11.Items.Count);
-            comboBox12.SelectedIndex = random.Next(comboBox12.Items.Count);
-            numericUpDown1.Value = random.Next(512);
-            textBox1.Text = names[random.Next(names.Length)];
+            cboAntennaPower.SelectedIndex = random.Next(cboAntennaPower.Items.Count);
+            cboColor.SelectedIndex = random.Next(cboColor.Items.Count);
+            cboHeadShape.SelectedIndex = random.Next(cboHeadShape.Items.Count);
+            cboFaceShapeHairStyle.SelectedIndex = random.Next(cboFaceShapeHairStyle.Items.Count);
+            cboHairColor.SelectedIndex = random.Next(cboHairColor.Items.Count);
+            cboEyes.SelectedIndex = random.Next(cboEyes.Items.Count);
+            cboEyeBrows.SelectedIndex = random.Next(cboEyeBrows.Items.Count);
+            cboNose.SelectedIndex = random.Next(cboNose.Items.Count);
+            cboFaceColor.SelectedIndex = random.Next(cboFaceColor.Items.Count);
+            cboMouth.SelectedIndex = random.Next(cboMouth.Items.Count);
+            cboCheeks.SelectedIndex = random.Next(cboCheeks.Items.Count);
+            cboGlasses.SelectedIndex = random.Next(cboGlasses.Items.Count);
+            nudStats.Value = random.Next(512);
+            if (cboRegion.SelectedIndex != 1)
+                txtName.Text = north_america_names[random.Next(north_america_names.Length)];
+            else
+                txtName.Text = jap_names[random.Next(jap_names.Length)];
         }
 
         private void advancedInterfaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             hexBox1.Visible = !advancedInterfaceToolStripMenuItem.Checked;
-            button1.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            btnSwitchPicBox.Visible = !advancedInterfaceToolStripMenuItem.Checked;
             advancedInterfaceToolStripMenuItem.Checked = !advancedInterfaceToolStripMenuItem.Checked;
 
             if (!advancedInterfaceToolStripMenuItem.Checked)
-                if (button1.Text == "QR Code")
-                    button1_Click(sender, e);
+                if (btnSwitchPicBox.Text == "QR Code")
+                    btnSwitchPicBox_Click(sender, e);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1597,9 +1645,9 @@ namespace PushmoLevelEditor
             box.ShowDialog();
         }
 
-        private void comboBox13_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox13.SelectedIndex == 1)
+            if (cboRegion.SelectedIndex == 1)
             {
                 hexBox1.ByteProvider.WriteByte(0x00, 0x62);
                 hexBox1.ByteProvider.WriteByte(0x01, 0x00);

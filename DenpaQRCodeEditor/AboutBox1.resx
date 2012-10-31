@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBoxDescription.Text" xml:space="preserve">
-    <value>Credits:
-CaitSith2 - Total reverse engineering of the Denpa Men QR code format.
-
-Eli Sherer - For the pushmo level editor, which was used as the base for this program. (Mainly, for dealing with the use of the ZXing QR code library)
-
-Be.HexEditor - For the hex editor control, which was a great help in hacking the QR code format.
-
-Genius Sonority Inc. - For localizing this awesome game, and for not making the QR code format too complex.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="logoPictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3219,6 +3209,18 @@ Genius Sonority Inc. - For localizing this awesome game, and for not making the 
         WAzyIad1vdRZI7AY5KyRXPf5kCOwGORDTut6qbNGYDHIWSO57vMhR2AxyIec1vVSZ43AYpCzRnLd50OO
         wGKQDzmt66XOGoHFIGeN5LrPhxyB/w/12zPfTvrPDgAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="textBoxDescription.Text" xml:space="preserve">
+    <value>Credits:
+CaitSith2 - Total reverse engineering of the Denpa Men QR code format.
+
+Eli Sherer - For the pushmo level editor, which was used as the base for this program. (Mainly, for dealing with the use of the ZXing QR code library)
+
+Be.HexEditor - For the hex editor control, which was a great help in hacking the QR code format.
+
+Genius Sonority Inc. - For localizing this awesome game, and for not making the QR code format too complex.
+
+http://wikiwiki.jp/denpaningen/ - Full list of japanese names for the random denpa function, when region is set for Japan.</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

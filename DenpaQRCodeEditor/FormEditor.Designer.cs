@@ -46,39 +46,41 @@
             this.menuFileSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.cboGlasses = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.cboNose = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.cboEyes = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.cboHairColor = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.tbEditor = new System.Windows.Forms.ToolStrip();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboColor = new System.Windows.Forms.ComboBox();
+            this.cboHeadShape = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.picBox2 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnRandomDenpa = new System.Windows.Forms.Button();
+            this.cboRegion = new System.Windows.Forms.ComboBox();
+            this.nudStats = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.cboCheeks = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.cboMouth = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.cboFaceColor = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnChangeID = new System.Windows.Forms.Button();
+            this.cboEyeBrows = new System.Windows.Forms.ComboBox();
+            this.btnSwitchPicBox = new System.Windows.Forms.Button();
             this.picBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboFaceShapeHairStyle = new System.Windows.Forms.ComboBox();
+            this.cboAntennaPower = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbEditorSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -88,15 +90,13 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +132,7 @@
             this.newDenpaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newDenpaToolStripMenuItem1.Size = new System.Drawing.Size(196, 22);
             this.newDenpaToolStripMenuItem1.Text = "&New Denpa";
-            this.newDenpaToolStripMenuItem1.Click += new System.EventHandler(this.newDenpaToolStripMenuItem1_Click);
+            this.newDenpaToolStripMenuItem1.Click += new System.EventHandler(this.menuFileNew_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -146,7 +146,7 @@
             this.openQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.openQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(196, 22);
             this.openQRCodeToolStripMenuItem2.Text = "Open &QR Code";
-            this.openQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.openQRCodeToolStripMenuItem2_Click);
+            this.openQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.openQRCodeToolStripMenuItem_Click);
             // 
             // saveQRCodeToolStripMenuItem2
             // 
@@ -155,7 +155,7 @@
             this.saveQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(196, 22);
             this.saveQRCodeToolStripMenuItem2.Text = "&Save QR Code";
-            this.saveQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.saveQRCodeToolStripMenuItem2_Click);
+            this.saveQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.saveQRCodeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -169,7 +169,7 @@
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -228,19 +228,19 @@
             // 
             this.splitContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer.Panel1.Controls.Add(this.label13);
-            this.splitContainer.Panel1.Controls.Add(this.comboBox12);
+            this.splitContainer.Panel1.Controls.Add(this.cboGlasses);
             this.splitContainer.Panel1.Controls.Add(this.label9);
-            this.splitContainer.Panel1.Controls.Add(this.comboBox8);
+            this.splitContainer.Panel1.Controls.Add(this.cboNose);
             this.splitContainer.Panel1.Controls.Add(this.label7);
-            this.splitContainer.Panel1.Controls.Add(this.comboBox6);
+            this.splitContainer.Panel1.Controls.Add(this.cboEyes);
             this.splitContainer.Panel1.Controls.Add(this.label6);
-            this.splitContainer.Panel1.Controls.Add(this.comboBox5);
+            this.splitContainer.Panel1.Controls.Add(this.cboHairColor);
             this.splitContainer.Panel1.Controls.Add(this.label1);
             this.splitContainer.Panel1.Controls.Add(this.label4);
-            this.splitContainer.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer.Panel1.Controls.Add(this.txtName);
             this.splitContainer.Panel1.Controls.Add(this.tbEditor);
-            this.splitContainer.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer.Panel1.Controls.Add(this.comboBox3);
+            this.splitContainer.Panel1.Controls.Add(this.cboColor);
+            this.splitContainer.Panel1.Controls.Add(this.cboHeadShape);
             this.splitContainer.Panel1.Controls.Add(this.label2);
             this.splitContainer.Panel1.Controls.Add(this.hexBox1);
             this.splitContainer.Panel1.Controls.Add(this.picBox2);
@@ -248,24 +248,24 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.label15);
-            this.splitContainer.Panel2.Controls.Add(this.button2);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox13);
-            this.splitContainer.Panel2.Controls.Add(this.numericUpDown1);
+            this.splitContainer.Panel2.Controls.Add(this.btnRandomDenpa);
+            this.splitContainer.Panel2.Controls.Add(this.cboRegion);
+            this.splitContainer.Panel2.Controls.Add(this.nudStats);
             this.splitContainer.Panel2.Controls.Add(this.label14);
             this.splitContainer.Panel2.Controls.Add(this.label12);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox11);
+            this.splitContainer.Panel2.Controls.Add(this.cboCheeks);
             this.splitContainer.Panel2.Controls.Add(this.label11);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox10);
+            this.splitContainer.Panel2.Controls.Add(this.cboMouth);
             this.splitContainer.Panel2.Controls.Add(this.label10);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox9);
+            this.splitContainer.Panel2.Controls.Add(this.cboFaceColor);
             this.splitContainer.Panel2.Controls.Add(this.label8);
-            this.splitContainer.Panel2.Controls.Add(this.button3);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox7);
-            this.splitContainer.Panel2.Controls.Add(this.button1);
+            this.splitContainer.Panel2.Controls.Add(this.btnChangeID);
+            this.splitContainer.Panel2.Controls.Add(this.cboEyeBrows);
+            this.splitContainer.Panel2.Controls.Add(this.btnSwitchPicBox);
             this.splitContainer.Panel2.Controls.Add(this.picBox);
             this.splitContainer.Panel2.Controls.Add(this.label5);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox4);
-            this.splitContainer.Panel2.Controls.Add(this.comboBox2);
+            this.splitContainer.Panel2.Controls.Add(this.cboFaceShapeHairStyle);
+            this.splitContainer.Panel2.Controls.Add(this.cboAntennaPower);
             this.splitContainer.Panel2.Controls.Add(this.label3);
             this.splitContainer.Size = new System.Drawing.Size(786, 454);
             this.splitContainer.SplitterDistance = 432;
@@ -280,11 +280,11 @@
             this.label13.TabIndex = 28;
             this.label13.Text = "Glasses:";
             // 
-            // comboBox12
+            // cboGlasses
             // 
-            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
+            this.cboGlasses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGlasses.FormattingEnabled = true;
+            this.cboGlasses.Items.AddRange(new object[] {
             "No Glasses",
             "Green Glasses",
             "Pink Glasses",
@@ -301,11 +301,11 @@
             "Bug Eyes",
             "Alien Eyes",
             "Heart Glasses"});
-            this.comboBox12.Location = new System.Drawing.Point(112, 366);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(311, 21);
-            this.comboBox12.TabIndex = 27;
-            this.comboBox12.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
+            this.cboGlasses.Location = new System.Drawing.Point(112, 366);
+            this.cboGlasses.Name = "cboGlasses";
+            this.cboGlasses.Size = new System.Drawing.Size(311, 21);
+            this.cboGlasses.TabIndex = 27;
+            this.cboGlasses.SelectedIndexChanged += new System.EventHandler(this.cboGlasses_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -316,11 +316,11 @@
             this.label9.TabIndex = 26;
             this.label9.Text = "Nose:";
             // 
-            // comboBox8
+            // cboNose
             // 
-            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
+            this.cboNose.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNose.FormattingEnabled = true;
+            this.cboNose.Items.AddRange(new object[] {
             "Nose_1",
             "Nose_2",
             "Nose_3",
@@ -337,11 +337,11 @@
             "Nose_14",
             "Nose_15",
             "Nose_16"});
-            this.comboBox8.Location = new System.Drawing.Point(112, 339);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(311, 21);
-            this.comboBox8.TabIndex = 25;
-            this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
+            this.cboNose.Location = new System.Drawing.Point(112, 339);
+            this.cboNose.Name = "cboNose";
+            this.cboNose.Size = new System.Drawing.Size(311, 21);
+            this.cboNose.TabIndex = 25;
+            this.cboNose.SelectedIndexChanged += new System.EventHandler(this.cboNose_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -352,11 +352,11 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Eyes:";
             // 
-            // comboBox6
+            // cboEyes
             // 
-            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
+            this.cboEyes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEyes.FormattingEnabled = true;
+            this.cboEyes.Items.AddRange(new object[] {
             "Eyes_1",
             "Eyes_2",
             "Eyes_3",
@@ -389,11 +389,11 @@
             "Eyes_30",
             "Eyes_31",
             "Eyes_32"});
-            this.comboBox6.Location = new System.Drawing.Point(112, 312);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(311, 21);
-            this.comboBox6.TabIndex = 21;
-            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
+            this.cboEyes.Location = new System.Drawing.Point(112, 312);
+            this.cboEyes.Name = "cboEyes";
+            this.cboEyes.Size = new System.Drawing.Size(311, 21);
+            this.cboEyes.TabIndex = 21;
+            this.cboEyes.SelectedIndexChanged += new System.EventHandler(this.cboEyes_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -404,11 +404,11 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Hair Color:";
             // 
-            // comboBox5
+            // cboHairColor
             // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
+            this.cboHairColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHairColor.FormattingEnabled = true;
+            this.cboHairColor.Items.AddRange(new object[] {
             "Grey",
             "White",
             "Brown",
@@ -421,11 +421,11 @@
             "Pink",
             "Orange",
             "Red"});
-            this.comboBox5.Location = new System.Drawing.Point(112, 285);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(311, 21);
-            this.comboBox5.TabIndex = 19;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            this.cboHairColor.Location = new System.Drawing.Point(112, 285);
+            this.cboHairColor.Name = "cboHairColor";
+            this.cboHairColor.Size = new System.Drawing.Size(311, 21);
+            this.cboHairColor.TabIndex = 19;
+            this.cboHairColor.SelectedIndexChanged += new System.EventHandler(this.cboHairColor_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -445,14 +445,14 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "Head Shape:";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(112, 393);
-            this.textBox1.MaxLength = 12;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(311, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtName.Location = new System.Drawing.Point(112, 393);
+            this.txtName.MaxLength = 12;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(311, 20);
+            this.txtName.TabIndex = 7;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // tbEditor
             // 
@@ -465,11 +465,11 @@
             this.tbEditor.Size = new System.Drawing.Size(32, 226);
             this.tbEditor.TabIndex = 4;
             // 
-            // comboBox1
+            // cboColor
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cboColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboColor.FormattingEnabled = true;
+            this.cboColor.Items.AddRange(new object[] {
             "Black",
             "White ",
             "Red ",
@@ -492,17 +492,17 @@
             "Orange/Green",
             "Orange/White",
             "Green/White"});
-            this.comboBox1.Location = new System.Drawing.Point(112, 231);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(311, 21);
-            this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cboColor.Location = new System.Drawing.Point(112, 231);
+            this.cboColor.Name = "cboColor";
+            this.cboColor.Size = new System.Drawing.Size(311, 21);
+            this.cboColor.TabIndex = 5;
+            this.cboColor.SelectedIndexChanged += new System.EventHandler(this.cboColor_SelectedIndexChanged);
             // 
-            // comboBox3
+            // cboHeadShape
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.cboHeadShape.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHeadShape.FormattingEnabled = true;
+            this.cboHeadShape.Items.AddRange(new object[] {
             "Head_0_0",
             "Head_0_1",
             "Head_0_2",
@@ -527,11 +527,11 @@
             "Head_2_3",
             "Head_2_4",
             "Head_2_5"});
-            this.comboBox3.Location = new System.Drawing.Point(112, 258);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(311, 21);
-            this.comboBox3.TabIndex = 11;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            this.cboHeadShape.Location = new System.Drawing.Point(112, 258);
+            this.cboHeadShape.Name = "cboHeadShape";
+            this.cboHeadShape.Size = new System.Drawing.Size(311, 21);
+            this.cboHeadShape.TabIndex = 11;
+            this.cboHeadShape.SelectedIndexChanged += new System.EventHandler(this.cboHeadShape_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -573,28 +573,55 @@
             this.picBox2.TabIndex = 37;
             this.picBox2.TabStop = false;
             // 
-            // button2
+            // label15
             // 
-            this.button2.Location = new System.Drawing.Point(207, 32);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 23);
-            this.button2.TabIndex = 36;
-            this.button2.Text = "Random";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(18, 207);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(103, 13);
+            this.label15.TabIndex = 38;
+            this.label15.Text = "Denpa Men Region:";
             // 
-            // numericUpDown1
+            // btnRandomDenpa
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(127, 394);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.btnRandomDenpa.Location = new System.Drawing.Point(207, 32);
+            this.btnRandomDenpa.Name = "btnRandomDenpa";
+            this.btnRandomDenpa.Size = new System.Drawing.Size(81, 23);
+            this.btnRandomDenpa.TabIndex = 36;
+            this.btnRandomDenpa.Text = "Random";
+            this.btnRandomDenpa.UseVisualStyleBackColor = true;
+            this.btnRandomDenpa.Click += new System.EventHandler(this.btnRandomDenpa_Click);
+            // 
+            // cboRegion
+            // 
+            this.cboRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRegion.FormattingEnabled = true;
+            this.cboRegion.Items.AddRange(new object[] {
+            "North America",
+            "Japan"});
+            this.cboRegion.Location = new System.Drawing.Point(127, 204);
+            this.cboRegion.Name = "cboRegion";
+            this.cboRegion.Size = new System.Drawing.Size(223, 21);
+            this.cboRegion.TabIndex = 37;
+            this.cboRegion.SelectedIndexChanged += new System.EventHandler(this.cboRegion_SelectedIndexChanged);
+            // 
+            // nudStats
+            // 
+            this.nudStats.Location = new System.Drawing.Point(127, 394);
+            this.nudStats.Maximum = new decimal(new int[] {
             511,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDown1.TabIndex = 35;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.nudStats.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.nudStats.Name = "nudStats";
+            this.nudStats.Size = new System.Drawing.Size(74, 20);
+            this.nudStats.TabIndex = 35;
+            this.nudStats.ValueChanged += new System.EventHandler(this.nudStats_ValueChanged);
             // 
             // label14
             // 
@@ -614,11 +641,11 @@
             this.label12.TabIndex = 32;
             this.label12.Text = "Cheeks:";
             // 
-            // comboBox11
+            // cboCheeks
             // 
-            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Items.AddRange(new object[] {
+            this.cboCheeks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCheeks.FormattingEnabled = true;
+            this.cboCheeks.Items.AddRange(new object[] {
             "No Cheeks",
             "Small Cheeks",
             "Spiral Cheeks",
@@ -627,11 +654,11 @@
             "Round Cheeks",
             "Whiskers 1",
             "Whiskers 2"});
-            this.comboBox11.Location = new System.Drawing.Point(127, 366);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(223, 21);
-            this.comboBox11.TabIndex = 31;
-            this.comboBox11.SelectedIndexChanged += new System.EventHandler(this.comboBox11_SelectedIndexChanged);
+            this.cboCheeks.Location = new System.Drawing.Point(127, 366);
+            this.cboCheeks.Name = "cboCheeks";
+            this.cboCheeks.Size = new System.Drawing.Size(223, 21);
+            this.cboCheeks.TabIndex = 31;
+            this.cboCheeks.SelectedIndexChanged += new System.EventHandler(this.cboCheeks_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -642,11 +669,11 @@
             this.label11.TabIndex = 30;
             this.label11.Text = "Mouth:";
             // 
-            // comboBox10
+            // cboMouth
             // 
-            this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
+            this.cboMouth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMouth.FormattingEnabled = true;
+            this.cboMouth.Items.AddRange(new object[] {
             "Mouth_1",
             "Mouth_2",
             "Mouth_3",
@@ -679,11 +706,11 @@
             "Mouth_30",
             "Mouth_31",
             "Mouth_32"});
-            this.comboBox10.Location = new System.Drawing.Point(127, 339);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(223, 21);
-            this.comboBox10.TabIndex = 29;
-            this.comboBox10.SelectedIndexChanged += new System.EventHandler(this.comboBox10_SelectedIndexChanged);
+            this.cboMouth.Location = new System.Drawing.Point(127, 339);
+            this.cboMouth.Name = "cboMouth";
+            this.cboMouth.Size = new System.Drawing.Size(223, 21);
+            this.cboMouth.TabIndex = 29;
+            this.cboMouth.SelectedIndexChanged += new System.EventHandler(this.cboMouth_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -694,22 +721,22 @@
             this.label10.TabIndex = 28;
             this.label10.Text = "Face Color:";
             // 
-            // comboBox9
+            // cboFaceColor
             // 
-            this.comboBox9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Items.AddRange(new object[] {
+            this.cboFaceColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFaceColor.FormattingEnabled = true;
+            this.cboFaceColor.Items.AddRange(new object[] {
             "****** Lightest",
             "*****",
             "****",
             "***",
             "**",
             "* Darkest"});
-            this.comboBox9.Location = new System.Drawing.Point(127, 285);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(223, 21);
-            this.comboBox9.TabIndex = 27;
-            this.comboBox9.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
+            this.cboFaceColor.Location = new System.Drawing.Point(127, 285);
+            this.cboFaceColor.Name = "cboFaceColor";
+            this.cboFaceColor.Size = new System.Drawing.Size(223, 21);
+            this.cboFaceColor.TabIndex = 27;
+            this.cboFaceColor.SelectedIndexChanged += new System.EventHandler(this.cboFaceColor_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -720,21 +747,21 @@
             this.label8.TabIndex = 24;
             this.label8.Text = "Eye Brows:";
             // 
-            // button3
+            // btnChangeID
             // 
-            this.button3.Location = new System.Drawing.Point(207, 61);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Change ID";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.btnChangeID.Location = new System.Drawing.Point(207, 61);
+            this.btnChangeID.Name = "btnChangeID";
+            this.btnChangeID.Size = new System.Drawing.Size(81, 23);
+            this.btnChangeID.TabIndex = 17;
+            this.btnChangeID.Text = "Change ID";
+            this.btnChangeID.UseVisualStyleBackColor = true;
+            this.btnChangeID.Click += new System.EventHandler(this.btnChangeID_Click);
             // 
-            // comboBox7
+            // cboEyeBrows
             // 
-            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
+            this.cboEyeBrows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEyeBrows.FormattingEnabled = true;
+            this.cboEyeBrows.Items.AddRange(new object[] {
             "Eye_Brows_1",
             "Eye_Brows_2",
             "Eye_Brows_3",
@@ -743,29 +770,29 @@
             "Eye_Brows_6",
             "Eye_Brows_7",
             "Eye_Brows_8"});
-            this.comboBox7.Location = new System.Drawing.Point(127, 312);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(223, 21);
-            this.comboBox7.TabIndex = 23;
-            this.comboBox7.SelectedIndexChanged += new System.EventHandler(this.comboBox7_SelectedIndexChanged);
+            this.cboEyeBrows.Location = new System.Drawing.Point(127, 312);
+            this.cboEyeBrows.Name = "cboEyeBrows";
+            this.cboEyeBrows.Size = new System.Drawing.Size(223, 21);
+            this.cboEyeBrows.TabIndex = 23;
+            this.cboEyeBrows.SelectedIndexChanged += new System.EventHandler(this.cboEyeBrows_SelectedIndexChanged);
             // 
-            // button1
+            // btnSwitchPicBox
             // 
-            this.button1.Location = new System.Drawing.Point(207, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Feature";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSwitchPicBox.Location = new System.Drawing.Point(207, 3);
+            this.btnSwitchPicBox.Name = "btnSwitchPicBox";
+            this.btnSwitchPicBox.Size = new System.Drawing.Size(81, 23);
+            this.btnSwitchPicBox.TabIndex = 8;
+            this.btnSwitchPicBox.Text = "Feature";
+            this.btnSwitchPicBox.UseVisualStyleBackColor = true;
+            this.btnSwitchPicBox.Visible = false;
+            this.btnSwitchPicBox.Click += new System.EventHandler(this.btnSwitchPicBox_Click);
             // 
             // picBox
             // 
             this.picBox.Location = new System.Drawing.Point(1, 0);
             this.picBox.Name = "picBox";
             this.picBox.Size = new System.Drawing.Size(200, 200);
-            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBox.TabIndex = 4;
             this.picBox.TabStop = false;
             // 
@@ -778,11 +805,11 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "Face Shape/Hair Style:";
             // 
-            // comboBox4
+            // cboFaceShapeHairStyle
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.cboFaceShapeHairStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFaceShapeHairStyle.FormattingEnabled = true;
+            this.cboFaceShapeHairStyle.Items.AddRange(new object[] {
             "face_shape_0",
             "face_shape_1",
             "face_shape_2",
@@ -815,17 +842,17 @@
             "hair_style_20",
             "hair_style_21",
             "hair_style_22"});
-            this.comboBox4.Location = new System.Drawing.Point(127, 258);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(223, 21);
-            this.comboBox4.TabIndex = 18;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.cboFaceShapeHairStyle.Location = new System.Drawing.Point(127, 258);
+            this.cboFaceShapeHairStyle.Name = "cboFaceShapeHairStyle";
+            this.cboFaceShapeHairStyle.Size = new System.Drawing.Size(223, 21);
+            this.cboFaceShapeHairStyle.TabIndex = 18;
+            this.cboFaceShapeHairStyle.SelectedIndexChanged += new System.EventHandler(this.cboFaceShapeHairStyle_SelectedIndexChanged);
             // 
-            // comboBox2
+            // cboAntennaPower
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cboAntennaPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAntennaPower.FormattingEnabled = true;
+            this.cboAntennaPower.Items.AddRange(new object[] {
             "No Antenna",
             "Recovery (single)",
             "Revival (Single)",
@@ -872,11 +899,11 @@
             "Debuff: Attack",
             "Debuff: Defense",
             "Debuff: Speed"});
-            this.comboBox2.Location = new System.Drawing.Point(127, 231);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(223, 21);
-            this.comboBox2.TabIndex = 6;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cboAntennaPower.Location = new System.Drawing.Point(127, 231);
+            this.cboAntennaPower.Name = "cboAntennaPower";
+            this.cboAntennaPower.Size = new System.Drawing.Size(223, 21);
+            this.cboAntennaPower.TabIndex = 6;
+            this.cboAntennaPower.SelectedIndexChanged += new System.EventHandler(this.cboAntennaPower_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -938,33 +965,11 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // comboBox13
-            // 
-            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "North America",
-            "Japan"});
-            this.comboBox13.Location = new System.Drawing.Point(127, 204);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(223, 21);
-            this.comboBox13.TabIndex = 37;
-            this.comboBox13.SelectedIndexChanged += new System.EventHandler(this.comboBox13_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(18, 207);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(103, 13);
-            this.label15.TabIndex = 38;
-            this.label15.Text = "Denpa Men Region:";
-            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 482);
+            this.ClientSize = new System.Drawing.Size(786, 478);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.menuStrip);
@@ -986,7 +991,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1008,11 +1013,11 @@
         private System.ComponentModel.BackgroundWorker bwCheckForUpdates;
         private Be.Windows.Forms.HexBox hexBox1;
         private System.Windows.Forms.PictureBox picBox;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cboColor;
+        private System.Windows.Forms.ComboBox cboAntennaPower;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button btnSwitchPicBox;
+        private System.Windows.Forms.ComboBox cboHeadShape;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -1027,34 +1032,34 @@
         private System.Windows.Forms.ToolStripMenuItem saveQRCodeToolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Button btnChangeID;
+        private System.Windows.Forms.ComboBox cboFaceShapeHairStyle;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox cboHairColor;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox cboEyes;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox cboEyeBrows;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox8;
-        private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.ComboBox cboNose;
+        private System.Windows.Forms.ComboBox cboFaceColor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox10;
+        private System.Windows.Forms.ComboBox cboMouth;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox11;
+        private System.Windows.Forms.ComboBox cboCheeks;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.ComboBox cboGlasses;
+        private System.Windows.Forms.NumericUpDown nudStats;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRandomDenpa;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advancedInterfaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.PictureBox picBox2;
-        private System.Windows.Forms.ComboBox comboBox13;
+        private System.Windows.Forms.ComboBox cboRegion;
         private System.Windows.Forms.Label label15;
     }
 }
