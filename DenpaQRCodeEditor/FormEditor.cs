@@ -28,10 +28,84 @@ namespace PushmoLevelEditor
         private byte[] QRByteArray;
         private Bitmap qr_code;
 
+        private String[][] strStats = new String[49][];
+        private int[][] intStats = new int[49][];
+
         public FormEditor()
         {
             InitializeComponent();
             menuFileNew_Click(null, null);
+
+            #region character_stats
+            strStats[0] = new String[27] {
+                "HP: 29 AP:  0 Att: 11 Def: 13 Spd: 3 Ev: 0",
+                "HP: 32 AP:  0 Att: 12 Def: 13 Spd: 3 Ev: 0",
+                "HP: 35 AP:  0 Att: 12 Def: 14 Spd: 3 Ev: 0",
+                "HP: 37 AP:  0 Att: 12 Def: 15 Spd: 2 Ev: 0",
+                "HP: 40 AP:  0 Att: 13 Def: 16 Spd: 2 Ev: 0",
+                "HP: 24 AP:  0 Att: 10 Def: 12 Spd: 3 Ev: 3",
+                "HP: 27 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 3",
+                "HP: 29 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 3",
+                "HP: 32 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 3",
+                "HP: 35 AP:  0 Att: 11 Def: 14 Spd: 2 Ev: 3",
+                "HP: 35 AP:  0 Att: 10 Def: 15 Spd: 3 Ev: 3",
+                "HP: 37 AP:  0 Att: 11 Def: 15 Spd: 2 Ev: 3",
+                "HP: 21 AP:  0 Att: 9 Def: 11 Spd: 3 Ev: 6",
+                "HP: 24 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 6",
+                "HP: 27 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 6",
+                "HP: 27 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 6",
+                "HP: 27 AP:  0 Att: 9 Def: 13 Spd: 2 Ev: 6",
+                "HP: 27 AP:  0 Att: 9 Def: 11 Spd: 3 Ev: 6",
+                "HP: 29 AP:  0 Att: 10 Def: 13 Spd: 2 Ev: 6",
+                "HP: 29 AP:  0 Att: 9 Def: 13 Spd: 2 Ev: 6",
+                "HP: 32 AP:  0 Att: 10 Def: 14 Spd: 2 Ev: 6",
+                "HP: 18 AP:  0 Att: 9 Def: 11 Spd: 3 Ev: 10",
+                "HP: 24 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 10",
+                "HP: 27 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 10",
+                "HP: 16 AP:  0 Att: 8 Def: 10 Spd: 3 Ev: 16",
+                "HP: 18 AP:  0 Att: 8 Def: 11 Spd: 3 Ev: 16",
+                "HP: 21 AP:  0 Att: 8 Def: 11 Spd: 3 Ev: 16"
+            };
+            intStats[0] = new int[27] { 
+                384, 320, 321, 322, 385, 325, 3, 0, 1, 2, 
+                326, 324, 9, 10, 6, 7, 11, 327, 8, 330, 
+                328, 329, 333, 387, 386, 331, 332
+            };
+
+            strStats[2] = new String[26] {
+                "HP: 25 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 0",
+                "HP: 27 AP:  20 Att: 10 Def: 9 Spd: 4 Ev: 0",
+                "HP: 29 AP:  20 Att: 10 Def: 9 Spd: 4 Ev: 0",
+                "HP: 32 AP:  20 Att: 10 Def: 10 Spd: 3 Ev: 0",
+                "HP: 34 AP:  20 Att: 11 Def: 11 Spd: 3 Ev: 0",
+                "HP: 20 AP:  20 Att: 9 Def: 8 Spd: 4 Ev: 3",
+                "HP: 23 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 3",
+                "HP: 25 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 3",
+                "HP: 27 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 3",
+                "HP: 29 AP:  20 Att: 9 Def: 9 Spd: 3 Ev: 3",
+                "HP: 29 AP:  20 Att: 9 Def: 10 Spd: 4 Ev: 3",
+                "HP: 32 AP:  20 Att: 9 Def: 10 Spd: 3 Ev: 3",
+                "HP: 18 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 6",
+                "HP: 20 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 6",
+                "HP: 23 AP:  20 Att: 8 Def: 9 Spd: 3 Ev: 6",
+                "HP: 23 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 6",
+                "HP: 23 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 6",
+                "HP: 25 AP:  20 Att: 9 Def: 9 Spd: 3 Ev: 6",
+                "HP: 25 AP:  20 Att: 8 Def: 9 Spd: 3 Ev: 6",
+                "HP: 27 AP:  20 Att: 9 Def: 9 Spd: 3 Ev: 6",
+                "HP: 16 AP:  20 Att: 8 Def: 7 Spd: 4 Ev: 10",
+                "HP: 20 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 10",
+                "HP: 23 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 10",
+                "HP: 13 AP:  20 Att: 7 Def: 7 Spd: 4 Ev: 16",
+                "HP: 16 AP:  20 Att: 7 Def: 7 Spd: 4 Ev: 16",
+                "HP: 18 AP:  20 Att: 7 Def: 8 Spd: 4 Ev: 16"
+            };
+            intStats[2] = new int[26] { 384, 320, 321, 322, 385, 325, 
+                3, 0, 1, 2, 326, 324, 9, 10, 11, 6, 7, 8, 330, 328, 
+                329, 333, 387, 386, 331, 332 
+            };
+            #endregion
+
         }
         
         #region Menu -> File
@@ -477,8 +551,9 @@ namespace PushmoLevelEditor
             bool solid_color_enable;
             int antenna_index = cboAntennaPower.SelectedIndex;
 
-            if (antenna_index == -1) MessageBox.Show("Please select an Antenna power");
-            if ((color_index == -1) || (antenna_index == -1)) return;
+            if (color_index == -1) return;
+            if (antenna_index == -1) { MessageBox.Show("Please select an Antenna power"); return; }
+            
 
             if ((color_index <= 6))
             {
@@ -530,6 +605,23 @@ namespace PushmoLevelEditor
             cboFaceShapeHairStyle_SelectedIndexChanged(sender, e);  //So does the Hair style.
             int index = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
+
+            if (strStats[index] != null)
+            {
+                cboStats.Items.Clear();
+                cboStats.Items.AddRange(strStats[index]);
+                for (int i = 0; i < intStats[index].Length; i++)
+                {
+                    if ((int)nudStats.Value == intStats[index][i])
+                        cboStats.SelectedIndex = i;
+                }
+            }
+            else
+            {
+                cboStats.Items.Clear();
+            }
+
+
             int temp = hexBox1.ByteProvider.ReadByte(0x10) & 0xC0;
             if (index == 0)
             {
@@ -744,8 +836,9 @@ namespace PushmoLevelEditor
         {
             int index = cboFaceShapeHairStyle.SelectedIndex;
             int antenna = cboAntennaPower.SelectedIndex;
-            if (antenna == -1) MessageBox.Show("Please select an Antenna power.");
-            if ((index == -1) || (antenna == -1)) return;
+            
+            if (index == -1) return;
+            if (antenna == -1) { MessageBox.Show("Please select an Antenna power."); return; }
             int temp = hexBox1.ByteProvider.ReadByte(0x14) & 0x1F;
             int temp2 = hexBox1.ByteProvider.ReadByte(0x16) & 0xF8;
             if (index < 9)
@@ -1436,7 +1529,25 @@ namespace PushmoLevelEditor
         private void nudStats_ValueChanged(object sender, EventArgs e)
         {
             int index = (int)nudStats.Value;
+            int antenna_index = cboAntennaPower.SelectedIndex;
             if (index < 0) return;
+
+            if (antenna_index != -1)
+            {
+                if (intStats[antenna_index] != null)
+                {
+                    cboStats.SelectedIndex = -1;
+                    for (int i = 0; i < intStats[antenna_index].Length; i++)
+                    {
+                        if ((int)nudStats.Value == intStats[antenna_index][i])
+                        {
+                            cboStats.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+
             int temp = hexBox1.ByteProvider.ReadByte(0x10) & 0x3F;
             temp |= ((index & 0x03) << 6);
             hexBox1.ByteProvider.WriteByte(0x10, (byte)temp);
@@ -1671,6 +1782,16 @@ namespace PushmoLevelEditor
             }
             hexBox1.Refresh();
             hexBox1_KeyPress(null, null);
+        }
+
+        private void cboStats_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int stat_index = cboStats.SelectedIndex;
+            int antenna_index = cboAntennaPower.SelectedIndex;
+            if (stat_index == -1) return;
+            if (antenna_index == -1) { MessageBox.Show("Please select an Antenna Power"); return; }
+            if (intStats[antenna_index] == null) return;
+            nudStats.Value = intStats[antenna_index][stat_index];
         }
     }
 }

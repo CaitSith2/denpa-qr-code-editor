@@ -90,6 +90,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cboStats = new System.Windows.Forms.ComboBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -250,7 +251,6 @@
             this.splitContainer.Panel2.Controls.Add(this.label15);
             this.splitContainer.Panel2.Controls.Add(this.btnRandomDenpa);
             this.splitContainer.Panel2.Controls.Add(this.cboRegion);
-            this.splitContainer.Panel2.Controls.Add(this.nudStats);
             this.splitContainer.Panel2.Controls.Add(this.label14);
             this.splitContainer.Panel2.Controls.Add(this.label12);
             this.splitContainer.Panel2.Controls.Add(this.cboCheeks);
@@ -267,6 +267,8 @@
             this.splitContainer.Panel2.Controls.Add(this.cboFaceShapeHairStyle);
             this.splitContainer.Panel2.Controls.Add(this.cboAntennaPower);
             this.splitContainer.Panel2.Controls.Add(this.label3);
+            this.splitContainer.Panel2.Controls.Add(this.nudStats);
+            this.splitContainer.Panel2.Controls.Add(this.cboStats);
             this.splitContainer.Size = new System.Drawing.Size(786, 454);
             this.splitContainer.SplitterDistance = 432;
             this.splitContainer.TabIndex = 2;
@@ -607,7 +609,7 @@
             // 
             // nudStats
             // 
-            this.nudStats.Location = new System.Drawing.Point(127, 394);
+            this.nudStats.Location = new System.Drawing.Point(40, 394);
             this.nudStats.Maximum = new decimal(new int[] {
             511,
             0,
@@ -619,14 +621,19 @@
             0,
             -2147483648});
             this.nudStats.Name = "nudStats";
-            this.nudStats.Size = new System.Drawing.Size(74, 20);
+            this.nudStats.Size = new System.Drawing.Size(42, 20);
             this.nudStats.TabIndex = 35;
+            this.nudStats.Value = new decimal(new int[] {
+            511,
+            0,
+            0,
+            0});
             this.nudStats.ValueChanged += new System.EventHandler(this.nudStats_ValueChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(90, 396);
+            this.label14.Location = new System.Drawing.Point(3, 396);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 13);
             this.label14.TabIndex = 34;
@@ -965,6 +972,16 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
+            // cboStats
+            // 
+            this.cboStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStats.FormattingEnabled = true;
+            this.cboStats.Location = new System.Drawing.Point(88, 393);
+            this.cboStats.Name = "cboStats";
+            this.cboStats.Size = new System.Drawing.Size(262, 21);
+            this.cboStats.TabIndex = 39;
+            this.cboStats.SelectedIndexChanged += new System.EventHandler(this.cboStats_SelectedIndexChanged);
+            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1061,6 +1078,7 @@
         private System.Windows.Forms.PictureBox picBox2;
         private System.Windows.Forms.ComboBox cboRegion;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cboStats;
     }
 }
 
