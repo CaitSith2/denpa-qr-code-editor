@@ -104,6 +104,42 @@ namespace PushmoLevelEditor
                 3, 0, 1, 2, 326, 324, 9, 10, 11, 6, 7, 8, 330, 328, 
                 329, 333, 387, 386, 331, 332 
             };
+
+            strStats[20] = new String[27] { 
+                "HP:17 AP:15 Att:9 Def:12 Spd:3 Ev:0",
+                "HP:19 AP:15 Att:10 Def:12 Spd:3 Ev:0",
+                "HP:20 AP:15 Att:10 Def:13 Spd:3 Ev:0",
+                "HP:22 AP:15 Att:10 Def:14 Spd:2 Ev:0",
+                "HP:24 AP:15 Att:11 Def:15 Spd:2 Ev:0",
+                "HP:14 AP:15 Att:9 Def:11 Spd:3 Ev:3",
+                "HP:16 AP:15 Att:9 Def:12 Spd:3 Ev:3",
+                "HP:17 AP:15 Att:9 Def:12 Spd:3 Ev:3",
+                "HP:19 AP:15 Att:9 Def:12 Spd:3 Ev:3",
+                "HP:20 AP:15 Att:9 Def:13 Spd:2 Ev:3",
+                "HP:20 AP:15 Att:9 Def:14 Spd:3 Ev:3",
+                "HP:22 AP:15 Att:9 Def:14 Spd:2 Ev:3",
+                "HP:12 AP:15 Att:8 Def:10 Spd:3 Ev:6",
+                "HP:14 AP:15 Att:8 Def:11 Spd:3 Ev:6",
+                "HP:16 AP:15 Att:8 Def:11 Spd:3 Ev:6",
+                "HP:16 AP:15 Att:9 Def:12 Spd:3 Ev:6",
+                "HP:16 AP:15 Att:8 Def:12 Spd:2 Ev:6",
+                "HP:16 AP:15 Att:8 Def:10 Spd:3 Ev:6",
+                "HP:17 AP:15 Att:9 Def:12 Spd:2 Ev:6",
+                "HP:17 AP:15 Att:8 Def:12 Spd:2 Ev:6",
+                "HP:19 AP:15 Att:9 Def:13 Spd:2 Ev:6",
+                "HP:11 AP:15 Att:8 Def:10 Spd:3 Ev:10",
+                "HP:14 AP:15 Att:8 Def:11 Spd:3 Ev:10",
+                "HP:16 AP:15 Att:8 Def:11 Spd:3 Ev:10",
+                "HP:9 AP:15 Att:7 Def:9 Spd:3 Ev:16",
+                "HP:11 AP:15 Att:7 Def:10 Spd:3 Ev:16",
+                "HP:12 AP:15 Att:7 Def:10 Spd:3 Ev:16"
+            };
+            intStats[20] = new int[27] { 
+                384, 320, 321, 322, 385, 325, 3, 0, 
+                1, 2, 326, 324, 9, 10, 6, 7, 
+                11, 327, 8, 330, 328, 329, 333, 387, 
+                386, 331, 332
+            };
             #endregion
 
         }
@@ -144,6 +180,7 @@ namespace PushmoLevelEditor
                 cboRegion.SelectedIndex = 0;
 
             btnChangeID_Click(sender, e);
+            StatusStripLabel.Text = "";
             
         }
 
@@ -552,7 +589,7 @@ namespace PushmoLevelEditor
             int antenna_index = cboAntennaPower.SelectedIndex;
 
             if (color_index == -1) return;
-            if (antenna_index == -1) { MessageBox.Show("Please select an Antenna power"); return; }
+            if (antenna_index == -1) { StatusStripLabel.Text = "Antenna Power required"; return; }
             
 
             if ((color_index <= 6))
@@ -603,6 +640,7 @@ namespace PushmoLevelEditor
         {
             cboColor_SelectedIndexChanged(sender, e);  //Colors depend on Antenna power
             cboFaceShapeHairStyle_SelectedIndexChanged(sender, e);  //So does the Hair style.
+            StatusStripLabel.Text = ""; 
             int index = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
 
@@ -838,7 +876,7 @@ namespace PushmoLevelEditor
             int antenna = cboAntennaPower.SelectedIndex;
             
             if (index == -1) return;
-            if (antenna == -1) { MessageBox.Show("Please select an Antenna power."); return; }
+            if (antenna == -1) { StatusStripLabel.Text = "Antenna Power required"; return; }
             int temp = hexBox1.ByteProvider.ReadByte(0x14) & 0x1F;
             int temp2 = hexBox1.ByteProvider.ReadByte(0x16) & 0xF8;
             if (index < 9)
@@ -1789,7 +1827,7 @@ namespace PushmoLevelEditor
             int stat_index = cboStats.SelectedIndex;
             int antenna_index = cboAntennaPower.SelectedIndex;
             if (stat_index == -1) return;
-            if (antenna_index == -1) { MessageBox.Show("Please select an Antenna Power"); return; }
+            if (antenna_index == -1) { StatusStripLabel.Text = "Antenna Power required"; return; }
             if (intStats[antenna_index] == null) return;
             nudStats.Value = intStats[antenna_index][stat_index];
         }

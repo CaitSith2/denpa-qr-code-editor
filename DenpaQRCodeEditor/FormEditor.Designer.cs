@@ -91,6 +91,7 @@
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cboStats = new System.Windows.Forms.ComboBox();
+            this.StatusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -99,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -928,6 +930,8 @@
             // 
             // statusStrip
             // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusStripLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 456);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(786, 22);
@@ -982,6 +986,11 @@
             this.cboStats.TabIndex = 39;
             this.cboStats.SelectedIndexChanged += new System.EventHandler(this.cboStats_SelectedIndexChanged);
             // 
+            // StatusStripLabel
+            // 
+            this.StatusStripLabel.Name = "StatusStripLabel";
+            this.StatusStripLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1010,6 +1019,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1079,6 +1090,7 @@
         private System.Windows.Forms.ComboBox cboRegion;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cboStats;
+        private System.Windows.Forms.ToolStripStatusLabel StatusStripLabel;
     }
 }
 
