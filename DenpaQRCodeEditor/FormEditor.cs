@@ -31,110 +31,160 @@ namespace PushmoLevelEditor
         private String[][] strStats = new String[49][];
         private int[][] intStats = new int[49][];
 
+        enum AntennaPower
+        {
+            no_antenna = 0,
+            recover_single,
+            revive_single,
+            cure_poison,
+            cure_burn,
+            cure_paralysis,
+            cure_frozen,
+            attack_fire_single,
+            attack_water_single,
+            attack_ice_single,
+            attack_earth_single,
+            attack_wind_single,
+            attack_light_single,
+            recover_all,
+            revive_all,
+            bonus_always_treasure,
+            bonus_double_gold,
+            buff_invincible,
+            debuff_fatal,
+            attack_fire_all,
+            attack_water_all,
+            attack_ice_all,
+            attack_earth_all,
+            attack_wind_all,
+            attack_light_all,
+            cure_sleep,
+            cure_blind,
+            buff_excitement,
+            buff_attack_all,
+            buff_defense_all,
+            buff_speed_all,
+            debuff_attack_all,
+            buff_evasion_all,
+            debuff_defense_all,
+            debuff_speed_all,
+            buff_attack_single,
+            buff_defense_single,
+            buff_speed_single,
+            buff_evasion_single,
+            debuff_poison,
+            debuff_sleep,
+            debuff_paralysis,
+            debuff_blind,
+            debuff_attack_single,
+            debuff_defense_single,
+            debuff_speed_single
+        };
+
         public FormEditor()
         {
             InitializeComponent();
             menuFileNew_Click(null, null);
 
             #region character_stats
-            strStats[0] = new String[27] {
-                "HP: 29 AP:  0 Att: 11 Def: 13 Spd: 3 Ev: 0",
-                "HP: 32 AP:  0 Att: 12 Def: 13 Spd: 3 Ev: 0",
-                "HP: 35 AP:  0 Att: 12 Def: 14 Spd: 3 Ev: 0",
-                "HP: 37 AP:  0 Att: 12 Def: 15 Spd: 2 Ev: 0",
-                "HP: 40 AP:  0 Att: 13 Def: 16 Spd: 2 Ev: 0",
-                "HP: 24 AP:  0 Att: 10 Def: 12 Spd: 3 Ev: 3",
-                "HP: 27 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 3",
-                "HP: 29 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 3",
-                "HP: 32 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 3",
-                "HP: 35 AP:  0 Att: 11 Def: 14 Spd: 2 Ev: 3",
-                "HP: 35 AP:  0 Att: 10 Def: 15 Spd: 3 Ev: 3",
-                "HP: 37 AP:  0 Att: 11 Def: 15 Spd: 2 Ev: 3",
-                "HP: 21 AP:  0 Att: 9 Def: 11 Spd: 3 Ev: 6",
-                "HP: 24 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 6",
-                "HP: 27 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 6",
-                "HP: 27 AP:  0 Att: 10 Def: 13 Spd: 3 Ev: 6",
-                "HP: 27 AP:  0 Att: 9 Def: 13 Spd: 2 Ev: 6",
-                "HP: 27 AP:  0 Att: 9 Def: 11 Spd: 3 Ev: 6",
-                "HP: 29 AP:  0 Att: 10 Def: 13 Spd: 2 Ev: 6",
-                "HP: 29 AP:  0 Att: 9 Def: 13 Spd: 2 Ev: 6",
-                "HP: 32 AP:  0 Att: 10 Def: 14 Spd: 2 Ev: 6",
-                "HP: 18 AP:  0 Att: 9 Def: 11 Spd: 3 Ev: 10",
-                "HP: 24 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 10",
-                "HP: 27 AP:  0 Att: 9 Def: 12 Spd: 3 Ev: 10",
-                "HP: 16 AP:  0 Att: 8 Def: 10 Spd: 3 Ev: 16",
-                "HP: 18 AP:  0 Att: 8 Def: 11 Spd: 3 Ev: 16",
-                "HP: 21 AP:  0 Att: 8 Def: 11 Spd: 3 Ev: 16"
+            strStats[(int)AntennaPower.no_antenna] = new String[27] {
+                "HP:29 AP:0 Att:11 Def:13 Spd:3 Ev:0",
+                "HP:32 AP:0 Att:12 Def:13 Spd:3 Ev:0",
+                "HP:35 AP:0 Att:12 Def:14 Spd:3 Ev:0",
+                "HP:37 AP:0 Att:12 Def:15 Spd:2 Ev:0",
+                "HP:40 AP:0 Att:13 Def:16 Spd:2 Ev:0",
+                "HP:24 AP:0 Att:10 Def:12 Spd:3 Ev:3",
+                "HP:27 AP:0 Att:10 Def:13 Spd:3 Ev:3",
+                "HP:29 AP:0 Att:10 Def:13 Spd:3 Ev:3",
+                "HP:32 AP:0 Att:10 Def:13 Spd:3 Ev:3",
+                "HP:35 AP:0 Att:11 Def:14 Spd:2 Ev:3",
+                "HP:35 AP:0 Att:10 Def:15 Spd:3 Ev:3",
+                "HP:37 AP:0 Att:11 Def:15 Spd:2 Ev:3",
+                "HP:21 AP:0 Att:9 Def:11 Spd:3 Ev:6",
+                "HP:24 AP:0 Att:9 Def:12 Spd:3 Ev:6",
+                "HP:27 AP:0 Att:9 Def:12 Spd:3 Ev:6",
+                "HP:27 AP:0 Att:10 Def:13 Spd:3 Ev:6",
+                "HP:27 AP:0 Att:9 Def:13 Spd:2 Ev:6",
+                "HP:27 AP:0 Att:9 Def:11 Spd:3 Ev:6",
+                "HP:29 AP:0 Att:10 Def:13 Spd:2 Ev:6",
+                "HP:29 AP:0 Att:9 Def:13 Spd:2 Ev:6",
+                "HP:32 AP:0 Att:10 Def:14 Spd:2 Ev:6",
+                "HP:18 AP:0 Att:9 Def:11 Spd:3 Ev:10",
+                "HP:24 AP:0 Att:9 Def:12 Spd:3 Ev:10",
+                "HP:27 AP:0 Att:9 Def:12 Spd:3 Ev:10",
+                "HP:16 AP:0 Att:8 Def:10 Spd:3 Ev:16",
+                "HP:18 AP:0 Att:8 Def:11 Spd:3 Ev:16",
+                "HP:21 AP:0 Att:8 Def:11 Spd:3 Ev:16"
             };
-            intStats[0] = new int[27] { 
+            intStats[(int)AntennaPower.no_antenna] = new int[27] { 
                 384, 320, 321, 322, 385, 325, 3, 0, 1, 2, 
                 326, 324, 9, 10, 6, 7, 11, 327, 8, 330, 
                 328, 329, 333, 387, 386, 331, 332
             };
 
-            strStats[2] = new String[26] {
-                "HP: 25 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 0",
-                "HP: 27 AP:  20 Att: 10 Def: 9 Spd: 4 Ev: 0",
-                "HP: 29 AP:  20 Att: 10 Def: 9 Spd: 4 Ev: 0",
-                "HP: 32 AP:  20 Att: 10 Def: 10 Spd: 3 Ev: 0",
-                "HP: 34 AP:  20 Att: 11 Def: 11 Spd: 3 Ev: 0",
-                "HP: 20 AP:  20 Att: 9 Def: 8 Spd: 4 Ev: 3",
-                "HP: 23 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 3",
-                "HP: 25 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 3",
-                "HP: 27 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 3",
-                "HP: 29 AP:  20 Att: 9 Def: 9 Spd: 3 Ev: 3",
-                "HP: 29 AP:  20 Att: 9 Def: 10 Spd: 4 Ev: 3",
-                "HP: 32 AP:  20 Att: 9 Def: 10 Spd: 3 Ev: 3",
-                "HP: 18 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 6",
-                "HP: 20 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 6",
-                "HP: 23 AP:  20 Att: 8 Def: 9 Spd: 3 Ev: 6",
-                "HP: 23 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 6",
-                "HP: 23 AP:  20 Att: 9 Def: 9 Spd: 4 Ev: 6",
-                "HP: 25 AP:  20 Att: 9 Def: 9 Spd: 3 Ev: 6",
-                "HP: 25 AP:  20 Att: 8 Def: 9 Spd: 3 Ev: 6",
-                "HP: 27 AP:  20 Att: 9 Def: 9 Spd: 3 Ev: 6",
-                "HP: 16 AP:  20 Att: 8 Def: 7 Spd: 4 Ev: 10",
-                "HP: 20 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 10",
-                "HP: 23 AP:  20 Att: 8 Def: 8 Spd: 4 Ev: 10",
-                "HP: 13 AP:  20 Att: 7 Def: 7 Spd: 4 Ev: 16",
-                "HP: 16 AP:  20 Att: 7 Def: 7 Spd: 4 Ev: 16",
-                "HP: 18 AP:  20 Att: 7 Def: 8 Spd: 4 Ev: 16"
+            strStats[(int)AntennaPower.revive_single] = new String[52] {
+                "HP:25 AP:"," Att:9 Def:9 Spd:4 Ev:0",
+                "HP:27 AP:"," Att:10 Def:9 Spd:4 Ev:0",
+                "HP:29 AP:"," Att:10 Def:9 Spd:4 Ev:0",
+                "HP:32 AP:"," Att:10 Def:10 Spd:3 Ev:0",
+                "HP:34 AP:"," Att:11 Def:11 Spd:3 Ev:0",
+                "HP:20 AP:"," Att:9 Def:8 Spd:4 Ev:3",
+                "HP:23 AP:"," Att:9 Def:9 Spd:4 Ev:3",
+                "HP:25 AP:"," Att:9 Def:9 Spd:4 Ev:3",
+                "HP:27 AP:"," Att:9 Def:9 Spd:4 Ev:3",
+                "HP:29 AP:"," Att:9 Def:9 Spd:3 Ev:3",
+                "HP:29 AP:"," Att:9 Def:10 Spd:4 Ev:3",
+                "HP:32 AP:"," Att:9 Def:10 Spd:3 Ev:3",
+                "HP:18 AP:"," Att:8 Def:8 Spd:4 Ev:6",
+                "HP:20 AP:"," Att:8 Def:8 Spd:4 Ev:6",
+                "HP:23 AP:"," Att:8 Def:9 Spd:3 Ev:6",
+                "HP:23 AP:"," Att:8 Def:8 Spd:4 Ev:6",
+                "HP:23 AP:"," Att:9 Def:9 Spd:4 Ev:6",
+                "HP:25 AP:"," Att:9 Def:9 Spd:3 Ev:6",
+                "HP:25 AP:"," Att:8 Def:9 Spd:3 Ev:6",
+                "HP:27 AP:"," Att:9 Def:9 Spd:3 Ev:6",
+                "HP:16 AP:"," Att:8 Def:7 Spd:4 Ev:10",
+                "HP:20 AP:"," Att:8 Def:8 Spd:4 Ev:10",
+                "HP:23 AP:"," Att:8 Def:8 Spd:4 Ev:10",
+                "HP:13 AP:"," Att:7 Def:7 Spd:4 Ev:16",
+                "HP:16 AP:"," Att:7 Def:7 Spd:4 Ev:16",
+                "HP:18 AP:"," Att:7 Def:8 Spd:4 Ev:16"
             };
-            intStats[2] = new int[26] { 384, 320, 321, 322, 385, 325, 
+            intStats[(int)AntennaPower.revive_single] = new int[26] { 384, 320, 321, 322, 385, 325, 
                 3, 0, 1, 2, 326, 324, 9, 10, 11, 6, 7, 8, 330, 328, 
                 329, 333, 387, 386, 331, 332 
             };
 
-            strStats[20] = new String[27] { 
-                "HP:17 AP:15 Att:9 Def:12 Spd:3 Ev:0",
-                "HP:19 AP:15 Att:10 Def:12 Spd:3 Ev:0",
-                "HP:20 AP:15 Att:10 Def:13 Spd:3 Ev:0",
-                "HP:22 AP:15 Att:10 Def:14 Spd:2 Ev:0",
-                "HP:24 AP:15 Att:11 Def:15 Spd:2 Ev:0",
-                "HP:14 AP:15 Att:9 Def:11 Spd:3 Ev:3",
-                "HP:16 AP:15 Att:9 Def:12 Spd:3 Ev:3",
-                "HP:17 AP:15 Att:9 Def:12 Spd:3 Ev:3",
-                "HP:19 AP:15 Att:9 Def:12 Spd:3 Ev:3",
-                "HP:20 AP:15 Att:9 Def:13 Spd:2 Ev:3",
-                "HP:20 AP:15 Att:9 Def:14 Spd:3 Ev:3",
-                "HP:22 AP:15 Att:9 Def:14 Spd:2 Ev:3",
-                "HP:12 AP:15 Att:8 Def:10 Spd:3 Ev:6",
-                "HP:14 AP:15 Att:8 Def:11 Spd:3 Ev:6",
-                "HP:16 AP:15 Att:8 Def:11 Spd:3 Ev:6",
-                "HP:16 AP:15 Att:9 Def:12 Spd:3 Ev:6",
-                "HP:16 AP:15 Att:8 Def:12 Spd:2 Ev:6",
-                "HP:16 AP:15 Att:8 Def:10 Spd:3 Ev:6",
-                "HP:17 AP:15 Att:9 Def:12 Spd:2 Ev:6",
-                "HP:17 AP:15 Att:8 Def:12 Spd:2 Ev:6",
-                "HP:19 AP:15 Att:9 Def:13 Spd:2 Ev:6",
-                "HP:11 AP:15 Att:8 Def:10 Spd:3 Ev:10",
-                "HP:14 AP:15 Att:8 Def:11 Spd:3 Ev:10",
-                "HP:16 AP:15 Att:8 Def:11 Spd:3 Ev:10",
-                "HP:9 AP:15 Att:7 Def:9 Spd:3 Ev:16",
-                "HP:11 AP:15 Att:7 Def:10 Spd:3 Ev:16",
-                "HP:12 AP:15 Att:7 Def:10 Spd:3 Ev:16"
+            strStats[(int)AntennaPower.attack_water_single] = new String[54] { 
+                "HP:17 AP:"," Att:9 Def:12 Spd:3 Ev:0",
+                "HP:19 AP:"," Att:10 Def:12 Spd:3 Ev:0",
+                "HP:20 AP:"," Att:10 Def:13 Spd:3 Ev:0",
+                "HP:22 AP:"," Att:10 Def:14 Spd:2 Ev:0",
+                "HP:24 AP:"," Att:11 Def:15 Spd:2 Ev:0",
+                "HP:14 AP:"," Att:9 Def:11 Spd:3 Ev:3",
+                "HP:16 AP:"," Att:9 Def:12 Spd:3 Ev:3",
+                "HP:17 AP:"," Att:9 Def:12 Spd:3 Ev:3",
+                "HP:19 AP:"," Att:9 Def:12 Spd:3 Ev:3",
+                "HP:20 AP:"," Att:9 Def:13 Spd:2 Ev:3",
+                "HP:20 AP:"," Att:9 Def:14 Spd:3 Ev:3",
+                "HP:22 AP:"," Att:9 Def:14 Spd:2 Ev:3",
+                "HP:12 AP:"," Att:8 Def:10 Spd:3 Ev:6",
+                "HP:14 AP:"," Att:8 Def:11 Spd:3 Ev:6",
+                "HP:16 AP:"," Att:8 Def:11 Spd:3 Ev:6",
+                "HP:16 AP:"," Att:9 Def:12 Spd:3 Ev:6",
+                "HP:16 AP:"," Att:8 Def:12 Spd:2 Ev:6",
+                "HP:16 AP:"," Att:8 Def:10 Spd:3 Ev:6",
+                "HP:17 AP:"," Att:9 Def:12 Spd:2 Ev:6",
+                "HP:17 AP:"," Att:8 Def:12 Spd:2 Ev:6",
+                "HP:19 AP:"," Att:9 Def:13 Spd:2 Ev:6",
+                "HP:11 AP:"," Att:8 Def:10 Spd:3 Ev:10",
+                "HP:14 AP:"," Att:8 Def:11 Spd:3 Ev:10",
+                "HP:16 AP:"," Att:8 Def:11 Spd:3 Ev:10",
+                "HP:9 AP:"," Att:7 Def:9 Spd:3 Ev:16",
+                "HP:11 AP:"," Att:7 Def:10 Spd:3 Ev:16",
+                "HP:12 AP:"," Att:7 Def:10 Spd:3 Ev:16"
             };
-            intStats[20] = new int[27] { 
+            intStats[(int)AntennaPower.attack_water_single] = new int[27] { 
                 384, 320, 321, 322, 385, 325, 3, 0, 
                 1, 2, 326, 324, 9, 10, 6, 7, 
                 11, 327, 8, 330, 328, 329, 333, 387, 
@@ -644,10 +694,24 @@ namespace PushmoLevelEditor
             int index = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
 
+            String[] AP_head_shape = new String[25] {
+                "N/A",
+                "7","7","7","7","7","7","7",
+                "12","12","12","12",
+                "15","15","15","15","15","15","15",
+                "20","20","20","24","20","24"
+            };
+
             if (strStats[index] != null)
             {
                 cboStats.Items.Clear();
-                cboStats.Items.AddRange(strStats[index]);
+                if (index == 0)
+                    cboStats.Items.AddRange(strStats[index]);
+                else
+                {
+                    for (int i = 0; i < intStats[index].Length; i++)
+                        cboStats.Items.Add(strStats[index][(i * 2)] + AP_head_shape[cboHeadShape.SelectedIndex + 1] + strStats[index][(i * 2) + 1]); 
+                }
                 for (int i = 0; i < intStats[index].Length; i++)
                 {
                     if ((int)nudStats.Value == intStats[index][i])
@@ -733,7 +797,43 @@ namespace PushmoLevelEditor
         private void cboHeadShape_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = cboHeadShape.SelectedIndex;
+            int AntennaIndex = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
+
+            String[] AP_head_shape = new String[25] {
+                "N/A",
+                "7","7","7","7","7","7","7",
+                "12","12","12","12",
+                "15","15","15","15","15","15","15",
+                "20","20","20","24","20","24"
+            };
+
+            if (AntennaIndex != -1)
+            {
+                if (strStats[AntennaIndex] != null)
+                {
+                    cboStats.Items.Clear();
+                    for (int i = 0; i < intStats[AntennaIndex].Length; i++)
+                    {
+                        if (AntennaIndex != 0)
+                            cboStats.Items.Add(strStats[AntennaIndex][(i * 2)] + AP_head_shape[cboHeadShape.SelectedIndex + 1] + strStats[AntennaIndex][(i * 2) + 1]);
+                        else
+                            cboStats.Items.Add(strStats[AntennaIndex][i]);
+                        if ((int)nudStats.Value == intStats[AntennaIndex][i])
+                            cboStats.SelectedIndex = i;
+                    }
+                }
+                else
+                {
+                    cboStats.Items.Clear();
+                }
+            }
+            else
+            {
+                cboStats.Items.Clear();
+            }
+
+
             int temp;
             temp = hexBox1.ByteProvider.ReadByte(0x14);
             temp &= 0xE0;
