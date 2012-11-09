@@ -31,6 +31,7 @@ namespace PushmoLevelEditor
         private String[][] strStats = new String[49][];
         private int[][] intStats = new int[49][];
 
+        #region denpa_men_enums
         enum AntennaPower
         {
             no_antenna = 0,
@@ -80,12 +81,353 @@ namespace PushmoLevelEditor
             debuff_defense_single,
             debuff_speed_single
         };
+        #endregion
+        #region denpa_men_resources
+        Bitmap[] head = new Bitmap[24] { 
+            Resources.head_0_0, Resources.head_0_1, Resources.head_0_2, Resources.head_0_3,
+            Resources.head_0_4, Resources.head_0_5, Resources.head_0_6, Resources.head_0_7,
+            Resources.head_0_8, Resources.head_0_9, Resources.head_0_A, Resources.head_1_0,
+            Resources.head_1_1, Resources.head_1_2, Resources.head_1_3, Resources.head_1_4,
+            Resources.head_1_5, Resources.head_1_6, Resources.head_2_0, Resources.head_2_1,
+            Resources.head_2_2, Resources.head_2_3, Resources.head_2_4, Resources.head_2_5,
+        };
+        Bitmap[] faceshape = new Bitmap[32] {
+            Resources.face_shape_0, Resources.face_shape_1, Resources.face_shape_2, Resources.face_shape_3,
+            Resources.face_shape_4, Resources.face_shape_5, Resources.face_shape_6, Resources.face_shape_7,
+            Resources.face_shape_8, Resources.hair_style_00,Resources.hair_style_01,Resources.hair_style_02,
+            Resources.hair_style_03,Resources.hair_style_04,Resources.hair_style_05,Resources.hair_style_06,
+            Resources.hair_style_07,Resources.hair_style_08,Resources.hair_style_09,Resources.hair_style_0A,
+            Resources.hair_style_0B,Resources.hair_style_0C,Resources.hair_style_0D,Resources.hair_style_0E,
+            Resources.hair_style_0F,Resources.hair_style_10,Resources.hair_style_11,Resources.hair_style_12,
+            Resources.hair_style_13,Resources.hair_style_14,Resources.hair_style_15,Resources.hair_style_16
+        };
+        Bitmap[] haircolor = new Bitmap[12] {
+            Resources.hair_color_0, Resources.hair_color_1, Resources.hair_color_2, Resources.hair_color_3,
+            Resources.hair_color_4, Resources.hair_color_5, Resources.hair_color_6, Resources.hair_color_7,
+            Resources.hair_color_8, Resources.hair_color_9, Resources.hair_color_A, Resources.hair_color_B
+        };
+        Bitmap[] cheek = new Bitmap[8] {
+            Resources.cheek_0, Resources.cheek_1, Resources.cheek_2, Resources.cheek_3,
+            Resources.cheek_4, Resources.cheek_5, Resources.cheek_6, Resources.cheek_7
+        };
+        Bitmap[] face_color = new Bitmap[6] {
+            Resources.face_color_4, Resources.face_color_5, Resources.face_color_0,
+            Resources.face_color_1, Resources.face_color_2, Resources.face_color_3
+        };
+        Bitmap[] eye_brow = new Bitmap[8] {
+            Resources.eye_brow_0, Resources.eye_brow_1, Resources.eye_brow_2, Resources.eye_brow_3,
+            Resources.eye_brow_4, Resources.eye_brow_5, Resources.eye_brow_6, Resources.eye_brow_7
+        };
+        Bitmap[] eyes = new Bitmap[32] {
+            Resources.eyes_00, Resources.eyes_01, Resources.eyes_02, Resources.eyes_03,
+            Resources.eyes_04, Resources.eyes_05, Resources.eyes_06, Resources.eyes_07,
+            Resources.eyes_08, Resources.eyes_09, Resources.eyes_0A, Resources.eyes_0B,
+            Resources.eyes_0C, Resources.eyes_0D, Resources.eyes_0E, Resources.eyes_0F,
+            Resources.eyes_10, Resources.eyes_11, Resources.eyes_12, Resources.eyes_13,
+            Resources.eyes_14, Resources.eyes_15, Resources.eyes_16, Resources.eyes_17,
+            Resources.eyes_18, Resources.eyes_19, Resources.eyes_1A, Resources.eyes_1B,
+            Resources.eyes_1C, Resources.eyes_1D, Resources.eyes_1E, Resources.eyes_1F
+        };
+        Bitmap[] glasses = new Bitmap[16] {
+            Resources.glasses_0, Resources.glasses_1, Resources.glasses_2, Resources.glasses_3,
+            Resources.glasses_4, Resources.glasses_5, Resources.glasses_6, Resources.glasses_7,
+            Resources.glasses_8, Resources.glasses_9, Resources.glasses_A, Resources.glasses_B,
+            Resources.glasses_C, Resources.glasses_D, Resources.glasses_E, Resources.glasses_F
+        };
+        Bitmap[] mouth = new Bitmap[32] {
+            Resources.mouth_00, Resources.mouth_01, Resources.mouth_02, Resources.mouth_03,
+            Resources.mouth_04, Resources.mouth_05, Resources.mouth_06, Resources.mouth_07,
+            Resources.mouth_08, Resources.mouth_09, Resources.mouth_0A, Resources.mouth_0B,
+            Resources.mouth_0C, Resources.mouth_0D, Resources.mouth_0E, Resources.mouth_0F,
+            Resources.mouth_10, Resources.mouth_11, Resources.mouth_12, Resources.mouth_13,
+            Resources.mouth_14, Resources.mouth_15, Resources.mouth_16, Resources.mouth_17,
+            Resources.mouth_18, Resources.mouth_19, Resources.mouth_1A, Resources.mouth_1B,
+            Resources.mouth_1C, Resources.mouth_1D, Resources.mouth_1E, Resources.mouth_1F,
+        };
+        Bitmap[] nose = new Bitmap[16] {
+            Resources.nose_0, Resources.nose_1, Resources.nose_2, Resources.nose_3,
+            Resources.nose_4, Resources.nose_5, Resources.nose_6, Resources.nose_7,
+            Resources.nose_8, Resources.nose_9, Resources.nose_A, Resources.nose_B,
+            Resources.nose_C, Resources.nose_D, Resources.nose_E, Resources.nose_F
+        };
+
+        String[] north_america_names = new String[] {
+            #region north_america_names
+                "Aaden", "Aaron", "Abdiel", "Abel", "Ace", "Adan", "Adonis", "Adrian", "Aedan", 
+                "Agustin", "Ahmad", "Ahmed", "Al", "Alden", "Aldo", "Alessandro", "Alicius", 
+                "Alijah", "Allan", "Allen", "Alonso", "Alonzo", "Alton", "Amare", "Amari", 
+                "Amir", "Anderson", "Andres", "Andrew", "Andy", "Angel", "Angelo", "Antoine", 
+                "Antonio", "Antwan", "Archer", "Ari", "Aric", "Ariel", "Armani", "Arnav", 
+                "Aron", "Aryan", "Asa", "Ashton", "Atticus", "August", "Austin", "Avery", 
+                "Ayaan", "Bailey", "Backham", "Beau", "Benito", "Bennett", "Benson", "Bentlee", 
+                "Bently", "Bill", "Blaze", "Bo", "Bobby", "Bort", "Boston", "Braden", 
+                "Bradley", "Bradyn", "Brantley", "Braxton", "Brayan", "Braydon", "Brendon", 
+                "Brice", "Brock", "Brodie", "Bronn", "Brooks", "Bruce", "Bruno", "Bryan", 
+                "Bryslen", "Burt", "Byron", "Cade", "Caden", "Cain", "Cale", "Caleb", "Calen", 
+                "Calvin", "Camden", "Camdyn", "Camilo", "Cameron", "Cannon", "Carl", "Carson", 
+                "Casen", "Cash", "Cedric", "Chace", "Chaim", "Chance", "Charles", "Charlie", 
+                "Chase", "Chester", "Chet", "Chi", "Clayton", "Cody", "Coleman", "Colin", 
+                "Collin", "Colten", "Connor", "Conrad", "Cooper", "Corbin", "Cortez", "Cory", 
+                "Craig", "Cristian", "Christopher", "Crew", "Cristofer", "Cristopher", 
+                "Crystal", "Cyrus", "Dakota", "Dale", "Dalton", "Damarion", "Damian", "Damon", 
+                "Dangelo", "Daniel", "Dante", "Darnell", "Dashawn", "Davion", "Davis", 
+                "Dayton", "Deangelo", "Deon", "Deshawn", "Desmond", "Destin", "Diego", 
+                "Dillan", "Don", "Donald", "Donovan", "Donte", "Dorian", "Dorsey", "Douglas", 
+                "Drake", "Draven", "Drew", "Duncan", "Dyluck", "Eden", "Edison", "Efrain", 
+                "Efran", "Elias", "Eliseo", "Elisha", "Elvis", "Emmett", "Enzo", "Ernesto", 
+                "Ethan", "Evan", "Everett", "Fabian", "Felipe", "Felix", "Felton", "Fernando", 
+                "Finn", "Finnegan", "Fisher", "Forest", "Francis", "Frederick", "Fredrick", 
+                "Gage", "Garland", "Garrett", "Gary", "Gavin", "Geoffrey", "Gerard", "Gianni", 
+                "Gilbert", "Gilliam", "Giovanni", "Giuseppe", "Glenn", "Grady", "Gregory", 
+                "Greyson", "Guillermo", "Gunnar", "Gunner", "Gus", "Gustavo", "Haiden", "Hank", 
+                "Harley", "Harold", "Harper", "Harrison", "Hassan", "Hayes", "Heath", 
+                "Hezekiah", "Holden", "Hollis", "Homer", "Horacio", "Houston", "Hudson", 
+                "Hugh", "Hugo", "Hunter", "Ian", "Ibrahim", "Iker", "Irvin", "Irving", 
+                "Isaiah", "Ishaan", "Isiah", "Ivan", "Izaiah", "Jabari", "Jackson", "Jaden", 
+                "Jadiel", "Jadyn", "Jae", "Jagger", "Jairo", "Jake", "Jakob", "Jamal", "Jamar", 
+                "Jamari", "Jamarion", "Jamel", "James", "Jameson", "Jamie", "Jaquan", "Jared", 
+                "Jase", "Jasiah", "Jason", "Jasper", "Jaxon", "Jay", "Jayden", "Jaydon", 
+                "Jaylin", "Jean", "Jensen", "Jeremiah", "Jermaine", "Jerry", "Jett", "Joaquin", 
+                "Joe", "Joel", "Joey", "Jonah", "Jorah", "Jordan", "Jose", "Joseph", "Joshua", 
+                "Josiah", "Josue", "Jovanni", "Joziah", "Judah", "Jude", "Julien", "Julius", 
+                "Justice", "Justin", "Justus", "Kai", "Kamari", "Kamden", "Kameron", "Kane", 
+                "Karter", "Kayden", "Keagan", "Keaton", "Keith", "Kelvin", "Keon", "Keshawn", 
+                "Khalil", "Kieran", "Killian", "King", "Kingston", "Kody", "Kolby", "Kole", 
+                "Kolton", "Kristian", "Kyler", "Kymani", "Lamar", "Lance", "Landon", "Lane", 
+                "Lathan", "Layton", "Legend", "Leigh", "Len", "Lennon", "Lenny", "Leo", "Leon", 
+                "Leonard", "Leonardo", "Leonidas", "Leroy", "Lionel", "Louis", "Lucas", 
+                "Lucian", "Luis", "Lyric", "Malachi", "Malik", "Manuel", "Marc", "Marcos", 
+                "Mario", "Mark", "Markus", "Marley", "Marquis", "Marvin", "Mason", "Mathew", 
+                "Matthew", "Mathias", "Matteo", "Mauricio", "Maverick", "Maxim", "Maximo", 
+                "Maximiliano", "Maxwell", "Melvin", "Memphis", "Micheal", "Mike", "Mikey", 
+                "Miles", "Milo", "Misael", "Monroe", "Montgomery", "Nash", "Nasir", "Nathan", 
+                "Neal", "Nestor", "Nicholas", "Nickolas", "Nico", "Nikolas", "Noah", "Noe", 
+                "Nolan", "Norman", "Octavio", "Oliver", "Omar", "Pablo", "Parker", "Paul", 
+                "Payton", "Pedro", "Phil", "Phillip", "Phoenix", "Quentin", "Rafael", "Ralph", 
+                "Ramiro", "Ramon", "Rashad", "Raul", "Ray", "Rayan", "Raymond", "Reed", 
+                "Reese", "Reggie", "Reid", "Remy", "Reyes", "Rhett", "Ricardo", "Rick", 
+                "Rickon", "Ricky", "Robert", "Roberto", "Rock", "Roderick", "Rodney", 
+                "Rodrigo", "Rohan", "Roman", "Ronaldo", "Ronan", "Ronin", "Ronnie", "Ross", 
+                "Rowan", "Roy", "Royce", "Ruben", "Rubin", "Rudy", "Russell", "Ryder", "Ryker", 
+                "Ryland", "Rylee", "Sage", "Sal", "Sam", "Samir", "Samson", "Samuel", 
+                "Santiago", "Santino", "Saul", "Sawyer", "Sean", "Seymour", "Shane", "Shawn", 
+                "Sheldon", "Sid", "Sidney", "Silas", "Sincere", "Slade", "Stan", "Stanley", 
+                "Stephan", "Stephen", "Sullivan", "Syrio", "Talan", "Tanner", "Tatum", "Teddy", 
+                "Terence", "Terrance", "Terrell", "Terrence", "Theodore", "Tim", "Timmy", 
+                "Timothy", "Tobias", "Toby", "Trent", "Trenton", "Tristan", "Tyler", "Tyree", 
+                "Tyrone", "Ulises", "Uriel", "Valentino", "Vern", "Vernon", "Victor", 
+                "Vincent", "Wade", "Walder", "Waldorf", "Wesley", "Winston", "Xander", 
+                "Xavier", "Yael", "Yair", "Yandel", "York", "Zack", "Zackarv", "Zachary", 
+                "Zaid", "Zaire", "Zander", "Zayne", "Zion"
+                #endregion
+        };
+
+        String[] jap_names = new String[] {
+            #region japanese_names
+                "あかね", "あかり", "あきとら", "あさひ", "あおと", "あると", "あずま", "いお", "いかん", 
+                "いきる", "いく", "いくお", "いくし", "いくま", "いくまさ", "いくむ", "いさじ", "いざむ", 
+                "いちか", "いちき", "いちご", "いちせい", "いちた", "いちだい", "いちと", "いちは", "いちひろ",
+                "いちや", "いちよう", "いちる", "いちろ", "いちろうた", "いつお", "いつひと", "いとし", 
+                "いっこう", "いっさ", "いっせい", "いぶみ", "いわお", "いった", "うきょう", "うこん", "うしお", 
+                "うじやす", "うちゅう", "うてな", "うみたろう", "うみのすけ", "うみや", "うめたろう", "うめじろう", 
+                "うゆう", "うめた", "うりゅう", "うん", "えいき", "えいきち", "えいご", "えいし", "えいじ", 
+                "えいしゅん", "えいす", "えいすけ", "えいだい", "えいたろう", "えいのすけ", "えいま", "えいや", 
+                "えつお", "えつろう", "えにし", "えびぞう", "えんぞう", "おういち", "おういちろう", "おうが", 
+                "おうし", "おうしろう", "おうじ", "おうじろう", "おうや", "おおぞら", "おおや", "おと", "おとき", 
+                "おとや", "おりと", "かいお", "かいが", "かいき", "かいこう", "かいし", "かいじ", "かいと", 
+                "がいと", "かいへい", "かいや", "かおる", "がくた", "がくや", "かげと", "かげひろ", "かざと", 
+                "かずお", "かずおみ", "かずき", "かずさ", "かずし", "かずしげ", "かずたか", "かずたけ", 
+                "かずただ", "かずちか", "かずと", "かずとら", "かずのすけ", "かずは", "かずひさ", "かずひと", 
+                "かずひろ", "かずふみ", "かずまさ", "かずみつ", "かずむ", "かずや", "かずやす", "かつ", 
+                "かつあき", "かつお", "かつじ", "かつと", "かつなり", "かつひこ", "かつひと", "かつら", 
+                "かなた", "かなと", "かなで", "かなや", "がもん", "かをる", "かんいち", "かんくろう", "がんじ", 
+                "かんすけ", "かんぞう", "かんたろう", "ぎいちろう", "きおのすけ", "きくたろう", "きさぶろう", 
+                "きしん", "きっぺい", "きひと", "きひろ", "きみのぶ", "きょうが", "きょうき", "きょうじろう", 
+                "きょうすけ", "ぎょうすけ", "きょうたろう", "きょうと", "きょうま", "きよし", "きよしげ", "きよすみ", 
+                "きよた", "きよと", "きよなり", "きよのり", "きよのぶ", "きよひと", "きよひら", "きよふみ", 
+                "きよま", "きりや", "ぎんが", "きんじろう", "ぎんじろう", "きんたろう", "ぎんと", "きんぺい", 
+                "くうご", "くうと", "くすお", "くにとりまる", "くにのり", "くにひこ", "くにひで", "くにひと", 
+                "くまたろう", "くらのすけ", "くらま", "くろうど", "くんた", "けい", "けいいちろう", "けいえつ", 
+                "けいか", "けいじ", "けいじゅ", "けいしん", "けいすけ", "けいた", "けいだい", "けいん", 
+                "けんいちすけ", "けんいちろう", "けんき", "げんき", "けんさく", "けんしろう", "けんじ", "げんじ", 
+                "けんすけ", "げんすけ", "けんせい", "けんた", "けんたすけ", "けんたひ", "けんたひこ", 
+                "げんたろう", "げんと", "げんのすけ", "けんま", "げんき", "こいちろう", "こう", "こういち", 
+                "こういちろう", "こうえい", "こうえつ", "こうお", "こうし", "こうじ", "ごうすけ", "こうた", 
+                "ごうだい", "ごうたろう", "こうふ", "こうま", "こうめい", "こうよう", "こうりゅう", "ごくう", "こころ", 
+                "こじろう", "コタロー", "こてつ", "ことや", "ごろう", "ごんべえ", "さいき", "さいた", "さいと", 
+                "さかえ", "さくいち", "さくお", "さくじ", "さくた", "さくたろう", "さくはる", "さくへい", "さくも", 
+                "さくや", "さくら", "さだむ", "さだゆき", "さちお", "さちと", "さちひろ", "さちや", "さとゆき", 
+                "さとる", "さねひと", "さのすけ", "さへい", "さまのしん", "さわお", "しあら", "しいち", 
+                "じいちろう", "しおり", "しげお", "しげかず", "しげき", "しげなり", "しげひこ", "しげひさ", 
+                "しげひろ", "しげまつ", "しこう", "しさお", "じじろう", "しずお", "しのすけ", "しのび", "しのぶ", 
+                "しひろ", "しゅう", "しゅうう", "しゅうが", "しゅうげつ", "しゅうご", "じゅうたろう", "しゅうのすけ", 
+                "しゅうへい", "しゅうや", "しゅうよ", "しゅうわ", "じゅり", "しゅんいち", "じゅんきち", "じゅんすけ", 
+                "じゅんせい", "しゅんた", "じゅんのすけ", "しゅんぺい", "しゅんま", "じゅんま", "しょう", 
+                "しょうせい", "しょうた", "しょうだい", "じょうた", "しょうのすけ", "しょうりゅう", "しりゅう", "しろと", 
+                "しろう", "じろう", "しんいち", "じんいち", "しんご", "しんざぶろう", "しんじ", "じんぺい", 
+                "しんめい", "しんや", "すい", "すいた", "すいと", "すけろく", "すずし", "すばる", "すみと", 
+                "すみひこ", "すみはる", "せいあ", "せいご", "せいざぶろう", "せいじ", "せいじろう", "せいしん", 
+                "せいすけ", "せいたろう", "せいと", "せいよう", "せいら", "せが", "せつお", "せつや", "せな", 
+                "せんいちろう", "せんと", "せんま", "せんご", "せいすけ", "せつお", "そういちろう", "そうが", 
+                "そうけん", "そうご", "そうし", "そうじろう", "そうせき", "そうた", "そうだい", "そうたろう", 
+                "そうと", "そうま", "そうや", "そらお", "そらき", "そらじろう", "そらや", "たいかい", "だいき", 
+                "だいごろう", "だいさく", "たいじゅ", "だいしょう", "だいじろう", "だいすけ", "たいち", "たいと", 
+                "だいと", "だいもん", "だいや", "たかいち", "たかお", "たかおみ", "たかつぐ", "たかと", 
+                "たかとし", "たかな", "たかね", "たかのぶ", "たかひこ", "たかひさ", "たかひろ", "たかま", 
+                "たかみち", "たかみつ", "たかむ", "たかゆき　", "たきお　", "たくい", "たくや", "たくし", 
+                "たくすけ", "たくた", "たくたろう", "たくのすけ", "たくふみ", "たくむ", "たくろう", "たけお", 
+                "たけき", "たけし", "たけじろう", "たけとも", "たけのぶ", "たけひさ", "たけひと", "たけふみ", 
+                "たけまつ", "たけみつ", "たけゆき", "たける", "たすけ", "ただあき", "ただずみ", "ただたか", 
+                "ただのぶ", "ただむね", "たつ", "たつおみ", "たつし", "たっと", "たつなり", "たつひこ", 
+                "たつひさ", "たつひと", "たっぺい", "たつま", "たつや", "たつよし", "たへい", "たみや", 
+                "たみひで", "たもつ", "たろう", "ちあき", "ちおん", "ちかと", "ちかひさ", "ちかゆき", "ちせい", 
+                "ちづる", "ちづお", "ちとせ", "ちひろ", "ちゅうすけ", "ちょういち", "ちょうた", "つかさ", 
+                "つづみ", "つね", "つねのり", "つねひと", "つねゆき", "つねろう", "つばき", "つばさ", 
+                "ていた", "ていと", "てつ", "てつき", "てっせい", "てつた", "てつひさ", "てつひで", "てつひと", 
+                "てつま", "テル", "てるあき", "てるお", "てるかず", "てると", "てるとし", "てるのり", "てるま", 
+                "てるまさ", "てるみ", "てるみち", "てるよし", "てん", "てんいち", "てんさく", "でんじ", 
+                "てんせい", "てんたろう", "てんと", "てんどう", "とうじろう", "とうた", "とうたろう", "とうま", 
+                "とうや", "とおる", "ときつぐ", "ときじろう", "ときと", "ときひさ", "ときむね", "ときや", "とくひろ", 
+                "としいえ", "としたか", "としなり", "としのぶ", "としまさ", "としみち", "としやす", "としゆき", 
+                "とま", "とみお", "とみなり", "とみひさ", "ともかず", "ともき", "ともし", "ともたろう", "ともちか", 
+                "ともと", "とものすけ", "とものり", "ともひで", "ともひと", "ともみつ", "ともゆき", "ともよし", 
+                "ともろう", "とよき", "とらきち", "とらじろう", "とらひと", "とらお", "なおえ", "なおかず", 
+                "なおざね", "なおじろう", "なおた", "なおたか", "なおたろう", "なおとし", "なおはる", 
+                "なおひこ", "なおひろ", "なおま", "ながひさ", "なぎと", "なごみ", "なごむ", "なつ", 
+                "なついち", "なつお", "なつた", "なつたろう", "なつひと", "なつめ", "ななき", "ななせ", 
+                "ななみ", "なゆた", "なり", "なりたつ", "なりひろ", "なりゆき", "なるひと", "なるみ", 
+                "にじひこ", "にじや", "にじろう", "にや", "にんざぶろう", "ねおん", "のあ", "ノエル", "のびた", 
+                "のぶお", "のぶき", "のぶたか", "のぶてる", "のぶなが", "のぶひろ", "のりかず", "のりたか", 
+                "のりひと", "のりゆき", "のりまさ", "はいとく", "はかる", "ばく", "はじめ", "はちろう", "はつき", 
+                "はづき", "はつね", "はつま", "ははや", "はやき", "はやたか", "はやと", "はやとし", 
+                "はやとも", "はやぶさ", "はゆま", "はゆる", "はるあき", "はるお", "はるか", "はるかず", 
+                "はるきよ", "はるすけ", "はるたけ", "はるただ", "はるたろう", "はるとも", "はるとら", "はるなお", 
+                "はるなり", "はるね", "はるのり", "はるひ", "はるひこ", "はるひで", "はるま", "はるみち", 
+                "はるむ", "はんた", "ばんたろう", "ばんり", "ひかり", "ひかる", "ひこの", "ひさ", "ひさあき", 
+                "ひさお", "ひさたか", "ひさのり", "ひさのぶ", "ひさひろ", "ひさや", "ひさよし", "ひじり", 
+                "ピッド", "ひづき", "ひさはろ", "ひで", "ひでちか", "ひでとし", "ひでとも", "ひでなり", 
+                "ひでひさ", "ひでゆき", "ひでよし", "ひなき", "ひなた", "ひなと", "ひのき", "ひゅう", "ひょう", 
+                "ひょうえ", "ひょうが", "ひらお", "ひろかつ", "ひろさき", "ひろき", "ひろこ", "ひろたろう", 
+                "ひろひこ", "ひろひで", "ひろまさ", "ひろみつ", "びん", "ふうすけ", "ふうたろう", "ふうと", 
+                "ふきち", "ふく", "ふくすけ", "ふくと", "ふくや", "ふじお", "ふたば", "ぶどう", "ふみたけ", 
+                "ふみひさ", "ふみひと", "ふゆ", "ふゆと", "ぶんじ", "ぶんたろう", "ぶんや", "べんぞう", 
+                "へいた", "へんたい", "ポール", "ほずき", "ほづみ", "ほまれ", "ほうせい", "ほの", "マイケル", 
+                "まいじろう", "まいたろう", "まお", "まきた", "まこ", "まさ", "まさおみ", "まさかつ", "まさかど", 
+                "まさき", "まさじ", "まさしげ", "まさた", "まこと", "まさたか", "まさただ", "まさちか", "まさと", 
+                "まさひろ", "まさほ", "まさむね", "まさみ", "まさみつ", "まさゆき", "まさゆみ", "まさよし", 
+                "まさる", "ますお", "またさぶろう", "またざぶろう", "まつたろう", "まどか", "まなつ", "まなと", 
+                "まなぶ", "まはる", "まほ", "まみち", "まもる", "まゆき", "まるも", "まれすけ", "まんえい", 
+                "まんじろう", "まんぺい", "みお", "みおと", "みかど", "みき", "みきたろう", "みきたか", "みく", 
+                "みくや", "みこと", "みさきまる", "みずと", "みずほ", "みずや", "みち", "みちお", "みちき", 
+                "みちた", "みちと", "みちなり", "みちはる", "みちひこ", "みちひと", "みちまさ", "みちる", 
+                "みちろう", "みつあき", "みつお", "みつき", "みつくに", "みつたか", "みつと", "みつなが", 
+                "みつはる", "みつひこ", "みつひさ", "みつひで", "みつまさ", "みつろう", "みどう", "みどり", 
+                "みのや", "みのる", "みやび", "みゆき", "みわたくろう", "むが", "むくなが", "むつお", 
+                "むつや", "むねお", "むさし", "むねじ", "めいとく", "めかのすけ", "めぐむ", "メグウィン", 
+                "もとき", "もぎき", "もときよ", "もとのり", "もとのぶ", "もとひろ", "モンきち", "もんきゅー", 
+                "やいち", "やいちろう", "やくも", "やすあき", "やすお", "やすさぶろう", "やすし", "やすとし", 
+                "やすなり", "やすひこ", "やすひで", "やすひと", "やすひろ", "やすま", "やすまさ", "やすや", 
+                "やすろう", "やひこ", "やまと", "やわら", "ゆいいちろう", "ゆいのすけ", "ゆいと", "ゆいや", 
+                "ゆう", "ゆうあ", "ゆうあき", "ゆういち", "ゆうさ", "ゆうさく", "ゆうざぶろう", "ゆうじゅ", 
+                "ゆうしょう", "ゆうしん", "ゆうせい", "ゆうだい", "ゆうほ", "ゆうま", "ゆうや", "ゆかり", 
+                "ゆきお", "ゆきち", "ゆきとも", "ゆきとら", "ゆきのしん", "ゆきのぶ", "ゆきひと", "ゆきま", 
+                "ゆきのすけ", "ゆずる", "ゆみと", "ゆめ", "ゆめき", "ゆめじ", "ゆめた", "ゆらい", "ユウナ", 
+                "よういち", "ようく", "ようたろう", "ようと", "よこたる", "よしいえ", "よしお", "よしき", "よしくに", 
+                "よした", "よしたろう", "よしちか", "よしつぐ", "よしなお", "よしひこ", "よしひろ", "よしまさ", 
+                "よしみつ", "よみ", "よりひと", "ヨン", "らいじ", "らいち", "らいと", "らいな", "ライヤ", "らん", 
+                "らんた", "らんぽ", "らんのすけ", "ライト", "りおと", "りきあ", "りきいち", "りきお", "りきと", 
+                "りく", "りくたろう", "りくと", "りくのすけ", "りくひろ", "りくへい", "りくみ", "りくや", "りたろう", 
+                "りつき", "りつし", "りつじ", "りつたろう", "りつと", "りっと　", "りつま", "りと", "りゅう", 
+                "りゅういち", "りゅうし", "りゅうすけ", "りゅうじゅ", "りゅうた", "りゅうたろう", "りゅうだい", 
+                "りゅうのすけ", "りゅうほ", "りゅうほう", "りょうい", "りょうえい", "りょうすけ", "りょうた", 
+                "りょうたろう", "りょうのしん", "りょうのすけ", "りょうご", "りょうこう", "りょうじろう", "りょうふう", 
+                "りょうま", "りょうきち", "りょお", "りんいち", "りんいちろう", "りんご", "りんぞう", "りんた", 
+                "りんや", "りくや", "りつき", "りくみ", "ルイス", "るうま", "るおん", "るか", "るきあ", "るな", 
+                "るり", "るろ", "れいいち", "れいき", "れいし", "れいのすけ", "れいや", "れいめい", "レイン", 
+                "れお", "れき", "レン", "れんいちろう", "れんじ", "れんじゅ", "えいき", "えいき", "えいき", 
+                "れんじゅ", "れんじろう", "れんたろう", "れんぺい", "れんま", "れんや", "レレレのおじさん", 
+                "ろうた", "ろく", "ろくろう", "ろまん", "ろん", "わいち", "わかき", "わかぎ", "わかさぎ", 
+                "わかと", "わかな", "わかひろ", "わく", "わしひと", "わりと"
+            #endregion
+        };
+
+        #endregion
+
+        public String[] AddItemToArray(String[] original, String itemToAdd)
+        {
+
+            String[] finalArray = new String[original.Length + 1];
+            for (int i = 0; i < original.Length; i++)
+            {
+                finalArray[i] = original[i];
+            }
+
+            finalArray[finalArray.Length - 1] = itemToAdd;
+
+            return finalArray;
+        }
+
+        public void update_names()
+        {
+            StreamReader name;
+            String line;
+            bool inside_area;
+            if (File.Exists("jap_names.txt"))
+            {
+                jap_names = new String[0];
+                name = new StreamReader("jap_names.txt");
+                inside_area = false;
+                while ((line = name.ReadLine()) != null)
+                {
+                    if (line == "#areaedit")
+                        inside_area = true;
+                    else if (line == "#areaedit(end)")
+                        inside_area = false;
+                    else
+                    {
+                        if (inside_area)
+                        {
+                            line = line.Replace("（主人公）", "");
+                            line = line.Replace("(主人公)", "");
+                            line = line.Replace("(公式サイトのＱＲコードにて掲載)", "");
+                            if (line != "")
+                                jap_names = AddItemToArray(jap_names, line);
+                        }
+                    }
+                }
+                name.Close();
+            }
+            if (File.Exists("na_names.txt"))
+            {
+                north_america_names = new String[0];
+                name = new StreamReader("na_names.txt");
+                inside_area = false;
+                while ((line = name.ReadLine()) != null)
+                {
+                    if (line == "%")
+                        inside_area = true;
+                    else if (line == "")
+                        inside_area = false;
+                    else
+                    {
+                        if (inside_area)
+                        {
+                            line = line.Replace("'''''", "");
+                            line = line.Replace(" (hero)", "");
+                            line = line.Replace(" (hero's fiance)", "");
+                            north_america_names = AddItemToArray(north_america_names, line);
+                        }
+                    }
+                }
+                name.Close();
+            }
+        }
 
         public FormEditor()
         {
             InitializeComponent();
             menuFileNew_Click(null, null);
-
+            update_names();
             #region character_stats
             strStats[(int)AntennaPower.no_antenna] = new String[27] {
                 "HP:29 AP:0 Att:11 Def:13 Spd:3 Ev:0",
@@ -862,81 +1204,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x27, 0);
             }
             hexBox1.Refresh();
-            switch (cboHeadShape.SelectedIndex)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.head_0_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.head_0_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.head_0_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.head_0_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.head_0_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.head_0_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.head_0_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.head_0_7);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.head_0_8);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.head_0_9);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.head_0_A);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.head_1_0);
-                    break;
-                case 12:
-                    picBox2.Image = new Bitmap(Resources.head_1_1);
-                    break;
-                case 13:
-                    picBox2.Image = new Bitmap(Resources.head_1_2);
-                    break;
-                case 14:
-                    picBox2.Image = new Bitmap(Resources.head_1_3);
-                    break;
-                case 15:
-                    picBox2.Image = new Bitmap(Resources.head_1_4);
-                    break;
-                case 16:
-                    picBox2.Image = new Bitmap(Resources.head_1_5);
-                    break;
-                case 17:
-                    picBox2.Image = new Bitmap(Resources.head_1_6);
-                    break;
-                case 18:
-                    picBox2.Image = new Bitmap(Resources.head_2_0);
-                    break;
-                case 19:
-                    picBox2.Image = new Bitmap(Resources.head_2_1);
-                    break;
-                case 20:
-                    picBox2.Image = new Bitmap(Resources.head_2_2);
-                    break;
-                case 21:
-                    picBox2.Image = new Bitmap(Resources.head_2_3);
-                    break;
-                case 22:
-                    picBox2.Image = new Bitmap(Resources.head_2_4);
-                    break;
-                case 23:
-                    picBox2.Image = new Bitmap(Resources.head_2_5);
-                    break;
-            }
+            picBox2.Image = head[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1005,105 +1273,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x2B, 0);
             }
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.face_shape_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.face_shape_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.face_shape_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.face_shape_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.face_shape_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.face_shape_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.face_shape_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.face_shape_7);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.face_shape_8);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.hair_style_00);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.hair_style_01);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.hair_style_02);
-                    break;
-                case 12:
-                    picBox2.Image = new Bitmap(Resources.hair_style_03);
-                    break;
-                case 13:
-                    picBox2.Image = new Bitmap(Resources.hair_style_04);
-                    break;
-                case 14:
-                    picBox2.Image = new Bitmap(Resources.hair_style_05);
-                    break;
-                case 15:
-                    picBox2.Image = new Bitmap(Resources.hair_style_06);
-                    break;
-                case 16:
-                    picBox2.Image = new Bitmap(Resources.hair_style_07);
-                    break;
-                case 17:
-                    picBox2.Image = new Bitmap(Resources.hair_style_08);
-                    break;
-                case 18:
-                    picBox2.Image = new Bitmap(Resources.hair_style_09);
-                    break;
-                case 19:
-                    picBox2.Image = new Bitmap(Resources.hair_style_0A);
-                    break;
-                case 20:
-                    picBox2.Image = new Bitmap(Resources.hair_style_0B);
-                    break;
-                case 21:
-                    picBox2.Image = new Bitmap(Resources.hair_style_0C);
-                    break;
-                case 22:
-                    picBox2.Image = new Bitmap(Resources.hair_style_0D);
-                    break;
-                case 23:
-                    picBox2.Image = new Bitmap(Resources.hair_style_0E);
-                    break;
-                case 24:
-                    picBox2.Image = new Bitmap(Resources.hair_style_0F);
-                    break;
-                case 25:
-                    picBox2.Image = new Bitmap(Resources.hair_style_10);
-                    break;
-                case 26:
-                    picBox2.Image = new Bitmap(Resources.hair_style_11);
-                    break;
-                case 27:
-                    picBox2.Image = new Bitmap(Resources.hair_style_12);
-                    break;
-                case 28:
-                    picBox2.Image = new Bitmap(Resources.hair_style_13);
-                    break;
-                case 29:
-                    picBox2.Image = new Bitmap(Resources.hair_style_14);
-                    break;
-                case 30:
-                    picBox2.Image = new Bitmap(Resources.hair_style_15);
-                    break;
-                case 31:
-                    picBox2.Image = new Bitmap(Resources.hair_style_16);
-                    break;     
-            }
+            picBox2.Image = faceshape[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1116,45 +1286,7 @@ namespace PushmoLevelEditor
             hexBox1.ByteProvider.WriteByte(0x18, (byte)temp);
             hexBox1.ByteProvider.WriteByte(0x19, 0);
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.hair_color_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.hair_color_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.hair_color_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.hair_color_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.hair_color_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.hair_color_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.hair_color_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.hair_color_7);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.hair_color_8);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.hair_color_9);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.hair_color_A);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.hair_color_B);
-                    break;    
-            }
+            picBox2.Image = haircolor[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1171,105 +1303,7 @@ namespace PushmoLevelEditor
             hexBox1.ByteProvider.WriteByte(0x1A, (byte)temp);
             hexBox1.ByteProvider.WriteByte(0x1B, 0);
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.eyes_00);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.eyes_01);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.eyes_02);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.eyes_03);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.eyes_04);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.eyes_05);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.eyes_06);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.eyes_07);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.eyes_08);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.eyes_09);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.eyes_0A);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.eyes_0B);
-                    break;
-                case 12:
-                    picBox2.Image = new Bitmap(Resources.eyes_0C);
-                    break;
-                case 13:
-                    picBox2.Image = new Bitmap(Resources.eyes_0D);
-                    break;
-                case 14:
-                    picBox2.Image = new Bitmap(Resources.eyes_0E);
-                    break;
-                case 15:
-                    picBox2.Image = new Bitmap(Resources.eyes_0F);
-                    break;
-                case 16:
-                    picBox2.Image = new Bitmap(Resources.eyes_10);
-                    break;
-                case 17:
-                    picBox2.Image = new Bitmap(Resources.eyes_11);
-                    break;
-                case 18:
-                    picBox2.Image = new Bitmap(Resources.eyes_12);
-                    break;
-                case 19:
-                    picBox2.Image = new Bitmap(Resources.eyes_13);
-                    break;
-                case 20:
-                    picBox2.Image = new Bitmap(Resources.eyes_14);
-                    break;
-                case 21:
-                    picBox2.Image = new Bitmap(Resources.eyes_15);
-                    break;
-                case 22:
-                    picBox2.Image = new Bitmap(Resources.eyes_16);
-                    break;
-                case 23:
-                    picBox2.Image = new Bitmap(Resources.eyes_17);
-                    break;
-                case 24:
-                    picBox2.Image = new Bitmap(Resources.eyes_18);
-                    break;
-                case 25:
-                    picBox2.Image = new Bitmap(Resources.eyes_19);
-                    break;
-                case 26:
-                    picBox2.Image = new Bitmap(Resources.eyes_1A);
-                    break;
-                case 27:
-                    picBox2.Image = new Bitmap(Resources.eyes_1B);
-                    break;
-                case 28:
-                    picBox2.Image = new Bitmap(Resources.eyes_1C);
-                    break;
-                case 29:
-                    picBox2.Image = new Bitmap(Resources.eyes_1D);
-                    break;
-                case 30:
-                    picBox2.Image = new Bitmap(Resources.eyes_1E);
-                    break;
-                case 31:
-                    picBox2.Image = new Bitmap(Resources.eyes_1F);
-                    break;
-            }
+            picBox2.Image = eyes[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1286,33 +1320,7 @@ namespace PushmoLevelEditor
             hexBox1.ByteProvider.WriteByte(0x1E, (byte)temp);
             hexBox1.ByteProvider.WriteByte(0x1F, 0);
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.eye_brow_7);
-                    break;
-            }
+            picBox2.Image = eye_brow[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1325,57 +1333,7 @@ namespace PushmoLevelEditor
             hexBox1.ByteProvider.WriteByte(0x1A, (byte)temp);
             hexBox1.ByteProvider.WriteByte(0x1B, 0);
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.nose_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.nose_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.nose_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.nose_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.nose_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.nose_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.nose_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.nose_7);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.nose_8);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.nose_9);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.nose_A);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.nose_B);
-                    break;
-                case 12:
-                    picBox2.Image = new Bitmap(Resources.nose_C);
-                    break;
-                case 13:
-                    picBox2.Image = new Bitmap(Resources.nose_D);
-                    break;
-                case 14:
-                    picBox2.Image = new Bitmap(Resources.nose_E);
-                    break;
-                case 15:
-                    picBox2.Image = new Bitmap(Resources.nose_F);
-                    break;  
-            }
+            picBox2.Image = nose[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1401,27 +1359,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x17, 0);
             }
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.face_color_4);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.face_color_5);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.face_color_0);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.face_color_1);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.face_color_2);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.face_color_3);
-                    break;
-            }
+            picBox2.Image = face_color[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1434,105 +1372,7 @@ namespace PushmoLevelEditor
             hexBox1.ByteProvider.WriteByte(0x1C, (byte)temp);
             hexBox1.ByteProvider.WriteByte(0x1D, 0);
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.mouth_00);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.mouth_01);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.mouth_02);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.mouth_03);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.mouth_04);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.mouth_05);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.mouth_06);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.mouth_07);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.mouth_08);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.mouth_09);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.mouth_0A);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.mouth_0B);
-                    break;
-                case 12:
-                    picBox2.Image = new Bitmap(Resources.mouth_0C);
-                    break;
-                case 13:
-                    picBox2.Image = new Bitmap(Resources.mouth_0D);
-                    break;
-                case 14:
-                    picBox2.Image = new Bitmap(Resources.mouth_0E);
-                    break;
-                case 15:
-                    picBox2.Image = new Bitmap(Resources.mouth_0F);
-                    break;
-                case 16:
-                    picBox2.Image = new Bitmap(Resources.mouth_10);
-                    break;
-                case 17:
-                    picBox2.Image = new Bitmap(Resources.mouth_11);
-                    break;
-                case 18:
-                    picBox2.Image = new Bitmap(Resources.mouth_12);
-                    break;
-                case 19:
-                    picBox2.Image = new Bitmap(Resources.mouth_13);
-                    break;
-                case 20:
-                    picBox2.Image = new Bitmap(Resources.mouth_14);
-                    break;
-                case 21:
-                    picBox2.Image = new Bitmap(Resources.mouth_15);
-                    break;
-                case 22:
-                    picBox2.Image = new Bitmap(Resources.mouth_16);
-                    break;
-                case 23:
-                    picBox2.Image = new Bitmap(Resources.mouth_17);
-                    break;
-                case 24:
-                    picBox2.Image = new Bitmap(Resources.mouth_18);
-                    break;
-                case 25:
-                    picBox2.Image = new Bitmap(Resources.mouth_19);
-                    break;
-                case 26:
-                    picBox2.Image = new Bitmap(Resources.mouth_1A);
-                    break;
-                case 27:
-                    picBox2.Image = new Bitmap(Resources.mouth_1B);
-                    break;
-                case 28:
-                    picBox2.Image = new Bitmap(Resources.mouth_1C);
-                    break;
-                case 29:
-                    picBox2.Image = new Bitmap(Resources.mouth_1D);
-                    break;
-                case 30:
-                    picBox2.Image = new Bitmap(Resources.mouth_1E);
-                    break;
-                case 31:
-                    picBox2.Image = new Bitmap(Resources.mouth_1F);
-                    break;
-            }
+            picBox2.Image = mouth[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1558,33 +1398,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x1F, 0);
             }
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.cheek_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.cheek_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.cheek_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.cheek_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.cheek_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.cheek_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.cheek_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.cheek_7);
-                    break;
-            }
+            picBox2.Image = cheek[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1610,57 +1424,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x21, 0);
             }
             hexBox1.Refresh();
-            switch (index)
-            {
-                case 0:
-                    picBox2.Image = new Bitmap(Resources.glasses_0);
-                    break;
-                case 1:
-                    picBox2.Image = new Bitmap(Resources.glasses_1);
-                    break;
-                case 2:
-                    picBox2.Image = new Bitmap(Resources.glasses_2);
-                    break;
-                case 3:
-                    picBox2.Image = new Bitmap(Resources.glasses_3);
-                    break;
-                case 4:
-                    picBox2.Image = new Bitmap(Resources.glasses_4);
-                    break;
-                case 5:
-                    picBox2.Image = new Bitmap(Resources.glasses_5);
-                    break;
-                case 6:
-                    picBox2.Image = new Bitmap(Resources.glasses_6);
-                    break;
-                case 7:
-                    picBox2.Image = new Bitmap(Resources.glasses_7);
-                    break;
-                case 8:
-                    picBox2.Image = new Bitmap(Resources.glasses_8);
-                    break;
-                case 9:
-                    picBox2.Image = new Bitmap(Resources.glasses_9);
-                    break;
-                case 10:
-                    picBox2.Image = new Bitmap(Resources.glasses_A);
-                    break;
-                case 11:
-                    picBox2.Image = new Bitmap(Resources.glasses_B);
-                    break;
-                case 12:
-                    picBox2.Image = new Bitmap(Resources.glasses_C);
-                    break;
-                case 13:
-                    picBox2.Image = new Bitmap(Resources.glasses_D);
-                    break;
-                case 14:
-                    picBox2.Image = new Bitmap(Resources.glasses_E);
-                    break;
-                case 15:
-                    picBox2.Image = new Bitmap(Resources.glasses_F);
-                    break;
-            }
+            picBox2.Image = glasses[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1703,181 +1467,7 @@ namespace PushmoLevelEditor
         private void btnRandomDenpa_Click(object sender, EventArgs e)
         {
             
-            String[] north_america_names = new String[] {
-                #region north_america_names
-                "Abdiel","Ace","Adan","Adonis","Adrian","Aedan","Agustin","Ahmad","Ahmed","Al",
-                "Alden","Aldo","Alessandro","Allan","Allen","Alonzo","Amare","Amari","Anderson",
-                "Andres","Andy","Angel","Antonio","Aric","Ariel","Armani","Arnav","Aryan","Asa",
-                "Ashton","Atticus","August","Austin","Ayaan","Bailey","Backham","Bennett",
-                "Benson","Bentlee","Bently","Bill","Blaze","Bo","Bobby","Bort","Braden",
-                "Bradley","Bradyn","Brayan","Braydon","Bryslen","Brock","Brodie","Brooks",
-                "Bruce","Bruno","Burt","Byron","Caden","Bryan","Cain","Cale","Camden","Camdyn",
-                "Cameron","Carl","Casen","Cedric","Chance","Charles","Charlie","Chester","Chet",
-                "Chi","Clayton","Cody","Coleman","Collin","Colten","Conrad","Corbin","Cory",
-                "Cristian","Crystal","Dalton","Damian","Dangelo","Daniel","Darnell","Dashawn",
-                "Davion","Davis","Dayton","Deangelo","Deon","Deshawn","Destin","Dillan","Don",
-                "Donald","Donovan","Donte","Dorian","Dorsey","Douglas","Drake","Drew","Dyluck",
-                "Eden","Edison","Efrain","Efran","Elias","Eliseo","Elisha","Elvis","Emmett",
-                "Ernesto","Ethan","Evan","Fabian","Fernando","Felix","Finnegan","Francis","Gage",
-                "Garland","Gary","Gavin","Gerard","Gilbert","Giovanni","Glenn","Grady","Gregory",
-                "Greyson","Guillermo","Gunnar","Gus","Gustavo","Haiden","Hank","Harley","Harold",
-                "Harper","Harrison","Hassan","Hezekiah","Holden","Hollis","Homer","Horacio",
-                "Houston","Hunter","Ibrahim","Iker","Irvin","Ishaan","Isiah","Ivan","Izaiah",
-                "Jabari","Jackson","Jaden","Jadyn","Jae","Jagger","Jairo","Jake","Jakob","Jamal",
-                "Jamari","Jamel","James","Jameson","Jamie","Jaquan","Jason","Jaxon","Jay",
-                "Jayden","Jaydon","Jaylin","Jean","Jensen","Jeremiah","Jermaine","Jerry","Jett",
-                "Joe","Joel","Jonah","Jorah","Jordan","Jose","Joseph","Joshua","Josiah","Josue",
-                "Jovanni","Judah","Jude","Justice","Justin","Justus","Kamari","Kamden","Kane",
-                "Karter","Keagan","Keaton","Keith","Kelvin","Keshawn","Khalil","Kieran",
-                "Killian","King","Kingston","Kody","Kolby","Kole","Kolton","Kristian","Kyler",
-                "Lamar","Landon","Lane","Lathan","Layton","Legend","Leigh","Leo","Leon",
-                "Leonard","Leonidas","Lionel","Louis","Lucas","Lucian","Luis","Lyric","Malachi",
-                "Malik","Marc","Marcos","Mario","Mark","Markus","Marquis","Marvin","Mason",
-                "Mathew","Matteo","Mauricio","Maxim","Maximo","Maximiliano","Maxwell","Melvin",
-                "Memphis","Micheal","Mike","Mikey","Miles","Misael","Monroe","Nash","Nasir",
-                "Nathan","Neal","Nicholas","Nico","Nikolas","Noah","Noe","Norman","Octavio",
-                "Oliver","Omar","Pablo","Payton","Pedro","Phil","Quentin","Ramiro","Rashad",
-                "Raul","Ray","Raymond","Reed","Reese","Reggie","Reid","Rhett","Ricardo","Rickon",
-                "Ricky","Robert","Roberto","Rock","Roderick","Rodney","Rodrigo","Rohan","Roman",
-                "Ronaldo","Ronan","Ronin","Ross","Roy","Ruben","Rudy","Russell","Ryder","Ryker",
-                "Ryland","Rylee","Sage","Sal","Sam","Samson","Samuel","Sawyer","Seymour",
-                "Sheldon","Sidney","Sincere","Slade","Stanley","Stephan","Sullivan","Syrio",
-                "Talan","Tatum","Teddy","Terrell","Terrence","Theodore","Timothy","Tobias",
-                "Toby","Trent","Trenton","Tristan","Tyler","Tyrone","Ulises","Vern","Vernon",
-                "Victor","Wesley","Winston","Xander","Xavier","Yael","Yair","Yandel","York",
-                "Zack","Zackarv","Zaid","Zander","Zion"
-                #endregion
-            };
-            
-            
-            String[] jap_names = new String[] {
-                #region japanese_names
-                "あかね", "あかり", "あきとら", "あさひ", "あおと", "あると", "あずま", "いお", "いかん", 
-                "いきる", "いく", "いくお", "いくし", "いくま", "いくまさ", "いくむ", "いさじ", "いざむ", 
-                "いちか", "いちき", "いちご", "いちせい", "いちた", "いちだい", "いちと", "いちは", "いちひろ",
-                "いちや", "いちよう", "いちる", "いちろ", "いちろうた", "いつお", "いつひと", "いとし", 
-                "いっこう", "いっさ", "いっせい", "いぶみ", "いわお", "いった", "うきょう", "うこん", "うしお", 
-                "うじやす", "うちゅう", "うてな", "うみたろう", "うみのすけ", "うみや", "うめたろう", "うめじろう", 
-                "うゆう", "うめた", "うりゅう", "うん", "えいき", "えいきち", "えいご", "えいし", "えいじ", 
-                "えいしゅん", "えいす", "えいすけ", "えいだい", "えいたろう", "えいのすけ", "えいま", "えいや", 
-                "えつお", "えつろう", "えにし", "えびぞう", "えんぞう", "おういち", "おういちろう", "おうが", 
-                "おうし", "おうしろう", "おうじ", "おうじろう", "おうや", "おおぞら", "おおや", "おと", "おとき", 
-                "おとや", "おりと", "かいお", "かいが", "かいき", "かいこう", "かいし", "かいじ", "かいと", 
-                "がいと", "かいへい", "かいや", "かおる", "がくた", "がくや", "かげと", "かげひろ", "かざと", 
-                "かずお", "かずおみ", "かずき", "かずさ", "かずし", "かずしげ", "かずたか", "かずたけ", 
-                "かずただ", "かずちか", "かずと", "かずとら", "かずのすけ", "かずは", "かずひさ", "かずひと", 
-                "かずひろ", "かずふみ", "かずまさ", "かずみつ", "かずむ", "かずや", "かずやす", "かつ", 
-                "かつあき", "かつお", "かつじ", "かつと", "かつなり", "かつひこ", "かつひと", "かつら", 
-                "かなた", "かなと", "かなで", "かなや", "がもん", "かをる", "かんいち", "かんくろう", "がんじ", 
-                "かんすけ", "かんぞう", "かんたろう", "ぎいちろう", "きおのすけ", "きくたろう", "きさぶろう", 
-                "きしん", "きっぺい", "きひと", "きひろ", "きみのぶ", "きょうが", "きょうき", "きょうじろう", 
-                "きょうすけ", "ぎょうすけ", "きょうたろう", "きょうと", "きょうま", "きよし", "きよしげ", "きよすみ", 
-                "きよた", "きよと", "きよなり", "きよのり", "きよのぶ", "きよひと", "きよひら", "きよふみ", 
-                "きよま", "きりや", "ぎんが", "きんじろう", "ぎんじろう", "きんたろう", "ぎんと", "きんぺい", 
-                "くうご", "くうと", "くすお", "くにとりまる", "くにのり", "くにひこ", "くにひで", "くにひと", 
-                "くまたろう", "くらのすけ", "くらま", "くろうど", "くんた", "けい", "けいいちろう", "けいえつ", 
-                "けいか", "けいじ", "けいじゅ", "けいしん", "けいすけ", "けいた", "けいだい", "けいん", 
-                "けんいちすけ", "けんいちろう", "けんき", "げんき", "けんさく", "けんしろう", "けんじ", "げんじ", 
-                "けんすけ", "げんすけ", "けんせい", "けんた", "けんたすけ", "けんたひ", "けんたひこ", 
-                "げんたろう", "げんと", "げんのすけ", "けんま", "げんき", "こいちろう", "こう", "こういち", 
-                "こういちろう", "こうえい", "こうえつ", "こうお", "こうし", "こうじ", "ごうすけ", "こうた", 
-                "ごうだい", "ごうたろう", "こうふ", "こうま", "こうめい", "こうよう", "こうりゅう", "ごくう", "こころ", 
-                "こじろう", "コタロー", "こてつ", "ことや", "ごろう", "ごんべえ", "さいき", "さいた", "さいと", 
-                "さかえ", "さくいち", "さくお", "さくじ", "さくた", "さくたろう", "さくはる", "さくへい", "さくも", 
-                "さくや", "さくら", "さだむ", "さだゆき", "さちお", "さちと", "さちひろ", "さちや", "さとゆき", 
-                "さとる", "さねひと", "さのすけ", "さへい", "さまのしん", "さわお", "しあら", "しいち", 
-                "じいちろう", "しおり", "しげお", "しげかず", "しげき", "しげなり", "しげひこ", "しげひさ", 
-                "しげひろ", "しげまつ", "しこう", "しさお", "じじろう", "しずお", "しのすけ", "しのび", "しのぶ", 
-                "しひろ", "しゅう", "しゅうう", "しゅうが", "しゅうげつ", "しゅうご", "じゅうたろう", "しゅうのすけ", 
-                "しゅうへい", "しゅうや", "しゅうよ", "しゅうわ", "じゅり", "しゅんいち", "じゅんきち", "じゅんすけ", 
-                "じゅんせい", "しゅんた", "じゅんのすけ", "しゅんぺい", "しゅんま", "じゅんま", "しょう", 
-                "しょうせい", "しょうた", "しょうだい", "じょうた", "しょうのすけ", "しょうりゅう", "しりゅう", "しろと", 
-                "しろう", "じろう", "しんいち", "じんいち", "しんご", "しんざぶろう", "しんじ", "じんぺい", 
-                "しんめい", "しんや", "すい", "すいた", "すいと", "すけろく", "すずし", "すばる", "すみと", 
-                "すみひこ", "すみはる", "せいあ", "せいご", "せいざぶろう", "せいじ", "せいじろう", "せいしん", 
-                "せいすけ", "せいたろう", "せいと", "せいよう", "せいら", "せが", "せつお", "せつや", "せな", 
-                "せんいちろう", "せんと", "せんま", "せんご", "せいすけ", "せつお", "そういちろう", "そうが", 
-                "そうけん", "そうご", "そうし", "そうじろう", "そうせき", "そうた", "そうだい", "そうたろう", 
-                "そうと", "そうま", "そうや", "そらお", "そらき", "そらじろう", "そらや", "たいかい", "だいき", 
-                "だいごろう", "だいさく", "たいじゅ", "だいしょう", "だいじろう", "だいすけ", "たいち", "たいと", 
-                "だいと", "だいもん", "だいや", "たかいち", "たかお", "たかおみ", "たかつぐ", "たかと", 
-                "たかとし", "たかな", "たかね", "たかのぶ", "たかひこ", "たかひさ", "たかひろ", "たかま", 
-                "たかみち", "たかみつ", "たかむ", "たかゆき　", "たきお　", "たくい", "たくや", "たくし", 
-                "たくすけ", "たくた", "たくたろう", "たくのすけ", "たくふみ", "たくむ", "たくろう", "たけお", 
-                "たけき", "たけし", "たけじろう", "たけとも", "たけのぶ", "たけひさ", "たけひと", "たけふみ", 
-                "たけまつ", "たけみつ", "たけゆき", "たける", "たすけ", "ただあき", "ただずみ", "ただたか", 
-                "ただのぶ", "ただむね", "たつ", "たつおみ", "たつし", "たっと", "たつなり", "たつひこ", 
-                "たつひさ", "たつひと", "たっぺい", "たつま", "たつや", "たつよし", "たへい", "たみや", 
-                "たみひで", "たもつ", "たろう", "ちあき", "ちおん", "ちかと", "ちかひさ", "ちかゆき", "ちせい", 
-                "ちづる", "ちづお", "ちとせ", "ちひろ", "ちゅうすけ", "ちょういち", "ちょうた", "つかさ", 
-                "つづみ", "つね", "つねのり", "つねひと", "つねゆき", "つねろう", "つばき", "つばさ", 
-                "ていた", "ていと", "てつ", "てつき", "てっせい", "てつた", "てつひさ", "てつひで", "てつひと", 
-                "てつま", "テル", "てるあき", "てるお", "てるかず", "てると", "てるとし", "てるのり", "てるま", 
-                "てるまさ", "てるみ", "てるみち", "てるよし", "てん", "てんいち", "てんさく", "でんじ", 
-                "てんせい", "てんたろう", "てんと", "てんどう", "とうじろう", "とうた", "とうたろう", "とうま", 
-                "とうや", "とおる", "ときつぐ", "ときじろう", "ときと", "ときひさ", "ときむね", "ときや", "とくひろ", 
-                "としいえ", "としたか", "としなり", "としのぶ", "としまさ", "としみち", "としやす", "としゆき", 
-                "とま", "とみお", "とみなり", "とみひさ", "ともかず", "ともき", "ともし", "ともたろう", "ともちか", 
-                "ともと", "とものすけ", "とものり", "ともひで", "ともひと", "ともみつ", "ともゆき", "ともよし", 
-                "ともろう", "とよき", "とらきち", "とらじろう", "とらひと", "とらお", "なおえ", "なおかず", 
-                "なおざね", "なおじろう", "なおた", "なおたか", "なおたろう", "なおとし", "なおはる", 
-                "なおひこ", "なおひろ", "なおま", "ながひさ", "なぎと", "なごみ", "なごむ", "なつ", 
-                "なついち", "なつお", "なつた", "なつたろう", "なつひと", "なつめ", "ななき", "ななせ", 
-                "ななみ", "なゆた", "なり", "なりたつ", "なりひろ", "なりゆき", "なるひと", "なるみ", 
-                "にじひこ", "にじや", "にじろう", "にや", "にんざぶろう", "ねおん", "のあ", "ノエル", "のびた", 
-                "のぶお", "のぶき", "のぶたか", "のぶてる", "のぶなが", "のぶひろ", "のりかず", "のりたか", 
-                "のりひと", "のりゆき", "のりまさ", "はいとく", "はかる", "ばく", "はじめ", "はちろう", "はつき", 
-                "はづき", "はつね", "はつま", "ははや", "はやき", "はやたか", "はやと", "はやとし", 
-                "はやとも", "はやぶさ", "はゆま", "はゆる", "はるあき", "はるお", "はるか", "はるかず", 
-                "はるきよ", "はるすけ", "はるたけ", "はるただ", "はるたろう", "はるとも", "はるとら", "はるなお", 
-                "はるなり", "はるね", "はるのり", "はるひ", "はるひこ", "はるひで", "はるま", "はるみち", 
-                "はるむ", "はんた", "ばんたろう", "ばんり", "ひかり", "ひかる", "ひこの", "ひさ", "ひさあき", 
-                "ひさお", "ひさたか", "ひさのり", "ひさのぶ", "ひさひろ", "ひさや", "ひさよし", "ひじり", 
-                "ピッド", "ひづき", "ひさはろ", "ひで", "ひでちか", "ひでとし", "ひでとも", "ひでなり", 
-                "ひでひさ", "ひでゆき", "ひでよし", "ひなき", "ひなた", "ひなと", "ひのき", "ひゅう", "ひょう", 
-                "ひょうえ", "ひょうが", "ひらお", "ひろかつ", "ひろさき", "ひろき", "ひろこ", "ひろたろう", 
-                "ひろひこ", "ひろひで", "ひろまさ", "ひろみつ", "びん", "ふうすけ", "ふうたろう", "ふうと", 
-                "ふきち", "ふく", "ふくすけ", "ふくと", "ふくや", "ふじお", "ふたば", "ぶどう", "ふみたけ", 
-                "ふみひさ", "ふみひと", "ふゆ", "ふゆと", "ぶんじ", "ぶんたろう", "ぶんや", "べんぞう", 
-                "へいた", "へんたい", "ポール", "ほずき", "ほづみ", "ほまれ", "ほうせい", "ほの", "マイケル", 
-                "まいじろう", "まいたろう", "まお", "まきた", "まこ", "まさ", "まさおみ", "まさかつ", "まさかど", 
-                "まさき", "まさじ", "まさしげ", "まさた", "まこと", "まさたか", "まさただ", "まさちか", "まさと", 
-                "まさひろ", "まさほ", "まさむね", "まさみ", "まさみつ", "まさゆき", "まさゆみ", "まさよし", 
-                "まさる", "ますお", "またさぶろう", "またざぶろう", "まつたろう", "まどか", "まなつ", "まなと", 
-                "まなぶ", "まはる", "まほ", "まみち", "まもる", "まゆき", "まるも", "まれすけ", "まんえい", 
-                "まんじろう", "まんぺい", "みお", "みおと", "みかど", "みき", "みきたろう", "みきたか", "みく", 
-                "みくや", "みこと", "みさきまる", "みずと", "みずほ", "みずや", "みち", "みちお", "みちき", 
-                "みちた", "みちと", "みちなり", "みちはる", "みちひこ", "みちひと", "みちまさ", "みちる", 
-                "みちろう", "みつあき", "みつお", "みつき", "みつくに", "みつたか", "みつと", "みつなが", 
-                "みつはる", "みつひこ", "みつひさ", "みつひで", "みつまさ", "みつろう", "みどう", "みどり", 
-                "みのや", "みのる", "みやび", "みゆき", "みわたくろう", "むが", "むくなが", "むつお", 
-                "むつや", "むねお", "むさし", "むねじ", "めいとく", "めかのすけ", "めぐむ", "メグウィン", 
-                "もとき", "もぎき", "もときよ", "もとのり", "もとのぶ", "もとひろ", "モンきち", "もんきゅー", 
-                "やいち", "やいちろう", "やくも", "やすあき", "やすお", "やすさぶろう", "やすし", "やすとし", 
-                "やすなり", "やすひこ", "やすひで", "やすひと", "やすひろ", "やすま", "やすまさ", "やすや", 
-                "やすろう", "やひこ", "やまと", "やわら", "ゆいいちろう", "ゆいのすけ", "ゆいと", "ゆいや", 
-                "ゆう", "ゆうあ", "ゆうあき", "ゆういち", "ゆうさ", "ゆうさく", "ゆうざぶろう", "ゆうじゅ", 
-                "ゆうしょう", "ゆうしん", "ゆうせい", "ゆうだい", "ゆうほ", "ゆうま", "ゆうや", "ゆかり", 
-                "ゆきお", "ゆきち", "ゆきとも", "ゆきとら", "ゆきのしん", "ゆきのぶ", "ゆきひと", "ゆきま", 
-                "ゆきのすけ", "ゆずる", "ゆみと", "ゆめ", "ゆめき", "ゆめじ", "ゆめた", "ゆらい", "ユウナ", 
-                "よういち", "ようく", "ようたろう", "ようと", "よこたる", "よしいえ", "よしお", "よしき", "よしくに", 
-                "よした", "よしたろう", "よしちか", "よしつぐ", "よしなお", "よしひこ", "よしひろ", "よしまさ", 
-                "よしみつ", "よみ", "よりひと", "ヨン", "らいじ", "らいち", "らいと", "らいな", "ライヤ", "らん", 
-                "らんた", "らんぽ", "らんのすけ", "ライト", "りおと", "りきあ", "りきいち", "りきお", "りきと", 
-                "りく", "りくたろう", "りくと", "りくのすけ", "りくひろ", "りくへい", "りくみ", "りくや", "りたろう", 
-                "りつき", "りつし", "りつじ", "りつたろう", "りつと", "りっと　", "りつま", "りと", "りゅう", 
-                "りゅういち", "りゅうし", "りゅうすけ", "りゅうじゅ", "りゅうた", "りゅうたろう", "りゅうだい", 
-                "りゅうのすけ", "りゅうほ", "りゅうほう", "りょうい", "りょうえい", "りょうすけ", "りょうた", 
-                "りょうたろう", "りょうのしん", "りょうのすけ", "りょうご", "りょうこう", "りょうじろう", "りょうふう", 
-                "りょうま", "りょうきち", "りょお", "りんいち", "りんいちろう", "りんご", "りんぞう", "りんた", 
-                "りんや", "りくや", "りつき", "りくみ", "ルイス", "るうま", "るおん", "るか", "るきあ", "るな", 
-                "るり", "るろ", "れいいち", "れいき", "れいし", "れいのすけ", "れいや", "れいめい", "レイン", 
-                "れお", "れき", "レン", "れんいちろう", "れんじ", "れんじゅ", "えいき", "えいき", "えいき", 
-                "れんじゅ", "れんじろう", "れんたろう", "れんぺい", "れんま", "れんや", "レレレのおじさん", 
-                "ろうた", "ろく", "ろくろう", "ろまん", "ろん", "わいち", "わかき", "わかぎ", "わかさぎ", 
-                "わかと", "わかな", "わかひろ", "わく", "わしひと", "わりと"
-                #endregion
-            };
+           
             
             btnChangeID_Click(sender, e);
             Random random = new Random();
