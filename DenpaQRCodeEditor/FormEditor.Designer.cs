@@ -65,7 +65,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnRandomDenpa = new System.Windows.Forms.Button();
             this.cboRegion = new System.Windows.Forms.ComboBox();
-            this.nudStats = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cboCheeks = new System.Windows.Forms.ComboBox();
@@ -82,24 +81,25 @@
             this.cboFaceShapeHairStyle = new System.Windows.Forms.ComboBox();
             this.cboAntennaPower = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.nudStats = new System.Windows.Forms.NumericUpDown();
+            this.cboStats = new System.Windows.Forms.ComboBox();
             this.tbEditorSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.StatusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripColor = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripPosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.bwCheckForUpdates = new System.ComponentModel.BackgroundWorker();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cboStats = new System.Windows.Forms.ComboBox();
-            this.StatusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -602,35 +602,13 @@
             this.cboRegion.FormattingEnabled = true;
             this.cboRegion.Items.AddRange(new object[] {
             "North America",
-            "Japan"});
+            "Japan",
+            "Europe"});
             this.cboRegion.Location = new System.Drawing.Point(127, 204);
             this.cboRegion.Name = "cboRegion";
             this.cboRegion.Size = new System.Drawing.Size(223, 21);
             this.cboRegion.TabIndex = 37;
             this.cboRegion.SelectedIndexChanged += new System.EventHandler(this.cboRegion_SelectedIndexChanged);
-            // 
-            // nudStats
-            // 
-            this.nudStats.Location = new System.Drawing.Point(40, 394);
-            this.nudStats.Maximum = new decimal(new int[] {
-            511,
-            0,
-            0,
-            0});
-            this.nudStats.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.nudStats.Name = "nudStats";
-            this.nudStats.Size = new System.Drawing.Size(42, 20);
-            this.nudStats.TabIndex = 35;
-            this.nudStats.Value = new decimal(new int[] {
-            511,
-            0,
-            0,
-            0});
-            this.nudStats.ValueChanged += new System.EventHandler(this.nudStats_ValueChanged);
             // 
             // label14
             // 
@@ -923,6 +901,39 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Antenna Power:";
             // 
+            // nudStats
+            // 
+            this.nudStats.Location = new System.Drawing.Point(40, 394);
+            this.nudStats.Maximum = new decimal(new int[] {
+            511,
+            0,
+            0,
+            0});
+            this.nudStats.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.nudStats.Name = "nudStats";
+            this.nudStats.Size = new System.Drawing.Size(42, 20);
+            this.nudStats.TabIndex = 35;
+            this.nudStats.Value = new decimal(new int[] {
+            511,
+            0,
+            0,
+            0});
+            this.nudStats.ValueChanged += new System.EventHandler(this.nudStats_ValueChanged);
+            // 
+            // cboStats
+            // 
+            this.cboStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStats.FormattingEnabled = true;
+            this.cboStats.Location = new System.Drawing.Point(88, 393);
+            this.cboStats.Name = "cboStats";
+            this.cboStats.Size = new System.Drawing.Size(262, 21);
+            this.cboStats.TabIndex = 39;
+            this.cboStats.SelectedIndexChanged += new System.EventHandler(this.cboStats_SelectedIndexChanged);
+            // 
             // tbEditorSep1
             // 
             this.tbEditorSep1.Name = "tbEditorSep1";
@@ -937,6 +948,11 @@
             this.statusStrip.Size = new System.Drawing.Size(786, 22);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 3;
+            // 
+            // StatusStripLabel
+            // 
+            this.StatusStripLabel.Name = "StatusStripLabel";
+            this.StatusStripLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // stripColor
             // 
@@ -976,21 +992,6 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // cboStats
-            // 
-            this.cboStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStats.FormattingEnabled = true;
-            this.cboStats.Location = new System.Drawing.Point(88, 393);
-            this.cboStats.Name = "cboStats";
-            this.cboStats.Size = new System.Drawing.Size(262, 21);
-            this.cboStats.TabIndex = 39;
-            this.cboStats.SelectedIndexChanged += new System.EventHandler(this.cboStats_SelectedIndexChanged);
-            // 
-            // StatusStripLabel
-            // 
-            this.StatusStripLabel.Name = "StatusStripLabel";
-            this.StatusStripLabel.Size = new System.Drawing.Size(0, 17);
-            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1017,8 +1018,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.ResumeLayout(false);

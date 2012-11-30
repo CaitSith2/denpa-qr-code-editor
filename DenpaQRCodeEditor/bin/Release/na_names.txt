@@ -1,9 +1,20 @@
-Sourced from http://www.gamefaqs.com/wiki/659232/edit/3-5
-Need to log in with gamefaqs account first.
 
-A comprehensive list of names available in the English (USA) version of the game.  Playing near a wireless network with the same name as one of the names in the database may increase your odds of catching a Denpa Man by that name.
+%
+'''''Crystal (hero's fiance)'''''
+'''''Aric (hero)'''''
+'''''Bill (hero)'''''
+'''''Chester (hero)'''''
+'''''Dale (hero)'''''
+'''''Fredrick (hero)'''''
+'''''Gerard (hero)'''''
+'''''Jamel (hero)'''''
+'''''Jimmie (hero)'''''
+'''''Neal (hero)'''''
+'''''Norman (hero)'''''
+'''''Reggie (hero)'''''
+'''''Teddy (hero)'''''
+'''''Terence (hero)'''''
 
-''A''
 %
 Aaden
 Aaron
@@ -43,7 +54,6 @@ Antonio
 Antwan
 Archer
 Ari
-'''''Aric (hero)'''''
 Ariel
 Armando
 Armani
@@ -57,9 +67,6 @@ August
 Austin
 Avery
 Ayaan
-
-''B''
-%
 Bailey
 Backham
 Beau
@@ -68,7 +75,6 @@ Bennett
 Benson
 Bentlee
 Bently
-'''''Bill (hero)'''''
 Blaze
 Bo
 Bobby
@@ -93,9 +99,6 @@ Bryan
 Bryslen
 Burt
 Byron
-
-''C''
-%
 Cade
 Caden
 Cain
@@ -119,7 +122,6 @@ Chance
 Charles
 Charlie
 Chase
-'''''Chester (hero)'''''
 Chet
 Chi
 Clayton
@@ -140,13 +142,8 @@ Christopher
 Crew
 Cristofer
 Cristopher
-'''''Crystal (hero's fiance)'''''
 Cyrus
-
-''D''
-%
 Dakota
-'''''Dale (hero)'''''
 Dalton
 Damarion
 Damian
@@ -178,9 +175,6 @@ Draven
 Drew
 Duncan
 Dyluck
-
-''E''
-%
 Eden
 Edison
 Efrain
@@ -196,9 +190,6 @@ Esteban
 Ethan
 Evan
 Everett
-
-''F''
-%
 Fabian
 Felipe
 Felix
@@ -210,17 +201,12 @@ Fisher
 Forest
 Francis
 Frederick
-'''''Fredrick (hero)'''''
-
-''G''
-%
 Gage
 Garland
 Garrett
 Gary
 Gavin
 Geoffrey
-'''''Gerard (hero)'''''
 Gianni
 Gilbert
 Gilliam
@@ -235,9 +221,6 @@ Gunnar
 Gunner
 Gus
 Gustavo
-
-''H''
-%
 Haiden
 Hank
 Harley
@@ -257,9 +240,6 @@ Hudson
 Hugh
 Hugo
 Hunter
-
-''I''
-%
 Ian
 Ibrahim
 Iker
@@ -270,9 +250,6 @@ Ishaan
 Isiah
 Ivan
 Izaiah
-
-''J''
-%
 Jabari
 Jackson
 Jaden
@@ -287,7 +264,6 @@ Jamal
 Jamar
 Jamari
 Jamarion
-'''''Jamel (hero)'''''
 James
 Jameson
 Jamie
@@ -308,7 +284,6 @@ Jeremiah
 Jermaine
 Jerry
 Jett
-'''''Jimmie (hero)'''''
 Joaquin
 Joe
 Joel
@@ -330,9 +305,6 @@ Julius
 Justice
 Justin
 Justus
-
-''K''
-%
 Kai
 Kamari
 Kamden
@@ -358,9 +330,6 @@ Kolton
 Kristian
 Kyler
 Kymani
-
-''L''
-%
 Lamar
 Lance
 Landon
@@ -385,9 +354,6 @@ Lucas
 Lucian
 Luis
 Lyric
-
-''M''
-%
 Malachi
 Malik
 Manuel
@@ -420,13 +386,9 @@ Milo
 Misael
 Monroe
 Montgomery
-
-''N''
-%
 Nash
 Nasir
 Nathan
-'''''Neal (hero)'''''
 Nestor
 Nicholas
 Nickolas
@@ -435,17 +397,10 @@ Nikolas
 Noah
 Noe
 Nolan
-'''''Norman (hero)'''''
-
-''O''
-%
 Octavio
 Oliver
 Omar
 Owen
-
-''P''
-%
 Pablo
 Parker
 Paul
@@ -454,13 +409,7 @@ Pedro
 Phil
 Phillip
 Phoenix
-
-''Q''
-%
 Quentin
-
-''R''
-%
 Rafael
 Ralph
 Ramiro
@@ -472,7 +421,6 @@ Rayan
 Raymond
 Reed
 Reese
-'''''Reggie (hero)'''''
 Reid
 Remy
 Reyes
@@ -505,9 +453,6 @@ Ryder
 Ryker
 Ryland
 Rylee
-
-''S''
-%
 Sage
 Sal
 Sam
@@ -534,14 +479,9 @@ Stephan
 Stephen
 Sullivan
 Syrio
-
-''T''
-%
 Talan
 Tanner
 Tatum
-'''''Teddy (hero)'''''
-'''''Terence (hero)'''''
 Terrance
 Terrell
 Terrence
@@ -557,43 +497,25 @@ Tristan
 Tyler
 Tyree
 Tyrone
-
-''U''
-%
 Ulises
 Uriel
-
-''V''
-%
 Valentino
 Vern
 Vernon
 Victor
 Vincent
-
-''W''
-%
 Wade
 Walder
 Waldorf
 Wesley
 Weston
 Winston
-
-''X''
-%
 Xander
 Xavier
-
-''Y''
-%
 Yael
 Yair
 Yandel
 York
-
-''Z''
-%
 Zack
 Zackarv
 Zachary

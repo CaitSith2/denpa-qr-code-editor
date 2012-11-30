@@ -566,6 +566,55 @@ namespace PushmoLevelEditor
             nudStats.Value = -1;
             txtName.Text = "New Denpa";    //Cannot leave the name field in the QR data totally blank or else the game locks up instantly.
 
+            switch (CultureInfo.CurrentCulture.Name)
+            {
+                case "":
+                case "en":
+                case "fr":
+                case "es":
+                    cboRegion.SelectedIndex = -1;
+                    break;
+
+                case "ja":
+                case "ja-JP":
+                    cboRegion.SelectedIndex = 1;
+                    break;
+
+                case "en-CA":
+                case "en-US":
+                case "fr-CA":
+                case "es-MX":
+                case "es-AR":
+                case "en-BZ":
+                case "es-BO":
+                case "pt-BR":
+                case "es-CL":
+                case "es-CO":
+                case "es-CR":
+                case "es-DO":
+                case "es-EC":
+                case "es-SV":
+                case "es-GT":
+                case "es-HN":
+                case "en-JM":
+                case "ms-MY":
+                case "es-NI":
+                case "es-PA":
+                case "es-PY":
+                case "es-PE":
+                case "es-SA":
+                case "zh-SG":
+                case "es-TT":
+                case "es-UY":
+                case "es-VE":
+                    cboRegion.SelectedIndex = 0;
+                    break;
+
+                default:
+                    cboRegion.SelectedIndex = 2;
+                    break;
+            }
+
             if ((CultureInfo.CurrentCulture.Name == "ja") || (CultureInfo.CurrentCulture.Name == "ja-JP"))
                 cboRegion.SelectedIndex = 1;
             else
@@ -937,7 +986,9 @@ namespace PushmoLevelEditor
             if (ofd.ShowDialog() != DialogResult.OK) return;
             try
             {
-                var bmp = new Bitmap(Image.FromFile(ofd.FileName));
+                var file = new FileStream(ofd.FileName, FileMode.Open);
+                var bmp = new Bitmap(Image.FromStream(file));
+                file.Close();
                 var binary = new BinaryBitmap(new HybridBinarizer(new RGBLuminanceSource(bmp, bmp.Width, bmp.Height)));
                 var reader = new QRCodeReader();
                 var hashtable = new Hashtable();
@@ -1520,7 +1571,7 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x06, 0x30);
                 hexBox1.ByteProvider.WriteByte(0x07, 0x00);
             }
-            else
+            else if (cboRegion.SelectedIndex == 0)
             {
                 hexBox1.ByteProvider.WriteByte(0x00, 0x41);
                 hexBox1.ByteProvider.WriteByte(0x01, 0x00);
@@ -1529,6 +1580,17 @@ namespace PushmoLevelEditor
                 hexBox1.ByteProvider.WriteByte(0x04, 0x34);
                 hexBox1.ByteProvider.WriteByte(0x05, 0x00);
                 hexBox1.ByteProvider.WriteByte(0x06, 0x33);
+                hexBox1.ByteProvider.WriteByte(0x07, 0x00);
+            }
+            else
+            {
+                hexBox1.ByteProvider.WriteByte(0x00, 0x6A);
+                hexBox1.ByteProvider.WriteByte(0x01, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x02, 0x33);
+                hexBox1.ByteProvider.WriteByte(0x03, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x04, 0x5A);
+                hexBox1.ByteProvider.WriteByte(0x05, 0x00);
+                hexBox1.ByteProvider.WriteByte(0x06, 0x77);
                 hexBox1.ByteProvider.WriteByte(0x07, 0x00);
             }
             hexBox1.Refresh();
