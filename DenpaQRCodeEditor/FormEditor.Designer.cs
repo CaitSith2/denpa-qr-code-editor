@@ -95,6 +95,8 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dontDecryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -191,7 +193,9 @@
             this.advancedInterfaceToolStripMenuItem,
             this.toolStripMenuItem4,
             this.aboutToolStripMenuItem,
-            this.toolStripTextBox1});
+            this.toolStripTextBox1,
+            this.nextDenpaToolStripMenuItem,
+            this.dontDecryptToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -1021,6 +1025,20 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
+            // nextDenpaToolStripMenuItem
+            // 
+            this.nextDenpaToolStripMenuItem.Name = "nextDenpaToolStripMenuItem";
+            this.nextDenpaToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.nextDenpaToolStripMenuItem.Text = "Force Next Denpa";
+            this.nextDenpaToolStripMenuItem.Click += new System.EventHandler(this.nextDenpaToolStripMenuItem_Click);
+            // 
+            // dontDecryptToolStripMenuItem
+            // 
+            this.dontDecryptToolStripMenuItem.Name = "dontDecryptToolStripMenuItem";
+            this.dontDecryptToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.dontDecryptToolStripMenuItem.Text = "Don\'t Decrypt";
+            this.dontDecryptToolStripMenuItem.Click += new System.EventHandler(this.dontDecryptToolStripMenuItem_Click);
+            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1124,6 +1142,8 @@
         private System.Windows.Forms.ToolStripMenuItem captureQRCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem nextDenpaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dontDecryptToolStripMenuItem;
     }
 }
 
