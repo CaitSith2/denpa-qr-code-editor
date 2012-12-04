@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using PushmoLevelEditor.Properties;
+using DenpaQRCodeEditor.Properties;
 
-namespace PushmoLevelEditor
+namespace DenpaQRCodeEditor
 {
     static class Program
     {

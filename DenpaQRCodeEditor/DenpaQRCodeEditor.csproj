@@ -8,7 +8,7 @@
     <ProjectGuid>{E8C3C4FC-55DC-4F0B-999C-CDC2E56BED95}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PushmoLevelEditor</RootNamespace>
+    <RootNamespace>DenpaQRCodeEditor</RootNamespace>
     <AssemblyName>denpa_editor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>

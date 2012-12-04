@@ -1,4 +1,4 @@
-﻿namespace PushmoLevelEditor
+﻿namespace DenpaQRCodeEditor
 {
     partial class FormEditor
     {
@@ -42,12 +42,12 @@
             this.advancedInterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.nextDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dontDecryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFileSep0 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFileSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cboGlasses = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,6 +63,7 @@
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.cboHeadShape = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.picBox2 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -95,8 +96,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nextDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dontDecryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForNewVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getDenpaEncryptionBytesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -136,7 +138,7 @@
             // 
             // newDenpaToolStripMenuItem1
             // 
-            this.newDenpaToolStripMenuItem1.Image = global::PushmoLevelEditor.Properties.Resources.page_white;
+            this.newDenpaToolStripMenuItem1.Image = global::DenpaQRCodeEditor.Properties.Resources.page_white;
             this.newDenpaToolStripMenuItem1.Name = "newDenpaToolStripMenuItem1";
             this.newDenpaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newDenpaToolStripMenuItem1.Size = new System.Drawing.Size(206, 22);
@@ -150,7 +152,7 @@
             // 
             // openQRCodeToolStripMenuItem2
             // 
-            this.openQRCodeToolStripMenuItem2.Image = global::PushmoLevelEditor.Properties.Resources.folder_picture;
+            this.openQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.folder_picture;
             this.openQRCodeToolStripMenuItem2.Name = "openQRCodeToolStripMenuItem2";
             this.openQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.openQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(206, 22);
@@ -166,7 +168,7 @@
             // 
             // saveQRCodeToolStripMenuItem2
             // 
-            this.saveQRCodeToolStripMenuItem2.Image = global::PushmoLevelEditor.Properties.Resources.barcode2d;
+            this.saveQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.barcode2d;
             this.saveQRCodeToolStripMenuItem2.Name = "saveQRCodeToolStripMenuItem2";
             this.saveQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(206, 22);
@@ -180,7 +182,7 @@
             // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Image = global::PushmoLevelEditor.Properties.Resources.door_in;
+            this.exitToolStripMenuItem.Image = global::DenpaQRCodeEditor.Properties.Resources.door_in;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
@@ -191,11 +193,13 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.advancedInterfaceToolStripMenuItem,
+            this.dontDecryptToolStripMenuItem,
             this.toolStripMenuItem4,
             this.aboutToolStripMenuItem,
-            this.toolStripTextBox1,
-            this.nextDenpaToolStripMenuItem,
-            this.dontDecryptToolStripMenuItem});
+            this.checkForNewVersionToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.getDenpaEncryptionBytesToolStripMenuItem,
+            this.nextDenpaToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -203,28 +207,35 @@
             // advancedInterfaceToolStripMenuItem
             // 
             this.advancedInterfaceToolStripMenuItem.Name = "advancedInterfaceToolStripMenuItem";
-            this.advancedInterfaceToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.advancedInterfaceToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.advancedInterfaceToolStripMenuItem.Text = "Advanced Interface";
             this.advancedInterfaceToolStripMenuItem.Click += new System.EventHandler(this.advancedInterfaceToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(173, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(217, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // toolStripTextBox1
+            // nextDenpaToolStripMenuItem
             // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBox1.Text = "Test";
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click_1);
+            this.nextDenpaToolStripMenuItem.Name = "nextDenpaToolStripMenuItem";
+            this.nextDenpaToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.nextDenpaToolStripMenuItem.Text = "Force Next Denpa";
+            this.nextDenpaToolStripMenuItem.Click += new System.EventHandler(this.nextDenpaToolStripMenuItem_Click);
+            // 
+            // dontDecryptToolStripMenuItem
+            // 
+            this.dontDecryptToolStripMenuItem.Name = "dontDecryptToolStripMenuItem";
+            this.dontDecryptToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.dontDecryptToolStripMenuItem.Text = "Don\'t Decrypt";
+            this.dontDecryptToolStripMenuItem.Click += new System.EventHandler(this.dontDecryptToolStripMenuItem_Click);
             // 
             // menuFile
             // 
@@ -298,28 +309,6 @@
             this.splitContainer.Size = new System.Drawing.Size(786, 454);
             this.splitContainer.SplitterDistance = 432;
             this.splitContainer.TabIndex = 2;
-            // 
-            // hexBox1
-            // 
-            this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox1.BytesPerLine = 8;
-            this.hexBox1.ColumnInfoVisible = true;
-            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox1.GroupSeparatorVisible = true;
-            this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
-            this.hexBox1.LineInfoVisible = true;
-            this.hexBox1.Location = new System.Drawing.Point(0, 0);
-            this.hexBox1.Name = "hexBox1";
-            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox1.Size = new System.Drawing.Size(432, 228);
-            this.hexBox1.StringViewVisible = true;
-            this.hexBox1.TabIndex = 5;
-            this.hexBox1.UseFixedBytesPerLine = true;
-            this.hexBox1.Visible = false;
-            this.hexBox1.VScrollBarVisible = true;
-            this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
-            this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
             // 
             // label13
             // 
@@ -591,6 +580,28 @@
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "Color:";
+            // 
+            // hexBox1
+            // 
+            this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox1.BytesPerLine = 8;
+            this.hexBox1.ColumnInfoVisible = true;
+            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox1.GroupSeparatorVisible = true;
+            this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
+            this.hexBox1.LineInfoVisible = true;
+            this.hexBox1.Location = new System.Drawing.Point(0, 0);
+            this.hexBox1.Name = "hexBox1";
+            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hexBox1.Size = new System.Drawing.Size(432, 228);
+            this.hexBox1.StringViewVisible = true;
+            this.hexBox1.TabIndex = 5;
+            this.hexBox1.UseFixedBytesPerLine = true;
+            this.hexBox1.Visible = false;
+            this.hexBox1.VScrollBarVisible = true;
+            this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
+            this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
             // 
             // picBox2
             // 
@@ -1025,19 +1036,24 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // nextDenpaToolStripMenuItem
+            // checkForNewVersionToolStripMenuItem
             // 
-            this.nextDenpaToolStripMenuItem.Name = "nextDenpaToolStripMenuItem";
-            this.nextDenpaToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.nextDenpaToolStripMenuItem.Text = "Force Next Denpa";
-            this.nextDenpaToolStripMenuItem.Click += new System.EventHandler(this.nextDenpaToolStripMenuItem_Click);
+            this.checkForNewVersionToolStripMenuItem.Name = "checkForNewVersionToolStripMenuItem";
+            this.checkForNewVersionToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.checkForNewVersionToolStripMenuItem.Text = "Check for New Version";
+            this.checkForNewVersionToolStripMenuItem.Click += new System.EventHandler(this.checkForNewVersionToolStripMenuItem_Click);
             // 
-            // dontDecryptToolStripMenuItem
+            // getDenpaEncryptionBytesToolStripMenuItem
             // 
-            this.dontDecryptToolStripMenuItem.Name = "dontDecryptToolStripMenuItem";
-            this.dontDecryptToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.dontDecryptToolStripMenuItem.Text = "Don\'t Decrypt";
-            this.dontDecryptToolStripMenuItem.Click += new System.EventHandler(this.dontDecryptToolStripMenuItem_Click);
+            this.getDenpaEncryptionBytesToolStripMenuItem.Name = "getDenpaEncryptionBytesToolStripMenuItem";
+            this.getDenpaEncryptionBytesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.getDenpaEncryptionBytesToolStripMenuItem.Text = "Get Denpa Encryption Bytes";
+            this.getDenpaEncryptionBytesToolStripMenuItem.Click += new System.EventHandler(this.getDenpaEncryptionBytesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(217, 6);
             // 
             // FormEditor
             // 
@@ -1140,10 +1156,12 @@
         private System.Windows.Forms.ComboBox cboStats;
         private System.Windows.Forms.ToolStripStatusLabel StatusStripLabel;
         private System.Windows.Forms.ToolStripMenuItem captureQRCodeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolStripMenuItem nextDenpaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dontDecryptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkForNewVersionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem getDenpaEncryptionBytesToolStripMenuItem;
     }
 }
 

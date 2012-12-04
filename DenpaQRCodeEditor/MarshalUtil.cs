@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PushmoLevelEditor
+namespace DenpaQRCodeEditor
 {
     static class MarshalUtil
     {

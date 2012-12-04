@@ -1,4 +1,4 @@
-﻿namespace PushmoLevelEditor
+﻿namespace DenpaQRCodeEditor
 {
     partial class AboutBox1
     {
