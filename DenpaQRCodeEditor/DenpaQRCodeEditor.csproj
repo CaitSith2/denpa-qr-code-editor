@@ -83,6 +83,7 @@
     <Compile Include="CameraCapture.Designer.cs">
       <DependentUpon>CameraCapture.cs</DependentUpon>
     </Compile>
+    <Compile Include="Crypto.cs" />
     <Compile Include="FormEditor.cs">
       <SubType>Form</SubType>
     </Compile>

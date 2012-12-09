@@ -13,6 +13,7 @@ namespace DenpaQRCodeEditor
         public AboutBox1()
         {
             InitializeComponent();
+            labelVersion.Text = this.AssemblyVersion;
         }
 
         #region Assembly Attribute Accessors
