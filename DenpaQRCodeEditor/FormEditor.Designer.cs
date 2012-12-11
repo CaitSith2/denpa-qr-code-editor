@@ -48,6 +48,7 @@
             this.menuFileSep0 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFileSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cboGlasses = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,8 +64,16 @@
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.cboHeadShape = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.picBox2 = new System.Windows.Forms.PictureBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
             this.btnRandomDenpa = new System.Windows.Forms.Button();
             this.cboRegion = new System.Windows.Forms.ComboBox();
@@ -101,6 +110,10 @@
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -278,6 +291,15 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.Controls.Add(this.maskedTextBox1);
+            this.splitContainer.Panel2.Controls.Add(this.button1);
+            this.splitContainer.Panel2.Controls.Add(this.label18);
+            this.splitContainer.Panel2.Controls.Add(this.label17);
+            this.splitContainer.Panel2.Controls.Add(this.label16);
+            this.splitContainer.Panel2.Controls.Add(this.numericUpDown5);
+            this.splitContainer.Panel2.Controls.Add(this.numericUpDown3);
+            this.splitContainer.Panel2.Controls.Add(this.numericUpDown2);
+            this.splitContainer.Panel2.Controls.Add(this.numericUpDown1);
             this.splitContainer.Panel2.Controls.Add(this.label15);
             this.splitContainer.Panel2.Controls.Add(this.btnRandomDenpa);
             this.splitContainer.Panel2.Controls.Add(this.cboRegion);
@@ -302,6 +324,28 @@
             this.splitContainer.Size = new System.Drawing.Size(786, 454);
             this.splitContainer.SplitterDistance = 432;
             this.splitContainer.TabIndex = 2;
+            // 
+            // hexBox1
+            // 
+            this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox1.BytesPerLine = 8;
+            this.hexBox1.ColumnInfoVisible = true;
+            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox1.GroupSeparatorVisible = true;
+            this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
+            this.hexBox1.LineInfoVisible = true;
+            this.hexBox1.Location = new System.Drawing.Point(32, 0);
+            this.hexBox1.Name = "hexBox1";
+            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hexBox1.Size = new System.Drawing.Size(400, 228);
+            this.hexBox1.StringViewVisible = true;
+            this.hexBox1.TabIndex = 5;
+            this.hexBox1.UseFixedBytesPerLine = true;
+            this.hexBox1.Visible = false;
+            this.hexBox1.VScrollBarVisible = true;
+            this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
+            this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
             // 
             // label13
             // 
@@ -574,28 +618,6 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Color:";
             // 
-            // hexBox1
-            // 
-            this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox1.BytesPerLine = 8;
-            this.hexBox1.ColumnInfoVisible = true;
-            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox1.GroupSeparatorVisible = true;
-            this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
-            this.hexBox1.LineInfoVisible = true;
-            this.hexBox1.Location = new System.Drawing.Point(32, 0);
-            this.hexBox1.Name = "hexBox1";
-            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox1.Size = new System.Drawing.Size(400, 228);
-            this.hexBox1.StringViewVisible = true;
-            this.hexBox1.TabIndex = 5;
-            this.hexBox1.UseFixedBytesPerLine = true;
-            this.hexBox1.Visible = false;
-            this.hexBox1.VScrollBarVisible = true;
-            this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
-            this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
-            // 
             // picBox2
             // 
             this.picBox2.Location = new System.Drawing.Point(223, 0);
@@ -604,6 +626,139 @@
             this.picBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picBox2.TabIndex = 37;
             this.picBox2.TabStop = false;
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(285, 168);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(53, 20);
+            this.maskedTextBox1.TabIndex = 49;
+            this.maskedTextBox1.Visible = false;
+            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            this.maskedTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(204, 165);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "Write Value";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(229, 144);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(50, 13);
+            this.label18.TabIndex = 47;
+            this.label18.Text = "Bit Count";
+            this.label18.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(229, 118);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(50, 13);
+            this.label17.TabIndex = 46;
+            this.label17.Text = "Bit Offset";
+            this.label17.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(220, 92);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 13);
+            this.label16.TabIndex = 45;
+            this.label16.Text = "Byte Offset";
+            this.label16.Visible = false;
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Location = new System.Drawing.Point(296, 64);
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(42, 20);
+            this.numericUpDown5.TabIndex = 44;
+            this.numericUpDown5.Visible = false;
+            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(285, 142);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(53, 20);
+            this.numericUpDown3.TabIndex = 42;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Visible = false;
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(285, 116);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(53, 20);
+            this.numericUpDown2.TabIndex = 41;
+            this.numericUpDown2.Visible = false;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Hexadecimal = true;
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Location = new System.Drawing.Point(285, 90);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(53, 20);
+            this.numericUpDown1.TabIndex = 40;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Visible = false;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label15
             // 
@@ -899,8 +1054,8 @@
             "Buff: Attack (All)",
             "Buff: Defense (All)",
             "Buff: Speed (All)",
-            "Debuff: Attack (All)",
             "Buff: Evasion (All)",
+            "Debuff: Attack (All)",
             "Debuff: Defense (All)",
             "Debuff: Speed (All)",
             "Buff: Attack",
@@ -1046,6 +1201,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
             this.statusStrip.ResumeLayout(false);
@@ -1123,6 +1282,15 @@
         private System.Windows.Forms.ToolStripMenuItem captureQRCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dontDecryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForNewVersionToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

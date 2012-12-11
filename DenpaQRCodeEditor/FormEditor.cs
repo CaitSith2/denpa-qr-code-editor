@@ -13,6 +13,7 @@ using DenpaQRCodeEditor.Properties;
 using com.google.zxing;
 using com.google.zxing.qrcode;
 using com.google.zxing.common;
+using ErrorCorrectionLevel = com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 /*
  * Todolist:
@@ -693,7 +694,7 @@ namespace DenpaQRCodeEditor
             if (data == null)
                 return null;
             var str = Encoding.GetEncoding(encoding).GetString(data);
-            var hints = new Hashtable { { EncodeHintType.CHARACTER_SET, encoding } };
+            var hints = new Hashtable { { EncodeHintType.CHARACTER_SET, encoding }, {EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.Q } };
             return writer.encode(str, BarcodeFormat.QR_CODE, size, size, hints); 
         }
 
@@ -781,21 +782,38 @@ namespace DenpaQRCodeEditor
 
         private void hexBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var matrix = GetQRMatrix(100);
-            if (matrix == null)
-                return;
-            var img = new Bitmap(100,100);
-            var g = Graphics.FromImage(img);
-            g.Clear(Color.White);
-            for (var y = 0; y < matrix.Height; ++y)
-                for (var x = 0; x < matrix.Width; ++x)
-                    if (matrix.get_Renamed(x, y) != -1)
-                        g.FillRectangle(Brushes.Black, x * 1, y * 1, 1, 1);
-            if (btnSwitchPicBox.Text == "Feature")
-                picBox.Image = img;
-            else
-                picBox.Image = picBox2.Image;
-            qr_code = img;
+            try
+            {
+                var matrix = GetQRMatrix(100);
+                if (matrix == null)
+                    return;
+                var img = new Bitmap(200, 200);
+                var g = Graphics.FromImage(img);
+                g.Clear(Color.White);
+                for (var y = 0; y < matrix.Height; ++y)
+                    for (var x = 0; x < matrix.Width; ++x)
+                        if (matrix.get_Renamed(x, y) != -1)
+                            g.FillRectangle(Brushes.Black, x * 2, y * 2, 2, 2);
+                if (btnSwitchPicBox.Text == "Feature")
+                    picBox.Image = img;
+                else
+                    picBox.Image = picBox2.Image;
+                qr_code = img;
+                if (!dontDecryptToolStripMenuItem.Checked)
+                {
+                    numericUpDown1.Minimum = 0;
+                    numericUpDown1.Maximum = hexBox1.ByteProvider.Length;
+                }
+                else
+                {
+                    numericUpDown1.Minimum = 0x10;
+                    numericUpDown1.Maximum = 0x32;
+                }
+                numericUpDown1_ValueChanged(null, null);
+            }
+            catch
+            {
+            }
         }
 
         private void hexBox1_KeyUp(object sender, KeyEventArgs e)
@@ -897,7 +915,6 @@ namespace DenpaQRCodeEditor
         private void cboColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (populating) return;
-            byte temp;
             int color_index = cboColor.SelectedIndex;
             bool solid_color_enable;
             int antenna_index = cboAntennaPower.SelectedIndex;
@@ -924,37 +941,21 @@ namespace DenpaQRCodeEditor
                     color_index = color_index_table[antenna_index][color_index];
                 }
                 solid_color_enable = (color_index != 0);
-                //We now modify this index, based upon Antenna power selected.
-                temp = hexBox1.ByteProvider.ReadByte(0x12);
-                temp &= 0x07;
-                temp |= (byte)((color_index - ((solid_color_enable)?1:0)) << 3);
-                hexBox1.ByteProvider.WriteByte(0x12,temp);
-                hexBox1.ByteProvider.WriteByte(0x13,0);
-                if(solid_color_enable)
-                    hexBox1.ByteProvider.WriteByte(0x24, 0x5C);
-                else
-                    hexBox1.ByteProvider.WriteByte(0x24, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x25, 0);
+
+                write_value(denpa_data.color_1, (color_index - ((solid_color_enable) ? 1 : 0)));
+                write_value(denpa_data.color_2, (solid_color_enable) ? 0x28 : 0x00);
             }
             else
             {
-                temp = hexBox1.ByteProvider.ReadByte(0x12);
-                temp &= 0x07;
-                temp |= (byte)((cboColor.SelectedIndex - 7) << 3);
-                hexBox1.ByteProvider.WriteByte(0x12, temp);
-                hexBox1.ByteProvider.WriteByte(0x13, 0);
-                hexBox1.ByteProvider.WriteByte(0x24, 0xDF);
-                hexBox1.ByteProvider.WriteByte(0x25, 0);
+                write_value(denpa_data.color_1, cboColor.SelectedIndex - 7);
+                write_value(denpa_data.color_2, 0x5F);
             }
-            hexBox1.Refresh();
-            hexBox1_KeyPress(null, null);
         }
 
         private void cboAntennaPower_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (populating) return;
             cboColor_SelectedIndexChanged(sender, e);  //Colors depend on Antenna power
-            cboFaceShapeHairStyle_SelectedIndexChanged(sender, e);  //So does the Hair style.
             StatusStripLabel.Text = ""; 
             int index = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
@@ -988,39 +989,26 @@ namespace DenpaQRCodeEditor
                 cboStats.Items.Clear();
             }
 
-
-            int temp = hexBox1.ByteProvider.ReadByte(0x10) & 0xC0;
-            if (index == 0)
+            if ((index >= 1) && (index <= 12))
             {
-                hexBox1.ByteProvider.WriteByte(0x28, 0);
-                hexBox1.ByteProvider.WriteByte(0x29, 0);
-            }
-            else if ((index >= 1) && (index <= 12))
-            {
-                temp |= ((index - 1) & 0x3F);
-                hexBox1.ByteProvider.WriteByte(0x10, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x11, 0);
-                hexBox1.ByteProvider.WriteByte(0x28, 0xD6);
-                hexBox1.ByteProvider.WriteByte(0x29, 0);
+                write_value(denpa_data.antenna_1, index - 1);
+                write_value(denpa_data.antenna_2, 0x46);
             }
             else if ((index >= 13) && (index <= 24))
             {
-                temp |= ((index - 13) & 0x3F);
-                hexBox1.ByteProvider.WriteByte(0x10, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x11, 0);
-                hexBox1.ByteProvider.WriteByte(0x28, 0xD7);
-                hexBox1.ByteProvider.WriteByte(0x29, 0);
+                write_value(denpa_data.antenna_1, index - 13);
+                write_value(denpa_data.antenna_2, 0x5A);
+            }
+            else if (index >= 25)
+            {
+                write_value(denpa_data.antenna_1, index - 25);
+                write_value(denpa_data.antenna_2, 0x5D);
             }
             else
             {
-                temp |= ((index - 25) & 0x3F);
-                hexBox1.ByteProvider.WriteByte(0x10, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x11, 0);
-                hexBox1.ByteProvider.WriteByte(0x28, 0xD8);
-                hexBox1.ByteProvider.WriteByte(0x29, 0);
+                write_value(denpa_data.antenna_1, 0);
+                write_value(denpa_data.antenna_2, 0);
             }
-            hexBox1.Refresh();
-            hexBox1_KeyPress(null, null);
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
@@ -1095,33 +1083,20 @@ namespace DenpaQRCodeEditor
                 cboStats.Items.Clear();
             }
 
-
-            int temp;
-            temp = hexBox1.ByteProvider.ReadByte(0x14);
-            temp &= 0xE0;
             if ((index >= 0) && (index <= 10))
             {
-                temp |= (index - 0);
-                hexBox1.ByteProvider.WriteByte(0x14, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x15, 0);
-                hexBox1.ByteProvider.WriteByte(0x26, 0);
-                hexBox1.ByteProvider.WriteByte(0x27, 0);
+                write_value(denpa_data.head_shape_1, index);
+                write_value(denpa_data.head_shape_2, 0);
             }
             else if ((index >= 11) && (index <= 17))
             {
-                temp |= (index - 11);
-                hexBox1.ByteProvider.WriteByte(0x14, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x15, 0);
-                hexBox1.ByteProvider.WriteByte(0x26, 0x28);
-                hexBox1.ByteProvider.WriteByte(0x27, 0);
+                write_value(denpa_data.head_shape_1, index-11);
+                write_value(denpa_data.head_shape_2, 0x50);
             }
             else
             {
-                temp |= (index - 18);
-                hexBox1.ByteProvider.WriteByte(0x14, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x15, 0);
-                hexBox1.ByteProvider.WriteByte(0x26, 0x30);
-                hexBox1.ByteProvider.WriteByte(0x27, 0);
+                write_value(denpa_data.head_shape_1, index-18);
+                write_value(denpa_data.head_shape_2, 0x5F);
             }
             hexBox1.Refresh();
             picBox2.Image = head[index];
@@ -1146,23 +1121,9 @@ namespace DenpaQRCodeEditor
       
         private void btnChangeID_Click(object sender, EventArgs e)
         {
-            hexBox1.ByteProvider.WriteByte(0x0D, 0x00);
-            hexBox1.ByteProvider.WriteByte(0x0F, 0x00);
-            hexBox1.ByteProvider.WriteByte(0x65, 0x00);
-            hexBox1.ByteProvider.WriteByte(0x67, 0x00);
-            hexBox1.ByteProvider.WriteByte(0x69, 0x00);
             Random random = new Random();
-            var rand_data = new Byte[1];
-            random.NextBytes(rand_data);
-            hexBox1.ByteProvider.WriteByte(0x0C, rand_data[0]);
-            random.NextBytes(rand_data);
-            hexBox1.ByteProvider.WriteByte(0x0E, rand_data[0]);
-            random.NextBytes(rand_data);
-            hexBox1.ByteProvider.WriteByte(0x64, rand_data[0]);
-            random.NextBytes(rand_data);
-            hexBox1.ByteProvider.WriteByte(0x66, rand_data[0]);
-            random.NextBytes(rand_data);
-            hexBox1.ByteProvider.WriteByte(0x68, rand_data[0]);
+            write_value(0x0C, 0, 16, random.Next(0, 65535));
+            write_value(0x64, 0, 24, random.Next(0, 16777215));
             hexBox1.Refresh();
             hexBox1_KeyPress(null, null);
         }
@@ -1171,36 +1132,17 @@ namespace DenpaQRCodeEditor
         {
             if (populating) return;
             int index = cboFaceShapeHairStyle.SelectedIndex;
-            int antenna = cboAntennaPower.SelectedIndex;
             
             if (index == -1) return;
-            if (antenna == -1) { StatusStripLabel.Text = "Antenna Power required"; return; }
-            int temp = hexBox1.ByteProvider.ReadByte(0x14) & 0x1F;
-            int temp2 = hexBox1.ByteProvider.ReadByte(0x16) & 0xF8;
             if (index < 9)
             {
-                temp |= ((index & 0x7) << 5);
-                temp2 |= ((index & 0x18) >> 3);
-                hexBox1.ByteProvider.WriteByte(0x14, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x15, 0);
-                hexBox1.ByteProvider.WriteByte(0x16, (byte)temp2);
-                hexBox1.ByteProvider.WriteByte(0x17, 0);
-                hexBox1.ByteProvider.WriteByte(0x2A, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x2B, 0);
+                write_value(denpa_data.face_shape_1, index);
+                write_value(denpa_data.face_shape_2, 0);
             }
             else
             {
-                temp |= (((index - 9) & 0x7) << 5);
-                temp2 |= (((index - 9) & 0x18) >> 3);
-                hexBox1.ByteProvider.WriteByte(0x14, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x15, 0);
-                hexBox1.ByteProvider.WriteByte(0x16, (byte)temp2);
-                hexBox1.ByteProvider.WriteByte(0x17, 0);
-                if (antenna == 0)
-                    hexBox1.ByteProvider.WriteByte(0x2A, 0x0C);
-                else
-                    hexBox1.ByteProvider.WriteByte(0x2A, 0x0B);
-                hexBox1.ByteProvider.WriteByte(0x2B, 0);
+                write_value(denpa_data.face_shape_1, index - 9);
+                write_value(denpa_data.face_shape_2, 0x5A);
             }
             hexBox1.Refresh();
             picBox2.Image = faceshape[index];
@@ -1212,10 +1154,7 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboHairColor.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x18) & 0xE0;
-            temp |= (index & 0x1F);
-            hexBox1.ByteProvider.WriteByte(0x18, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x19, 0);
+            write_value(denpa_data.hair_color, index);
             hexBox1.Refresh();
             picBox2.Image = haircolor[index];
             hexBox1_KeyPress(null, null);
@@ -1226,14 +1165,7 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboEyes.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x18) & 0x1F;
-            temp |= ((index & 0x07) << 5);
-            hexBox1.ByteProvider.WriteByte(0x18, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x19, 0);
-            temp = hexBox1.ByteProvider.ReadByte(0x1A) & 0xFC;
-            temp |= ((index & 0x18) >> 3);
-            hexBox1.ByteProvider.WriteByte(0x1A, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x1B, 0);
+            write_value(denpa_data.eyes, index);
             hexBox1.Refresh();
             picBox2.Image = eyes[index];
             hexBox1_KeyPress(null, null);
@@ -1244,14 +1176,7 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboEyeBrows.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x1C) & 0x3F;
-            temp |= ((index & 0x03) << 6);
-            hexBox1.ByteProvider.WriteByte(0x1C, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x1D, 0);
-            temp = hexBox1.ByteProvider.ReadByte(0x1E) & 0xFE;
-            temp |= ((index & 0x04) >> 2);
-            hexBox1.ByteProvider.WriteByte(0x1E, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x1F, 0);
+            write_value(denpa_data.eyebrows, index);
             hexBox1.Refresh();
             picBox2.Image = eye_brow[index];
             hexBox1_KeyPress(null, null);
@@ -1262,10 +1187,7 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboNose.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x1C) & 0x87;
-            temp |= ((index & 0x0F) << 3);
-            hexBox1.ByteProvider.WriteByte(0x1A, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x1B, 0);
+            write_value(denpa_data.nose, index);
             hexBox1.Refresh();
             picBox2.Image = nose[index];
             hexBox1_KeyPress(null, null);
@@ -1276,22 +1198,15 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboFaceColor.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x16) & 0xE7;
             if (index < 2)
             {
-                hexBox1.ByteProvider.WriteByte(0x30, 0x0C);
-                hexBox1.ByteProvider.WriteByte(0x31, 0);
-                temp |= ((index & 0x03) << 3);
-                hexBox1.ByteProvider.WriteByte(0x16, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x17, 0);
+                write_value(denpa_data.face_color_1, index);
+                write_value(denpa_data.face_color_2, 0x0C);
             }
             else
             {
-                hexBox1.ByteProvider.WriteByte(0x30, 0x00);
-                hexBox1.ByteProvider.WriteByte(0x31, 0);
-                temp |= (((index - 2) & 0x03) << 3);
-                hexBox1.ByteProvider.WriteByte(0x16, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x17, 0);
+                write_value(denpa_data.face_color_1, index-2);
+                write_value(denpa_data.face_color_2, 0x00);
             }
             hexBox1.Refresh();
             picBox2.Image = face_color[index];
@@ -1303,10 +1218,7 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboMouth.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x1C) & 0xC0;
-            temp |= (index & 0x1F);
-            hexBox1.ByteProvider.WriteByte(0x1C, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x1D, 0);
+            write_value(denpa_data.mouth, index);
             hexBox1.Refresh();
             picBox2.Image = mouth[index];
             hexBox1_KeyPress(null, null);
@@ -1317,22 +1229,15 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboCheeks.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x1E) & 0x07;
             if (index < 1)
             {
-                hexBox1.ByteProvider.WriteByte(0x2C, 0);
-                hexBox1.ByteProvider.WriteByte(0x2D, 0);
-                temp |= ((index & 0x07) << 3);
-                hexBox1.ByteProvider.WriteByte(0x1E, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x1F, 0);
+                write_value(denpa_data.cheeks_1, index);
+                write_value(denpa_data.cheeks_2, 0);
             }
             else
             {
-                hexBox1.ByteProvider.WriteByte(0x2C, 0x5A);
-                hexBox1.ByteProvider.WriteByte(0x2D, 0);
-                temp |= (((index - 1) & 0x07) << 3);
-                hexBox1.ByteProvider.WriteByte(0x1E, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x1F, 0);
+                write_value(denpa_data.cheeks_1, index - 1);
+                write_value(denpa_data.cheeks_2, 0x5A);
             }
             hexBox1.Refresh();
             picBox2.Image = cheek[index];
@@ -1344,22 +1249,15 @@ namespace DenpaQRCodeEditor
             if (populating) return;
             int index = cboGlasses.SelectedIndex;
             if (index == -1) return;
-            int temp = hexBox1.ByteProvider.ReadByte(0x20) & 0xE0;
             if (index < 1)
             {
-                hexBox1.ByteProvider.WriteByte(0x2E, 0);
-                hexBox1.ByteProvider.WriteByte(0x2F, 0);
-                temp |= ((index & 0x1F));
-                hexBox1.ByteProvider.WriteByte(0x20, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x21, 0);
+                write_value(denpa_data.glasses_1, index);
+                write_value(denpa_data.glasses_2, 0);
             }
             else
             {
-                hexBox1.ByteProvider.WriteByte(0x2E, 0x30);
-                hexBox1.ByteProvider.WriteByte(0x2F, 0);
-                temp |= (((index - 1) & 0x1F));
-                hexBox1.ByteProvider.WriteByte(0x20, (byte)temp);
-                hexBox1.ByteProvider.WriteByte(0x21, 0);
+                write_value(denpa_data.glasses_1, index-1);
+                write_value(denpa_data.glasses_2, 0x2D);
             }
             hexBox1.Refresh();
             picBox2.Image = glasses[index];
@@ -1389,16 +1287,8 @@ namespace DenpaQRCodeEditor
                 }
             }
 
-            int temp = hexBox1.ByteProvider.ReadByte(0x10) & 0x3F;
-            temp |= ((index & 0x03) << 6);
-            hexBox1.ByteProvider.WriteByte(0x10, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x11, 0);
-            temp = hexBox1.ByteProvider.ReadByte(0x12) & 0xF8;
-            temp |= ((index & 0x1C) >> 2);
-            hexBox1.ByteProvider.WriteByte(0x12, (byte)temp);
-            hexBox1.ByteProvider.WriteByte(0x13, 0);
-            hexBox1.ByteProvider.WriteByte(0x22, (byte)((index & 0x1E0) >> 5));
-            hexBox1.ByteProvider.WriteByte(0x23, 0);
+            write_value(denpa_data.stats_1, index);
+            write_value(denpa_data.stats_2, index >> 5);
             hexBox1.Refresh();
             hexBox1_KeyPress(null, null);
         }
@@ -1434,6 +1324,15 @@ namespace DenpaQRCodeEditor
             hexBox1.Visible = !advancedInterfaceToolStripMenuItem.Checked;
             btnSwitchPicBox.Visible = !advancedInterfaceToolStripMenuItem.Checked;
             dontDecryptToolStripMenuItem.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            numericUpDown1.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            numericUpDown2.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            numericUpDown3.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            label18.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            label17.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            label16.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            maskedTextBox1.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            button1.Visible = !advancedInterfaceToolStripMenuItem.Checked;
+            numericUpDown5.Visible = !advancedInterfaceToolStripMenuItem.Checked;
             advancedInterfaceToolStripMenuItem.Checked = !advancedInterfaceToolStripMenuItem.Checked;
             
 
@@ -1520,16 +1419,120 @@ namespace DenpaQRCodeEditor
                     name[i] = byteArray[0x34 + (i * 2)];
                 }
                 txtName.Text = System.Text.Encoding.Unicode.GetString(name);
-                cboEyes.SelectedIndex = (byteArray[0x18] >> 5) | ((byteArray[0x1A] & 0x03) << 3);
-                cboEyeBrows.SelectedIndex = (byteArray[0x1C] >> 6) | ((byteArray[0x1E] & 0x01) << 2);
-                if (((byteArray[0x2E] & 0x7F) >= 0x2D) && ((byteArray[0x2E] & 0x7F) <= 0x31))
-                    cboGlasses.SelectedIndex = ((byteArray[0x20] & 0x1F) % 15) + 1;
+                cboEyes.SelectedIndex = read_value(denpa_data.eyes);
+                cboEyeBrows.SelectedIndex = read_value(denpa_data.eyebrows);
+                if ((read_value(denpa_data.glasses_2) >= 0x2D) && (read_value(denpa_data.glasses_2) <= 0x31))
+                    cboGlasses.SelectedIndex = (read_value(denpa_data.glasses_1) % 15) + 1;
                 else
                     cboGlasses.SelectedIndex = 0;
+                int Antenna1 = read_value(denpa_data.antenna_1);
+                int Antenna2 = read_value(denpa_data.antenna_2);
+                int shift_color = -1;
+                if ((Antenna2 >= 0x46) && (Antenna2 <= 0x59))
+                {
+                    Antenna1 %= 12;
+                    if (Antenna1 >= 6)
+                        shift_color = Antenna1 - 6;
+                    cboAntennaPower.SelectedIndex = Antenna1 + 1;
+                }
+                else if ((Antenna2 > 0x59) && (Antenna2 <= 0x5C))
+                {
+                    Antenna1 %= 12;
+                    if (Antenna1 >= 6)
+                        shift_color = Antenna1 - 6;
+                    cboAntennaPower.SelectedIndex = Antenna1 + 1 + 12;
+                }
+                else if ((Antenna2 > 0x5C) && (Antenna2 <= 0x63))
+                {
+                    Antenna1 %= 21;
+                    cboAntennaPower.SelectedIndex = Antenna1 + 1 + 12 + 12;
+                }
+                else
+                {
+                    cboAntennaPower.SelectedIndex = 0;
+                }
+
+                int hairstyle = read_value(denpa_data.face_shape_1);
+                int hairstyle2 = read_value(denpa_data.face_shape_2);
+                if ((hairstyle2 >= 0x5A) && (hairstyle2 <= 0x63))
+                    cboFaceShapeHairStyle.SelectedIndex = (hairstyle % 23) + 9;
+                else
+                    cboFaceShapeHairStyle.SelectedIndex = (hairstyle % 9);
+                cboHairColor.SelectedIndex = read_value(denpa_data.hair_color) % 12;
+
+                int color1 = read_value(denpa_data.color_1);
+                int color2 = read_value(denpa_data.color_2);
+
+                if ((color2 >= 0x5F) && (color2 <= 0x63))
+                    cboColor.SelectedIndex = (color1 % 15) + 7;
+                else
+                {
+                    if (shift_color > -1)
+                    {
+                        int[][] color_index_table = new int[6][];
+                        color_index_table[0] = new int[7] { 1, 3, 4, 5, 6, 0, 1 };
+                        color_index_table[1] = new int[7] { 1, 2, 4, 5, 6, 0, 1 };
+                        color_index_table[2] = new int[7] { 1, 2, 3, 5, 6, 0, 1 };
+                        color_index_table[3] = new int[7] { 1, 2, 3, 4, 6, 0, 1 };
+                        color_index_table[4] = new int[7] { 1, 2, 3, 4, 5, 0, 1 };
+                        color_index_table[5] = new int[7] { 2, 3, 4, 5, 6, 0, 1 };
+
+                        int[] default_color = new int[6] { 2, 3, 4, 5, 6, 1 };
+                        if ((color2 >= 0x28) && (color2 <= 0x5E))
+                        {
+                            cboColor.SelectedIndex = color_index_table[shift_color][(color1 % 7)];
+                        }
+                        else
+                        {
+                            cboColor.SelectedIndex = default_color[shift_color];
+                        }
+                    }
+                    else
+                    {
+                        if ((color2 >= 0x28) && (color2 <= 0x5E))
+                        {
+                            cboColor.SelectedIndex = (color1 % 7) + 1;
+                        }
+                        else
+                        {
+                            cboColor.SelectedIndex = 0;
+                        }
+                    }
+                }
+
+                nudStats.Value = read_value(denpa_data.stats_1) | (read_value(denpa_data.stats_2) << 5);
+                cboMouth.SelectedIndex = read_value(denpa_data.mouth) % 32;
+                cboNose.SelectedIndex = read_value(denpa_data.nose) % 16;
+
+                int facecolor1 = read_value(denpa_data.face_color_1);
+                int facecolor2 = read_value(denpa_data.face_color_2);
+                if ((facecolor2 >= 0x0C) && (facecolor2 <= 0x18))
+                    cboFaceColor.SelectedIndex = facecolor1 % 2;
+                else
+                    cboFaceColor.SelectedIndex = (facecolor1 % 4) + 2;
+
+                int cheeks1 = read_value(denpa_data.cheeks_1);
+                int cheeks2 = read_value(denpa_data.cheeks_2);
+                if ((cheeks2 >= 0x5A) && (cheeks2 <= 0x63))
+                    cboCheeks.SelectedIndex = (cheeks1 % 7) + 1;
+                else
+                    cboCheeks.SelectedIndex = 0;
+
+                int headshape1 = read_value(denpa_data.head_shape_1);
+                int headshape2 = read_value(denpa_data.head_shape_2);
+
+                if ((headshape2 >= 0x50) && (headshape2 <= 0x5E))
+                    cboHeadShape.SelectedIndex = (headshape1 % 7) + 11;
+                else if ((headshape2 >= 0x5F) && (headshape2 <= 0x63))
+                    cboHeadShape.SelectedIndex = (headshape1 % 6) + 11 + 7;
+                else
+                    cboHeadShape.SelectedIndex = (headshape1 % 11);
 
             }
             Application.DoEvents();
             populating = false;
+            cboHeadShape_SelectedIndexChanged(null, null);
+            nudStats_ValueChanged(null, null);
         }
 
         private void load_QR_data(Byte[] byteArray)
@@ -1575,6 +1578,16 @@ namespace DenpaQRCodeEditor
         private void dontDecryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dontDecryptToolStripMenuItem.Checked = !dontDecryptToolStripMenuItem.Checked;
+            if (!dontDecryptToolStripMenuItem.Checked)
+            {
+                numericUpDown1.Minimum = 0;
+                numericUpDown1.Maximum = hexBox1.ByteProvider.Length;
+            }
+            else
+            {
+                numericUpDown1.Minimum = 0x10;
+                numericUpDown1.Maximum = 0x32;
+            }
         }
 
         private void checkForNewVersionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1582,5 +1595,256 @@ namespace DenpaQRCodeEditor
             _checkNow = true;
             bwCheckForUpdates.RunWorkerAsync();
         }
+
+        enum denpa_data
+        {
+            antenna_1 = 0,
+            antenna_2,
+            stats_1,
+            stats_2,
+            color_1,
+            color_2,
+            head_shape_1,
+            head_shape_2,
+            face_shape_1,
+            face_shape_2,
+            face_color_1,
+            face_color_2,
+            hair_color,
+            eyes,
+            nose,
+            mouth,
+            eyebrows,
+            cheeks_1,
+            cheeks_2,
+            glasses_1,
+            glasses_2,
+            unknown_0,
+            unknown_1,
+            unknown_2,
+            unknown_3,
+            unknown_4,
+            unknown_5,
+            unknown_6,
+            unknown_7,
+            unknown_8,
+            unknown_9,
+            unknown_A
+        };
+
+        int[][] offsets = new int[][] {
+            new int[] { 0x10, 0, 6 },   //Antenna power
+            new int[] { 0x26, 6, 7 },   //Antenna power class
+            new int[] { 0x10, 6, 5 },   //Stats
+            new int[] { 0x22, 0, 4 },   //Stat class
+            new int[] { 0x12, 3, 5 },   //Color
+            new int[] { 0x24, 0, 7 },   //Color class
+            new int[] { 0x14, 0, 5 },   //Head shape
+            new int[] { 0x24, 7, 7 },   //Head shape class
+            new int[] { 0x14, 5, 6 },   //Face shape/hair style
+            new int[] { 0x28, 5, 7 },   //Faces shape/hair style class
+            new int[] { 0x16, 3, 2 },   //Face color
+            new int[] { 0x30, 0, 5 },   //Face color class
+            new int[] { 0x18, 0, 5 },   //Hair color
+            new int[] { 0x18, 5, 5 },   //Eyes
+            new int[] { 0x1A, 3, 4 },   //Nose
+            new int[] { 0x1C, 0, 6 },   //Mouth
+            new int[] { 0x1C, 6, 3 },   //Eyebrows
+            new int[] { 0x1E, 3, 5 },   //Cheeks
+            new int[] { 0x2C, 0, 7 },   //Cheek class
+            new int[] { 0x20, 0, 5 },   //Glasses
+            new int[] { 0x2E, 0, 6 },   //Glasses class
+            
+            new int[] { 0x16, 5, 3 },   //Unknown purpose from here on in. :)
+            new int[] { 0x1A, 2, 1 },
+            new int[] { 0x1A, 7, 1 },
+            new int[] { 0x1E, 1, 2 },
+            new int[] { 0x20, 5, 3 },
+            new int[] { 0x22, 4, 4 },
+            new int[] { 0x2A, 4, 4 },
+            new int[] { 0x2C, 7, 1 },
+            new int[] { 0x2E, 6, 2 },
+            new int[] { 0x30, 5, 3 },
+            new int[] { 0x32, 0, 8 },
+        };
+
+        private int read_value(denpa_data data)
+        {
+            return read_value(offsets[(int)data]);
+        }
+
+        private void write_value(denpa_data data, int value)
+        {
+            write_value(offsets[(int)data], value);
+        }
+
+        private int read_value(int[] type)
+        {
+            return read_value(type[0], type[1], type[2]);
+        }
+
+        private void write_value(int[] type, int value)
+        {
+            write_value(type[0], type[1], type[2], value);
+        }
+
+        private int read_value(int byteoffset, int bitoffset, int bitcount)
+        {
+            int value = 0;
+            int writemask = 1;
+            while (bitcount > 0)
+            {
+                Byte temp = hexBox1.ByteProvider.ReadByte(byteoffset);
+                Byte readmask = 1;
+                
+                int temp2 = 8;
+                while (bitoffset > 0)
+                {
+                    bitoffset--;
+                    temp2--;
+                    readmask <<= 1;
+                }
+                while ((temp2 > 0) && (bitcount > 0))
+                {
+                    if((temp & readmask) == readmask)
+                        value |= writemask;
+                    writemask <<= 1;
+                    readmask <<= 1;
+                    bitcount--;
+                    temp2--;
+                }
+
+                byteoffset++;
+                if (!dontDecryptToolStripMenuItem.Checked)
+                    byteoffset++;
+                
+            }
+            return value;
+        }
+
+        private void write_value(int byteoffset, int bitoffset, int bitcount, int value)
+        {
+            int readmask = 1;
+            while (bitcount > 0)
+            {
+                Byte temp = hexBox1.ByteProvider.ReadByte(byteoffset);
+                Byte writemask = 1;
+                int temp2 = 8;
+                byte maskright = 0;
+                byte maskleft = 0;
+                while (bitoffset > 0)
+                {
+                    bitoffset--;
+                    temp2--;
+                    writemask <<= 1;
+                    maskright <<= 1;
+                    maskright |= 1;
+                }
+                int bits_to_mask = (bitcount < temp2) ? (temp2 - bitcount) : 0;
+                while (bits_to_mask > 0)
+                {
+                    maskleft >>= 1;
+                    maskleft |= 0x80;
+                    bits_to_mask--;
+                }
+                maskright |= maskleft;
+                temp &= maskright;
+                while ((bitcount > 0) && (temp2 > 0))
+                {
+                    if ((value & readmask) == readmask)
+                        temp |= writemask;
+                    writemask <<= 1;
+                    readmask <<= 1;
+                    bitcount--;
+                    temp2--;
+                }
+                hexBox1.ByteProvider.WriteByte(byteoffset, temp);
+                byteoffset++;
+                if (!dontDecryptToolStripMenuItem.Checked)
+                    byteoffset++;
+            }
+            hexBox1.Refresh();
+            hexBox1_KeyPress(null, null);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            int nud1 = (int)numericUpDown1.Value;
+            int nud2 = (int)numericUpDown2.Value;
+            int nud3 = (int)numericUpDown3.Value;
+            if (!dontDecryptToolStripMenuItem.Checked)
+            {
+                nud1 &= 0xFE;
+                if (nud1 == 0x32)
+                {
+                    numericUpDown3.Maximum = 8 - nud2;
+                }
+                else if (nud1 == 0x30)
+                {
+                    numericUpDown3.Maximum = 16 - nud2;
+                }
+                else
+                {
+                    numericUpDown3.Maximum = 16;
+                }
+            }
+            else
+            {
+                if (nud1 == (hexBox1.ByteProvider.Length - 1))
+                {
+                    numericUpDown3.Maximum = 8 - nud2;
+                }
+                else if (nud1 == (hexBox1.ByteProvider.Length - 2))
+                {
+                    numericUpDown3.Maximum = 16 - nud2;
+                }
+                else
+                {
+                    numericUpDown3.Maximum = 16;
+                }
+            }
+            numericUpDown1.Value = nud1;
+            maskedTextBox1.Text = read_value(nud1, nud2, nud3).ToString("X");
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            int nud5 = (int)numericUpDown5.Value;
+            if (nud5 > (offsets.Length - 1))
+                nud5 = offsets.Length - 1;
+            numericUpDown5.Value = nud5;
+            numericUpDown1.Value = offsets[nud5][0];
+            numericUpDown2.Value = offsets[nud5][1];
+            numericUpDown3.Value = offsets[nud5][2];
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+
+            if (c != '\b' && !((c <= 0x66 && c >= 61) || (c <= 0x46 && c >= 0x41) || (c >= 0x30 && c <= 0x39)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int nud1 = (int)numericUpDown1.Value;
+            int nud2 = (int)numericUpDown2.Value;
+            int nud3 = (int)numericUpDown3.Value;
+            int nud4 = Convert.ToInt32(maskedTextBox1.Text, 16);
+            write_value(nud1, nud2, nud3, nud4);
+        }
+
     }
 }
