@@ -478,10 +478,14 @@ namespace DenpaQRCodeEditor
                 "HP:18 AP:0 Att:8 Def:11 Spd:3 Ev:16",
                 "HP:21 AP:0 Att:8 Def:11 Spd:3 Ev:16"
             };
-            intStats[(int)AntennaPower.no_antenna] = new int[27] { 
+            intStats[(int)AntennaPower.no_antenna] = new int[] { 
                 384, 320, 321, 322, 385, 325, 3, 0, 1, 2, 
                 326, 324, 9, 10, 6, 7, 11, 327, 8, 330, 
-                328, 329, 333, 387, 386, 331, 332
+                328, 329, 333, 387, 386, 331, 332,
+                12,14,4,
+                4,0,
+                5,1,
+                323,3
             };
 
             strStats[(int)AntennaPower.revive_single] = new String[52] {
@@ -512,12 +516,17 @@ namespace DenpaQRCodeEditor
                 "HP:16 AP:"," Att:7 Def:7 Spd:4 Ev:16",
                 "HP:18 AP:"," Att:7 Def:8 Spd:4 Ev:16"
             };
-            intStats[(int)AntennaPower.revive_single] = new int[26] { 384, 320, 321, 322, 385, 325, 
+            intStats[(int)AntennaPower.revive_single] = new int[] { 384, 320, 321, 322, 385, 325, 
                 3, 0, 1, 2, 326, 324, 9, 10, 11, 6, 7, 8, 330, 328, 
-                329, 333, 387, 386, 331, 332 
+                329, 333, 387, 386, 331, 332,
+                12,14,4,
+                4,0,
+                5,1,
+                323,3,
+                327,6,
             };
 
-            strStats[(int)AntennaPower.attack_water_single] = new String[54] { 
+            strStats[(int)AntennaPower.attack_water_all] = new String[54] { 
                 "HP:17 AP:"," Att:9 Def:12 Spd:3 Ev:0",
                 "HP:19 AP:"," Att:10 Def:12 Spd:3 Ev:0",
                 "HP:20 AP:"," Att:10 Def:13 Spd:3 Ev:0",
@@ -546,11 +555,15 @@ namespace DenpaQRCodeEditor
                 "HP:11 AP:"," Att:7 Def:10 Spd:3 Ev:16",
                 "HP:12 AP:"," Att:7 Def:10 Spd:3 Ev:16"
             };
-            intStats[(int)AntennaPower.attack_water_single] = new int[27] { 
+            intStats[(int)AntennaPower.attack_water_all] = new int[] { 
                 384, 320, 321, 322, 385, 325, 3, 0, 
                 1, 2, 326, 324, 9, 10, 6, 7, 
                 11, 327, 8, 330, 328, 329, 333, 387, 
-                386, 331, 332
+                386, 331, 332,
+                12,14,4,
+                4,0,
+                5,1,
+                323,3,
             };
             #endregion
 
@@ -912,17 +925,94 @@ namespace DenpaQRCodeEditor
             }
         }
 
+        private void color_pic_box(int color1, int color2)
+        {
+            picBox3.Image = new Bitmap(100, 100);
+            var g = Graphics.FromImage(picBox3.Image);
+            g.Clear(Color.White);
+            g.FillRectangle(Brushes.Black, 0, 0, 2, 100);
+            g.FillRectangle(Brushes.Black, 0, 0, 100, 2);
+            g.FillRectangle(Brushes.Black, 98, 0, 2, 100);
+            g.FillRectangle(Brushes.Black, 0, 98, 100, 2);
+            for (var y = 2; y < 98; ++y)
+            {
+                for (var x = 2; x < 50; ++x)
+                {
+                    //g.FillRectangle(Brushes.Black, x * 2, y * 2, 2, 2);
+                    switch (color1)
+                    {
+                        default:
+                        case 0:
+                            g.FillRectangle(Brushes.Black, x, y, 1, 1);
+                            break;
+                        case 1:
+                            g.FillRectangle(Brushes.White, x, y, 1, 1);
+                            break;
+                        case 2:
+                            g.FillRectangle(Brushes.Red, x, y, 1, 1);
+                            break;
+                        case 3:
+                            g.FillRectangle(Brushes.Blue, x, y, 1, 1);
+                            break;
+                        case 4:
+                            g.FillRectangle(Brushes.Cyan, x, y, 1, 1);
+                            break;
+                        case 5:
+                            g.FillRectangle(Brushes.Orange, x, y, 1, 1);
+                            break;
+                        case 6:
+                            g.FillRectangle(Brushes.Green, x, y, 1, 1);
+                            break;
+                    }
+                    switch (color2)
+                    {
+                        default:
+                        case 0:
+                            g.FillRectangle(Brushes.Black, x+48, y, 1, 1);
+                            break;
+                        case 1:
+                            g.FillRectangle(Brushes.White, x+48, y, 1, 1);
+                            break;
+                        case 2:
+                            g.FillRectangle(Brushes.Red, x+48, y, 1, 1);
+                            break;
+                        case 3:
+                            g.FillRectangle(Brushes.Blue, x+48, y, 1, 1);
+                            break;
+                        case 4:
+                            g.FillRectangle(Brushes.Cyan, x+48, y, 1, 1);
+                            break;
+                        case 5:
+                            g.FillRectangle(Brushes.Orange, x+48, y, 1, 1);
+                            break;
+                        case 6:
+                            g.FillRectangle(Brushes.Green, x+48, y, 1, 1);
+                            break;
+                    }
+                    
+                }
+            }
+        }
+
         private void cboColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
+            
             int color_index = cboColor.SelectedIndex;
+            if (color_index == -1) return;
+            int[] picboxcolors = new int[] {
+                0,0, 1,1, 2,2, 3,3, 4,4, 5,5, 6,6, 
+                2,3, 2,4, 2,5, 2,6, 2,1,
+                3,4, 3,5, 3,6, 3,1,
+                4,5, 4,6, 4,1,
+                5,6, 5,1,
+                6,1
+            };
+            color_pic_box(picboxcolors[color_index * 2], picboxcolors[(color_index * 2) + 1]);
+            if (populating) return;
             bool solid_color_enable;
             int antenna_index = cboAntennaPower.SelectedIndex;
-
-            if (color_index == -1) return;
+      
             if (antenna_index == -1) { StatusStripLabel.Text = "Antenna Power required"; return; }
-            
-
             if ((color_index <= 6))
             {
                 if ((((antenna_index >= 7) && (antenna_index <= 12)) || ((antenna_index >= 19) && (antenna_index <= 24))))
@@ -952,14 +1042,8 @@ namespace DenpaQRCodeEditor
             }
         }
 
-        private void cboAntennaPower_SelectedIndexChanged(object sender, EventArgs e)
+        private void update_stats()
         {
-            if (populating) return;
-            cboColor_SelectedIndexChanged(sender, e);  //Colors depend on Antenna power
-            StatusStripLabel.Text = ""; 
-            int index = cboAntennaPower.SelectedIndex;
-            if (index == -1) return;
-
             String[] AP_head_shape = new String[25] {
                 "N/A",
                 "7","7","7","7","7","7","7",
@@ -968,26 +1052,80 @@ namespace DenpaQRCodeEditor
                 "20","20","20","24","20","24"
             };
 
+            int index = cboAntennaPower.SelectedIndex;
+            if ((int)nudStats.Value < 0)
+                return;
+            
             if (strStats[index] != null)
             {
+                populating = true;
+                int stats = (int)nudStats.Value & 0x1F;
+                int stats2 = (int)nudStats.Value >> 5;
+                int range = (index == 0) ? (strStats[index].Length) : (strStats[index].Length / 2);
+
+                if ((stats2 >= 0x0A) && (stats2 <= 0x0B))
+                {
+                    stats %= intStats[index][range + 1];
+                    stats += 320;
+                }
+                else if (stats2 == 0x0C)
+                {
+                    stats %= intStats[index][range + 2];
+                    stats += 384;
+                }
+                else
+                    stats %= intStats[index][range + 0];
+
                 cboStats.Items.Clear();
+                
                 if (index == 0)
                     cboStats.Items.AddRange(strStats[index]);
                 else
                 {
-                    for (int i = 0; i < intStats[index].Length; i++)
-                        cboStats.Items.Add(strStats[index][(i * 2)] + AP_head_shape[cboHeadShape.SelectedIndex + 1] + strStats[index][(i * 2) + 1]); 
+                    for (int i = 0; i < range; i++)
+                        cboStats.Items.Add(strStats[index][(i * 2)] + AP_head_shape[cboHeadShape.SelectedIndex + 1] + strStats[index][(i * 2) + 1]);
                 }
-                for (int i = 0; i < intStats[index].Length; i++)
+                for (int i = 0; i < range; i++)
                 {
-                    if ((int)nudStats.Value == intStats[index][i])
+                    if ((int)stats == intStats[index][i])
+                    {
                         cboStats.SelectedIndex = i;
+                        break;
+                    }
                 }
+                for (int i = range + 3; i < intStats[index].Length; i += 2)
+                {
+                    if ((int)stats == intStats[index][i])
+                    {
+                        for (int j = 0; j < range; j++)
+                        {
+                            if (intStats[index][i+1] == intStats[index][j])
+                            {
+                                cboStats.SelectedIndex = j;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                populating = false;
             }
             else
             {
                 cboStats.Items.Clear();
             }
+        }
+
+        private void cboAntennaPower_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboColor_SelectedIndexChanged(sender, e);  //Colors depend on Antenna power
+            StatusStripLabel.Text = ""; 
+            int index = cboAntennaPower.SelectedIndex;
+            if (index == -1) return;
+            //picbox2
+            if (populating) return;
+            update_stats();
+            
 
             if ((index >= 1) && (index <= 12))
             {
@@ -1045,43 +1183,12 @@ namespace DenpaQRCodeEditor
 
         private void cboHeadShape_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboHeadShape.SelectedIndex;
             int AntennaIndex = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
-
-            String[] AP_head_shape = new String[25] {
-                "N/A",
-                "7","7","7","7","7","7","7",
-                "12","12","12","12",
-                "15","15","15","15","15","15","15",
-                "20","20","20","24","20","24"
-            };
-
-            if (AntennaIndex != -1)
-            {
-                if (strStats[AntennaIndex] != null)
-                {
-                    cboStats.Items.Clear();
-                    for (int i = 0; i < intStats[AntennaIndex].Length; i++)
-                    {
-                        if (AntennaIndex != 0)
-                            cboStats.Items.Add(strStats[AntennaIndex][(i * 2)] + AP_head_shape[cboHeadShape.SelectedIndex + 1] + strStats[AntennaIndex][(i * 2) + 1]);
-                        else
-                            cboStats.Items.Add(strStats[AntennaIndex][i]);
-                        if ((int)nudStats.Value == intStats[AntennaIndex][i])
-                            cboStats.SelectedIndex = i;
-                    }
-                }
-                else
-                {
-                    cboStats.Items.Clear();
-                }
-            }
-            else
-            {
-                cboStats.Items.Clear();
-            }
+            picBox4.Image = head[index];
+            if (populating) return;
+            update_stats();
 
             if ((index >= 0) && (index <= 10))
             {
@@ -1099,7 +1206,6 @@ namespace DenpaQRCodeEditor
                 write_value(denpa_data.head_shape_2, 0x5F);
             }
             hexBox1.Refresh();
-            picBox2.Image = head[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1130,10 +1236,10 @@ namespace DenpaQRCodeEditor
 
         private void cboFaceShapeHairStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboFaceShapeHairStyle.SelectedIndex;
-            
             if (index == -1) return;
+            picBox5.Image = faceshape[index];
+            if (populating) return;
             if (index < 9)
             {
                 write_value(denpa_data.face_shape_1, index);
@@ -1145,59 +1251,64 @@ namespace DenpaQRCodeEditor
                 write_value(denpa_data.face_shape_2, 0x5A);
             }
             hexBox1.Refresh();
-            picBox2.Image = faceshape[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboHairColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboHairColor.SelectedIndex;
             if (index == -1) return;
+            picBox6.Image = haircolor[index];
+            if (populating) return;
+            
             write_value(denpa_data.hair_color, index);
             hexBox1.Refresh();
-            picBox2.Image = haircolor[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboEyes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboEyes.SelectedIndex;
             if (index == -1) return;
+            picBox8.Image = eyes[index];
+            if (populating) return;
+            
             write_value(denpa_data.eyes, index);
             hexBox1.Refresh();
-            picBox2.Image = eyes[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboEyeBrows_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboEyeBrows.SelectedIndex;
             if (index == -1) return;
+            picBox9.Image = eye_brow[index];
+            if (populating) return;
+            
             write_value(denpa_data.eyebrows, index);
             hexBox1.Refresh();
-            picBox2.Image = eye_brow[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboNose_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboNose.SelectedIndex;
             if (index == -1) return;
+            picBox12.Image = nose[index];
+            if (populating) return;
+            
             write_value(denpa_data.nose, index);
             hexBox1.Refresh();
-            picBox2.Image = nose[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboFaceColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboFaceColor.SelectedIndex;
             if (index == -1) return;
+            picBox7.Image = face_color[index];
+            if (populating) return;
+            
             if (index < 2)
             {
                 write_value(denpa_data.face_color_1, index);
@@ -1209,26 +1320,29 @@ namespace DenpaQRCodeEditor
                 write_value(denpa_data.face_color_2, 0x00);
             }
             hexBox1.Refresh();
-            picBox2.Image = face_color[index];
+            
             hexBox1_KeyPress(null, null);
         }
 
         private void cboMouth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboMouth.SelectedIndex;
             if (index == -1) return;
+            picBox10.Image = mouth[index];
+            if (populating) return;
+
             write_value(denpa_data.mouth, index);
             hexBox1.Refresh();
-            picBox2.Image = mouth[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboCheeks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboCheeks.SelectedIndex;
             if (index == -1) return;
+            picBox13.Image = cheek[index];
+            if (populating) return;
+            
             if (index < 1)
             {
                 write_value(denpa_data.cheeks_1, index);
@@ -1240,15 +1354,16 @@ namespace DenpaQRCodeEditor
                 write_value(denpa_data.cheeks_2, 0x5A);
             }
             hexBox1.Refresh();
-            picBox2.Image = cheek[index];
             hexBox1_KeyPress(null, null);
         }
 
         private void cboGlasses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (populating) return;
             int index = cboGlasses.SelectedIndex;
             if (index == -1) return;
+            picBox11.Image = glasses[index];
+            if (populating) return;
+
             if (index < 1)
             {
                 write_value(denpa_data.glasses_1, index);
@@ -1260,7 +1375,6 @@ namespace DenpaQRCodeEditor
                 write_value(denpa_data.glasses_2, 0x2D);
             }
             hexBox1.Refresh();
-            picBox2.Image = glasses[index];
             hexBox1_KeyPress(null, null);
         }
 
@@ -1268,24 +1382,8 @@ namespace DenpaQRCodeEditor
         {
             if (populating) return;
             int index = (int)nudStats.Value;
-            int antenna_index = cboAntennaPower.SelectedIndex;
             if (index < 0) return;
-
-            if (antenna_index != -1)
-            {
-                if (intStats[antenna_index] != null)
-                {
-                    cboStats.SelectedIndex = -1;
-                    for (int i = 0; i < intStats[antenna_index].Length; i++)
-                    {
-                        if ((int)nudStats.Value == intStats[antenna_index][i])
-                        {
-                            cboStats.SelectedIndex = i;
-                            break;
-                        }
-                    }
-                }
-            }
+            update_stats();
 
             write_value(denpa_data.stats_1, index);
             write_value(denpa_data.stats_2, index >> 5);
@@ -1295,9 +1393,6 @@ namespace DenpaQRCodeEditor
 
         private void btnRandomDenpa_Click(object sender, EventArgs e)
         {
-            
-           
-            
             btnChangeID_Click(sender, e);
             Random random = new Random();
             cboAntennaPower.SelectedIndex = random.Next(cboAntennaPower.Items.Count);
