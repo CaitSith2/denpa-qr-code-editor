@@ -442,12 +442,10 @@ namespace DenpaQRCodeEditor
             new Byte[] { (Byte)'j',0,(Byte)'3',0,(Byte)'Z',0,(Byte)'w',0},
         };
 
-        public FormEditor()
+        private bool character_stats_initialized = false;
+        private void init_character_stats()
         {
-            InitializeComponent();
-            menuFileNew_Click(null, null);
-            update_names();
-
+            if (character_stats_initialized) return;
             #region character_stats
             strStats[(int)AntennaPower.no_antenna] = new String[27] {
                 "HP:29 AP:0 Att:11 Def:13 Spd:3 Ev:0",
@@ -566,7 +564,14 @@ namespace DenpaQRCodeEditor
                 323,3,
             };
             #endregion
+            character_stats_initialized = true;
+        }
 
+        public FormEditor()
+        {
+            InitializeComponent();
+            menuFileNew_Click(null, null);
+            update_names();
         }
         
         #region Menu -> File
@@ -669,6 +674,10 @@ namespace DenpaQRCodeEditor
 
             btnChangeID_Click(sender, e);
             StatusStripLabel.Text = "";
+            Byte[] bytearray = new byte[0x6A];
+            for (int i = 0; i < 0x6A; i++)
+                bytearray[i] = hexBox1.ByteProvider.ReadByte(i);
+            load_QR_data(bytearray);
             
         }
 
@@ -1051,7 +1060,7 @@ namespace DenpaQRCodeEditor
                 "15","15","15","15","15","15","15",
                 "20","20","20","24","20","24"
             };
-
+            init_character_stats();
             int index = cboAntennaPower.SelectedIndex;
             if ((int)nudStats.Value < 0)
                 return;
@@ -1626,8 +1635,7 @@ namespace DenpaQRCodeEditor
             }
             Application.DoEvents();
             populating = false;
-            cboHeadShape_SelectedIndexChanged(null, null);
-            nudStats_ValueChanged(null, null);
+            update_stats();
         }
 
         private void load_QR_data(Byte[] byteArray)
