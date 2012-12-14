@@ -60,6 +60,328 @@ namespace DenpaQRCodeEditor.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap antenna_00 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_00", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_01 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_02 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_03 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_04 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_05 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_06 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_07 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_07", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_08 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_09 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_0A {
+            get {
+                object obj = ResourceManager.GetObject("antenna_0A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_0B {
+            get {
+                object obj = ResourceManager.GetObject("antenna_0B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_0C {
+            get {
+                object obj = ResourceManager.GetObject("antenna_0C", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_0D {
+            get {
+                object obj = ResourceManager.GetObject("antenna_0D", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_0E {
+            get {
+                object obj = ResourceManager.GetObject("antenna_0E", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_0F {
+            get {
+                object obj = ResourceManager.GetObject("antenna_0F", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_10 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_11 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_12 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_13 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_14 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_15 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_16 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_17 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_18 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_18", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_19 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_19", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_1A {
+            get {
+                object obj = ResourceManager.GetObject("antenna_1A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_1B {
+            get {
+                object obj = ResourceManager.GetObject("antenna_1B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_1C {
+            get {
+                object obj = ResourceManager.GetObject("antenna_1C", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_1D {
+            get {
+                object obj = ResourceManager.GetObject("antenna_1D", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_1E {
+            get {
+                object obj = ResourceManager.GetObject("antenna_1E", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_1F {
+            get {
+                object obj = ResourceManager.GetObject("antenna_1F", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_20 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_21 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_22 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_23 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_24 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_25 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_26 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_26", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_27 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_27", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_28 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_28", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_29 {
+            get {
+                object obj = ResourceManager.GetObject("antenna_29", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_2A {
+            get {
+                object obj = ResourceManager.GetObject("antenna_2A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_2B {
+            get {
+                object obj = ResourceManager.GetObject("antenna_2B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_2C {
+            get {
+                object obj = ResourceManager.GetObject("antenna_2C", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap antenna_2D {
+            get {
+                object obj = ResourceManager.GetObject("antenna_2D", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap arrow_down {
             get {
                 object obj = ResourceManager.GetObject("arrow_down", resourceCulture);

@@ -36,6 +36,7 @@
             this.openQRCodeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.captureQRCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveQRCodeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.getURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +49,8 @@
             this.menuFileSep0 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFileSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.picBox13 = new System.Windows.Forms.PictureBox();
             this.picBox12 = new System.Windows.Forms.PictureBox();
             this.picBox11 = new System.Windows.Forms.PictureBox();
@@ -75,7 +78,6 @@
             this.cboHeadShape = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.picBox2 = new System.Windows.Forms.PictureBox();
-            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
@@ -160,6 +162,7 @@
             this.openQRCodeToolStripMenuItem2,
             this.captureQRCodeToolStripMenuItem,
             this.saveQRCodeToolStripMenuItem2,
+            this.getURLToolStripMenuItem,
             this.toolStripMenuItem3,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -172,28 +175,29 @@
             this.newDenpaToolStripMenuItem1.Image = global::DenpaQRCodeEditor.Properties.Resources.page_white;
             this.newDenpaToolStripMenuItem1.Name = "newDenpaToolStripMenuItem1";
             this.newDenpaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newDenpaToolStripMenuItem1.Size = new System.Drawing.Size(206, 22);
+            this.newDenpaToolStripMenuItem1.Size = new System.Drawing.Size(251, 22);
             this.newDenpaToolStripMenuItem1.Text = "&New Denpa";
             this.newDenpaToolStripMenuItem1.Click += new System.EventHandler(this.menuFileNew_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(203, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(248, 6);
             // 
             // openQRCodeToolStripMenuItem2
             // 
             this.openQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.folder_picture;
             this.openQRCodeToolStripMenuItem2.Name = "openQRCodeToolStripMenuItem2";
             this.openQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.openQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(206, 22);
+            this.openQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(251, 22);
             this.openQRCodeToolStripMenuItem2.Text = "Open &QR Code";
             this.openQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.openQRCodeToolStripMenuItem_Click);
             // 
             // captureQRCodeToolStripMenuItem
             // 
             this.captureQRCodeToolStripMenuItem.Name = "captureQRCodeToolStripMenuItem";
-            this.captureQRCodeToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.captureQRCodeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.captureQRCodeToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.captureQRCodeToolStripMenuItem.Text = "Capture from WebCam...";
             this.captureQRCodeToolStripMenuItem.Click += new System.EventHandler(this.captureQRCodeToolStripMenuItem_Click);
             // 
@@ -202,21 +206,29 @@
             this.saveQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.barcode2d;
             this.saveQRCodeToolStripMenuItem2.Name = "saveQRCodeToolStripMenuItem2";
             this.saveQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(206, 22);
+            this.saveQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(251, 22);
             this.saveQRCodeToolStripMenuItem2.Text = "&Save QR Code";
             this.saveQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.saveQRCodeToolStripMenuItem_Click);
+            // 
+            // getURLToolStripMenuItem
+            // 
+            this.getURLToolStripMenuItem.Name = "getURLToolStripMenuItem";
+            this.getURLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.getURLToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.getURLToolStripMenuItem.Text = "Get QR Code URL";
+            this.getURLToolStripMenuItem.Click += new System.EventHandler(this.getURLToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(203, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(248, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::DenpaQRCodeEditor.Properties.Resources.door_in;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
@@ -293,6 +305,7 @@
             // splitContainer.Panel1
             // 
             this.splitContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer.Panel1.Controls.Add(this.textBox1);
             this.splitContainer.Panel1.Controls.Add(this.hexBox1);
             this.splitContainer.Panel1.Controls.Add(this.picBox13);
             this.splitContainer.Panel1.Controls.Add(this.picBox12);
@@ -357,6 +370,37 @@
             this.splitContainer.Size = new System.Drawing.Size(786, 454);
             this.splitContainer.SplitterDistance = 432;
             this.splitContainer.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(112, 204);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(311, 20);
+            this.textBox1.TabIndex = 49;
+            this.textBox1.Visible = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // hexBox1
+            // 
+            this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox1.BytesPerLine = 8;
+            this.hexBox1.ColumnInfoVisible = true;
+            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexBox1.GroupSeparatorVisible = true;
+            this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
+            this.hexBox1.LineInfoVisible = true;
+            this.hexBox1.Location = new System.Drawing.Point(32, 0);
+            this.hexBox1.Name = "hexBox1";
+            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hexBox1.Size = new System.Drawing.Size(400, 228);
+            this.hexBox1.StringViewVisible = true;
+            this.hexBox1.TabIndex = 5;
+            this.hexBox1.UseFixedBytesPerLine = true;
+            this.hexBox1.Visible = false;
+            this.hexBox1.VScrollBarVisible = true;
+            this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
+            this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
             // 
             // picBox13
             // 
@@ -736,28 +780,6 @@
             this.picBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBox2.TabIndex = 37;
             this.picBox2.TabStop = false;
-            // 
-            // hexBox1
-            // 
-            this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox1.BytesPerLine = 8;
-            this.hexBox1.ColumnInfoVisible = true;
-            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hexBox1.GroupSeparatorVisible = true;
-            this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
-            this.hexBox1.LineInfoVisible = true;
-            this.hexBox1.Location = new System.Drawing.Point(32, 0);
-            this.hexBox1.Name = "hexBox1";
-            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox1.Size = new System.Drawing.Size(400, 228);
-            this.hexBox1.StringViewVisible = true;
-            this.hexBox1.TabIndex = 5;
-            this.hexBox1.UseFixedBytesPerLine = true;
-            this.hexBox1.Visible = false;
-            this.hexBox1.VScrollBarVisible = true;
-            this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
-            this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
             // 
             // maskedTextBox1
             // 
@@ -1445,6 +1467,8 @@
         private System.Windows.Forms.PictureBox picBox5;
         private System.Windows.Forms.PictureBox picBox4;
         private System.Windows.Forms.PictureBox picBox3;
+        private System.Windows.Forms.ToolStripMenuItem getURLToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

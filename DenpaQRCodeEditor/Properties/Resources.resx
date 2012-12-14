@@ -724,4 +724,142 @@
   <data name="nose_F" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nose_F.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="antenna_00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_04.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_0A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_0A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_0B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_0B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_0C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_0C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_0D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_0D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_0E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_0E.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_0F" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_0F.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_1A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_1A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_1B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_1B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_1C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_1C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_1D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_1D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_1E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_1E.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_1F" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_1F.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_27.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_29.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_2A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_2A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_2B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_2B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_2C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_2C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="antenna_2D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antenna_2D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

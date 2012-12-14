@@ -96,6 +96,21 @@ namespace DenpaQRCodeEditor
         };
         #endregion
         #region denpa_men_resources
+        Bitmap[] antenna = new Bitmap[46] {
+            Resources.antenna_00,Resources.antenna_01,Resources.antenna_02,Resources.antenna_03,
+            Resources.antenna_04,Resources.antenna_05,Resources.antenna_06,Resources.antenna_07,
+            Resources.antenna_08,Resources.antenna_09,Resources.antenna_0A,Resources.antenna_0B,
+            Resources.antenna_0C,Resources.antenna_0D,Resources.antenna_0E,Resources.antenna_0F,
+            Resources.antenna_10,Resources.antenna_11,Resources.antenna_12,Resources.antenna_13,
+            Resources.antenna_14,Resources.antenna_15,Resources.antenna_16,Resources.antenna_17,
+            Resources.antenna_18,Resources.antenna_19,Resources.antenna_1A,Resources.antenna_1B,
+            Resources.antenna_1C,Resources.antenna_1D,Resources.antenna_1E,Resources.antenna_1F,
+            Resources.antenna_20,Resources.antenna_21,Resources.antenna_22,Resources.antenna_23,
+            Resources.antenna_24,Resources.antenna_25,Resources.antenna_26,Resources.antenna_27,
+            Resources.antenna_28,Resources.antenna_29,Resources.antenna_2A,Resources.antenna_2B,
+            Resources.antenna_2C,Resources.antenna_2D,
+        };
+
         Bitmap[] head = new Bitmap[24] { 
             Resources.head_0_0, Resources.head_0_1, Resources.head_0_2, Resources.head_0_3,
             Resources.head_0_4, Resources.head_0_5, Resources.head_0_6, Resources.head_0_7,
@@ -1131,7 +1146,7 @@ namespace DenpaQRCodeEditor
             StatusStripLabel.Text = ""; 
             int index = cboAntennaPower.SelectedIndex;
             if (index == -1) return;
-            //picbox2
+            picBox2.Image = antenna[index];
             if (populating) return;
             update_stats();
             
@@ -1391,6 +1406,13 @@ namespace DenpaQRCodeEditor
         {
             if (populating) return;
             int index = (int)nudStats.Value;
+            if (index == -2) index = 415;
+            if (index == 319) index = 31;
+            if (index == 383) index = 351;
+            if (index == 32) index = 320;
+            if (index == 352) index = 384;
+            if (index == 416) index = 0;
+            nudStats.Value = index;
             if (index < 0) return;
             update_stats();
 
@@ -1947,6 +1969,112 @@ namespace DenpaQRCodeEditor
             int nud3 = (int)numericUpDown3.Value;
             int nud4 = Convert.ToInt32(maskedTextBox1.Text, 16);
             write_value(nud1, nud2, nud3, nud4);
+        }
+
+        private void getURLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Byte[] bytearray = new Byte[0x6A];
+            for (int i = 0; i < 0x6A; i++)
+                bytearray[i] = hexBox1.ByteProvider.ReadByte(i);
+            bytearray = Crypto.Encrypt(bytearray, true);
+            String url = "http://www.caitsith2.com/denpa/?data=" + Uri.EscapeUriString(System.Text.Encoding.ASCII.GetString(bytearray));
+            try
+            {
+                Clipboard.SetText(url);
+                MessageBox.Show("URL store in clip board", "Denpa QR Code Editor");
+            }
+            catch
+            {
+            }
+        }
+
+        int[][] stat_data = new int[96][] {
+            new int[7] {0,-1,0,0,0,0,0}, new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+            new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],new int[7],
+        };
+        int stat_count = 1;
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            String[] stats = textBox1.Text.Split(new char[] {','},6);
+            
+            if (stats == null) return;
+            if (stats.Length != 5) return;
+            int index = (int)nudStats.Value;
+            if (index < 0) return;
+
+            for (int i = 0; i < 5; i++)
+            {
+                try
+                {
+                    stat_data[(stat_count - 1)][i+2] = Convert.ToInt32(stats[i]);
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            if (index == 0)
+            {
+                stat_count = 1;
+                for (int i = 1; i < 96; i++)
+                {
+                    stat_data[i][5] = stat_data[i][6] = stat_data[i][2] = stat_data[i][3] = stat_data[i][4] = 0;
+                    stat_data[i][0] = stat_data[i][1] = -1;
+                }
+            }
+            else
+            {
+                String Temp = "";
+                for (int i = 0; i < stat_count; i++)
+                {
+                    if (stat_data[stat_count - 1][0] != index)
+                    {
+                        stat_data[stat_count][0] = index;
+                        stat_count++;
+                    }
+                    if (stat_data[stat_count - 1][1] == -1)
+                    {
+                        stat_data[stat_count - 1][1] = i;
+                        for (int j = 0; (j < 5) && (stat_data[stat_count - 1][1] == i); j++)
+                        {
+                            if (stat_data[index][j+2] != stat_data[i][j+2])
+                                stat_data[stat_count - 1][1] = -1;
+                        }
+                        if (stat_data[stat_count - 1][1] == i)
+                        {
+                            StatusStripLabel.Text = "Stat Index " + index.ToString() + " is a duplicate of Stat index " + stat_data[i][1].ToString();
+                        }
+                        else
+                        {
+                            StatusStripLabel.Text = "Stat Index " + index.ToString() + " is unique";
+                        }
+                    }
+                    Temp += stat_data[i][0].ToString() + ", ";
+                    for(int j=0;j<5;j++)
+                        Temp += stat_data[i][2+j].ToString() + ", ";
+                    Temp += ((stat_data[i][1] == -1) ? "-1" : stat_data[i][1].ToString()) + "\n";
+                }
+                try
+                {
+                    Clipboard.SetText(Temp);
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to copy stat data to clipboard :(");
+                }
+            }
+            
         }
 
     }
