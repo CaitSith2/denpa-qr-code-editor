@@ -84,7 +84,14 @@ namespace IntelligentLevelEditor
             InitializeComponent();
         }
 
-        public static byte[] GetByteArray(bool autoreturn = true)
+        public static byte[] GetByteArray()
+        {
+            var capture = new CameraCapture();
+            autoreturnqrdata = false;
+            return capture.ShowDialog() == DialogResult.OK ? capture.ByteArray : null;
+        }
+
+        public static byte[] GetByteArray(bool autoreturn)
         {
             var capture = new CameraCapture();
             autoreturnqrdata = autoreturn;

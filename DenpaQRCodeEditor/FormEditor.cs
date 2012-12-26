@@ -1694,7 +1694,7 @@ namespace DenpaQRCodeEditor
 
         private void captureQRCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            load_QR_data(CameraCapture.GetByteArray());
+            load_QR_data(CameraCapture.GetByteArray(true));
         }
 
         private void dontDecryptToolStripMenuItem_Click(object sender, EventArgs e)
