@@ -14,6 +14,7 @@ using com.google.zxing;
 using com.google.zxing.qrcode;
 using com.google.zxing.common;
 using ErrorCorrectionLevel = com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+using IntelligentLevelEditor;
 
 /*
  * Todolist:
@@ -452,9 +453,9 @@ namespace DenpaQRCodeEditor
         }
 
         Byte[][] Denpa_regions = new Byte[][] {
-            new Byte[] { (Byte)'A',0,(Byte)'h',0,(Byte)'4',0,(Byte)'3',0},
-            new Byte[] { (Byte)'b',0,(Byte)'X',0,(Byte)'8',0,(Byte)'0',0},
-            new Byte[] { (Byte)'j',0,(Byte)'3',0,(Byte)'Z',0,(Byte)'w',0},
+            new Byte[] { (Byte)'A',(Byte)'h',(Byte)'4',(Byte)'3'},
+            new Byte[] { (Byte)'b',(Byte)'X',(Byte)'8',(Byte)'0'},
+            new Byte[] { (Byte)'j',(Byte)'3',(Byte)'Z',(Byte)'w'},
         };
 
         private bool character_stats_initialized = false;
@@ -593,7 +594,7 @@ namespace DenpaQRCodeEditor
 
         private void menuFileNew_Click(object sender, EventArgs e)
         {
-            var data = new Byte[0x6A];
+            var data = new Byte[0x6A/2];
             QRByteArray = data;
             if (hexBox1.ByteProvider != null)
             {
@@ -690,8 +691,8 @@ namespace DenpaQRCodeEditor
             btnChangeID_Click(sender, e);
             StatusStripLabel.Text = "";
             Byte[] bytearray = new byte[0x6A];
-            for (int i = 0; i < 0x6A; i++)
-                bytearray[i] = hexBox1.ByteProvider.ReadByte(i);
+            for (int i = 0; i < (0x6A/2); i++)
+                bytearray[i*2] = hexBox1.ByteProvider.ReadByte(i);
             load_QR_data(bytearray);
             
         }
@@ -724,7 +725,7 @@ namespace DenpaQRCodeEditor
             }
 
             if (!advancedInterfaceToolStripMenuItem.Checked || !dontDecryptToolStripMenuItem.Checked)
-                data = Crypto.Encrypt(QRByteArray,true);
+                data = Crypto.Encrypt(QRByteArray);
             else
                 data = QRByteArray;
 
@@ -889,23 +890,19 @@ namespace DenpaQRCodeEditor
 
         private int IsQRDenpa(Byte[] bytearray)
         {
-            Byte[] byteArray = new Byte[0x6A];
+            Byte[] byteArray = new Byte[0x6A/2];
             if ((dontDecryptToolStripMenuItem.Checked == true))
                 return (int)denpa_type.forced_decode;   //If the menu is hidden in the checked state, then it is no longer possible
             //to determine the header bytes, except on a 1/ 2^32 chance.  However, size checking
             //is still possible.
-            else if (bytearray.Length == 0x6A)
+            else if (bytearray.Length == (0x6A/2))
             {
-                Array.Copy(bytearray, byteArray, 0x6A);
-                if (!advancedInterfaceToolStripMenuItem.Checked || !dontDecryptToolStripMenuItem.Checked)
-                    byteArray = Crypto.Decrypt(byteArray);
-                else
-                    return (int)denpa_type.forced_decode;
+                Array.Copy(bytearray, byteArray, (0x6A/2));
 
                 for(int i = 0; i < Denpa_regions.Length; i++)
                 {
                     bool is_denpa = true;
-                    for(int j=0;(j<8)&&is_denpa;j++)
+                    for(int j=0;(j<4)&&is_denpa;j++)
                         if(byteArray[j] != Denpa_regions[i][j])
                             is_denpa = false;
                     if(is_denpa)
@@ -1179,12 +1176,12 @@ namespace DenpaQRCodeEditor
             if (txtName.TextLength > 0)
             {
                 byte[] unicode_str = System.Text.Encoding.Unicode.GetBytes(txtName.Text);
-                for (int i = 0; i < 48; i++)
-                    hexBox1.ByteProvider.WriteByte(0x34 + i, 0);
+                for (int i = 0; i < 24; i++)
+                    hexBox1.ByteProvider.WriteByte((0x34/2) + i, 0);
                 for (int i = 0; i < txtName.TextLength; i++)
                 {
-                    hexBox1.ByteProvider.WriteByte(0x34 + (i*4), unicode_str[(i*2)]);
-                    hexBox1.ByteProvider.WriteByte(0x36 + (i * 4), unicode_str[(i*2)+1]);
+                    hexBox1.ByteProvider.WriteByte((0x34/2) + (i*2), unicode_str[(i*2)]);
+                    hexBox1.ByteProvider.WriteByte((0x36/2) + (i * 2), unicode_str[(i*2)+1]);
                 }
                 hexBox1.Refresh();
                 hexBox1_KeyPress(null, null);
@@ -1252,8 +1249,8 @@ namespace DenpaQRCodeEditor
         private void btnChangeID_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            write_value(0x0C, 0, 16, random.Next(0, 65535));
-            write_value(0x64, 0, 24, random.Next(0, 16777215));
+            write_value(0x0C/2, 0, 16, random.Next(0, 65535));
+            write_value(0x64/2, 0, 24, random.Next(0, 16777215));
             hexBox1.Refresh();
             hexBox1_KeyPress(null, null);
         }
@@ -1477,7 +1474,7 @@ namespace DenpaQRCodeEditor
         {
             if (populating) return;
             if(cboRegion.SelectedIndex != -1)
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 4; i++)
                     hexBox1.ByteProvider.WriteByte(i, Denpa_regions[cboRegion.SelectedIndex][i]);
             hexBox1.Refresh();
             hexBox1_KeyPress(null, null);
@@ -1542,7 +1539,7 @@ namespace DenpaQRCodeEditor
                 cboRegion.SelectedIndex = IsQRDenpa(byteArray);
                 for (int i = 0; i < 24; i++)
                 {
-                    name[i] = byteArray[0x34 + (i * 2)];
+                    name[i] = byteArray[(0x34/2) + i];
                 }
                 txtName.Text = System.Text.Encoding.Unicode.GetString(name);
                 cboEyes.SelectedIndex = read_value(denpa_data.eyes);
@@ -1689,7 +1686,7 @@ namespace DenpaQRCodeEditor
                 temp = new Byte[QRByteArray.Length];
                 QRByteArray.CopyTo(temp, 0);    //Make sure any tampering with the combo boxes do NOT mess with this data.
                 if (!advancedInterfaceToolStripMenuItem.Checked || !dontDecryptToolStripMenuItem.Checked)
-                    populate_combo_boxes(Crypto.Decrypt(temp));
+                    populate_combo_boxes(temp);
                 else
                     populate_combo_boxes(null);
             }
@@ -1697,7 +1694,7 @@ namespace DenpaQRCodeEditor
 
         private void captureQRCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            load_QR_data(CameraCapture.GetByteArray(true));
+            load_QR_data(CameraCapture.GetByteArray());
         }
 
         private void dontDecryptToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1758,39 +1755,39 @@ namespace DenpaQRCodeEditor
         };
 
         int[][] offsets = new int[][] {
-            new int[] { 0x10, 0, 6 },   //Antenna power
-            new int[] { 0x26, 6, 7 },   //Antenna power class
-            new int[] { 0x10, 6, 5 },   //Stats
-            new int[] { 0x22, 0, 4 },   //Stat class
-            new int[] { 0x12, 3, 5 },   //Color
-            new int[] { 0x24, 0, 7 },   //Color class
-            new int[] { 0x14, 0, 5 },   //Head shape
-            new int[] { 0x24, 7, 7 },   //Head shape class
-            new int[] { 0x14, 5, 6 },   //Face shape/hair style
-            new int[] { 0x28, 5, 7 },   //Faces shape/hair style class
-            new int[] { 0x16, 3, 2 },   //Face color
-            new int[] { 0x30, 0, 5 },   //Face color class
-            new int[] { 0x18, 0, 5 },   //Hair color
-            new int[] { 0x18, 5, 5 },   //Eyes
-            new int[] { 0x1A, 3, 4 },   //Nose
-            new int[] { 0x1C, 0, 6 },   //Mouth
-            new int[] { 0x1C, 6, 3 },   //Eyebrows
-            new int[] { 0x1E, 3, 5 },   //Cheeks
-            new int[] { 0x2C, 0, 7 },   //Cheek class
-            new int[] { 0x20, 0, 5 },   //Glasses
-            new int[] { 0x2E, 0, 6 },   //Glasses class
+            new int[] { 0x10/2, 0, 6 },   //Antenna power
+            new int[] { 0x26/2, 6, 7 },   //Antenna power class
+            new int[] { 0x10/2, 6, 5 },   //Stats
+            new int[] { 0x22/2, 0, 4 },   //Stat class
+            new int[] { 0x12/2, 3, 5 },   //Color
+            new int[] { 0x24/2, 0, 7 },   //Color class
+            new int[] { 0x14/2, 0, 5 },   //Head shape
+            new int[] { 0x24/2, 7, 7 },   //Head shape class
+            new int[] { 0x14/2, 5, 6 },   //Face shape/hair style
+            new int[] { 0x28/2, 5, 7 },   //Faces shape/hair style class
+            new int[] { 0x16/2, 3, 2 },   //Face color
+            new int[] { 0x30/2, 0, 5 },   //Face color class
+            new int[] { 0x18/2, 0, 5 },   //Hair color
+            new int[] { 0x18/2, 5, 5 },   //Eyes
+            new int[] { 0x1A/2, 3, 4 },   //Nose
+            new int[] { 0x1C/2, 0, 6 },   //Mouth
+            new int[] { 0x1C/2, 6, 3 },   //Eyebrows
+            new int[] { 0x1E/2, 3, 5 },   //Cheeks
+            new int[] { 0x2C/2, 0, 7 },   //Cheek class
+            new int[] { 0x20/2, 0, 5 },   //Glasses
+            new int[] { 0x2E/2, 0, 6 },   //Glasses class
             
-            new int[] { 0x16, 5, 3 },   //Unknown purpose from here on in. :)
-            new int[] { 0x1A, 2, 1 },
-            new int[] { 0x1A, 7, 1 },
-            new int[] { 0x1E, 1, 2 },
-            new int[] { 0x20, 5, 3 },
-            new int[] { 0x22, 4, 4 },
-            new int[] { 0x2A, 4, 4 },
-            new int[] { 0x2C, 7, 1 },
-            new int[] { 0x2E, 6, 2 },
-            new int[] { 0x30, 5, 3 },
-            new int[] { 0x32, 0, 8 },
+            new int[] { 0x16/2, 5, 3 },   //Unknown purpose from here on in. :)
+            new int[] { 0x1A/2, 2, 1 },
+            new int[] { 0x1A/2, 7, 1 },
+            new int[] { 0x1E/2, 1, 2 },
+            new int[] { 0x20/2, 5, 3 },
+            new int[] { 0x22/2, 4, 4 },
+            new int[] { 0x2A/2, 4, 4 },
+            new int[] { 0x2C/2, 7, 1 },
+            new int[] { 0x2E/2, 6, 2 },
+            new int[] { 0x30/2, 5, 3 },
+            new int[] { 0x32/2, 0, 8 },
         };
 
         private int read_value(denpa_data data)
@@ -1840,9 +1837,6 @@ namespace DenpaQRCodeEditor
                 }
 
                 byteoffset++;
-                if (!dontDecryptToolStripMenuItem.Checked)
-                    byteoffset++;
-                
             }
             return value;
         }
@@ -1885,8 +1879,6 @@ namespace DenpaQRCodeEditor
                 }
                 hexBox1.ByteProvider.WriteByte(byteoffset, temp);
                 byteoffset++;
-                if (!dontDecryptToolStripMenuItem.Checked)
-                    byteoffset++;
             }
             hexBox1.Refresh();
             hexBox1_KeyPress(null, null);
@@ -1973,15 +1965,15 @@ namespace DenpaQRCodeEditor
 
         private void getURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Byte[] bytearray = new Byte[0x6A];
-            for (int i = 0; i < 0x6A; i++)
+            Byte[] bytearray = new Byte[0x6A/2];
+            for (int i = 0; i < 53; i++)
                 bytearray[i] = hexBox1.ByteProvider.ReadByte(i);
-            bytearray = Crypto.Encrypt(bytearray, true);
+            bytearray = Crypto.Encrypt(bytearray,Crypto.EncryptType.AlphaNumeric);
             String url = "http://www.caitsith2.com/denpa/?data=" + Uri.EscapeUriString(System.Text.Encoding.ASCII.GetString(bytearray));
             try
             {
                 Clipboard.SetText(url);
-                MessageBox.Show("URL store in clip board", "Denpa QR Code Editor");
+                MessageBox.Show("URL stored in clip board", "Denpa QR Code Editor");
             }
             catch
             {

@@ -83,6 +83,8 @@
     <Compile Include="CameraCapture.Designer.cs">
       <DependentUpon>CameraCapture.cs</DependentUpon>
     </Compile>
+    <Compile Include="Capture\CAP.cs" />
+    <Compile Include="Capture\CaptureDevice.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="FormEditor.cs">
       <SubType>Form</SubType>
@@ -109,10 +111,6 @@
     <Compile Include="SimplePaletteQuantizer\Quantizers\IColorQuantizer.cs" />
     <Compile Include="SimplePaletteQuantizer\Quantizers\XiaolinWu\WuColorCube.cs" />
     <Compile Include="SimplePaletteQuantizer\Quantizers\XiaolinWu\WuColorQuantizer.cs" />
-    <Compile Include="WebCam\WebCam.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WebCam\WebCamEventArgs.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>

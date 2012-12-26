@@ -31,14 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEditor));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.newDenpaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.openQRCodeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.captureQRCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveQRCodeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.getURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedInterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dontDecryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,17 +47,6 @@
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.hexBox1 = new Be.Windows.Forms.HexBox();
-            this.picBox13 = new System.Windows.Forms.PictureBox();
-            this.picBox12 = new System.Windows.Forms.PictureBox();
-            this.picBox11 = new System.Windows.Forms.PictureBox();
-            this.picBox10 = new System.Windows.Forms.PictureBox();
-            this.picBox9 = new System.Windows.Forms.PictureBox();
-            this.picBox8 = new System.Windows.Forms.PictureBox();
-            this.picBox7 = new System.Windows.Forms.PictureBox();
-            this.picBox6 = new System.Windows.Forms.PictureBox();
-            this.picBox5 = new System.Windows.Forms.PictureBox();
-            this.picBox4 = new System.Windows.Forms.PictureBox();
-            this.picBox3 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cboGlasses = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -77,7 +62,6 @@
             this.cboColor = new System.Windows.Forms.ComboBox();
             this.cboHeadShape = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.picBox2 = new System.Windows.Forms.PictureBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
@@ -101,7 +85,6 @@
             this.btnChangeID = new System.Windows.Forms.Button();
             this.cboEyeBrows = new System.Windows.Forms.ComboBox();
             this.btnSwitchPicBox = new System.Windows.Forms.Button();
-            this.picBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cboFaceShapeHairStyle = new System.Windows.Forms.ComboBox();
             this.cboAntennaPower = new System.Windows.Forms.ComboBox();
@@ -117,11 +100,34 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.newDenpaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.picBox13 = new System.Windows.Forms.PictureBox();
+            this.picBox12 = new System.Windows.Forms.PictureBox();
+            this.picBox11 = new System.Windows.Forms.PictureBox();
+            this.picBox10 = new System.Windows.Forms.PictureBox();
+            this.picBox9 = new System.Windows.Forms.PictureBox();
+            this.picBox8 = new System.Windows.Forms.PictureBox();
+            this.picBox7 = new System.Windows.Forms.PictureBox();
+            this.picBox6 = new System.Windows.Forms.PictureBox();
+            this.picBox5 = new System.Windows.Forms.PictureBox();
+            this.picBox4 = new System.Windows.Forms.PictureBox();
+            this.picBox3 = new System.Windows.Forms.PictureBox();
+            this.picBox2 = new System.Windows.Forms.PictureBox();
+            this.picBox = new System.Windows.Forms.PictureBox();
+            this.newDenpaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openQRCodeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveQRCodeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
+            this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox11)).BeginInit();
@@ -134,13 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).BeginInit();
-            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -170,28 +170,10 @@
             this.toolStripMenuItem1.Text = "File";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // newDenpaToolStripMenuItem1
-            // 
-            this.newDenpaToolStripMenuItem1.Image = global::DenpaQRCodeEditor.Properties.Resources.page_white;
-            this.newDenpaToolStripMenuItem1.Name = "newDenpaToolStripMenuItem1";
-            this.newDenpaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newDenpaToolStripMenuItem1.Size = new System.Drawing.Size(251, 22);
-            this.newDenpaToolStripMenuItem1.Text = "&New Denpa";
-            this.newDenpaToolStripMenuItem1.Click += new System.EventHandler(this.menuFileNew_Click);
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(248, 6);
-            // 
-            // openQRCodeToolStripMenuItem2
-            // 
-            this.openQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.folder_picture;
-            this.openQRCodeToolStripMenuItem2.Name = "openQRCodeToolStripMenuItem2";
-            this.openQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.openQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(251, 22);
-            this.openQRCodeToolStripMenuItem2.Text = "Open &QR Code";
-            this.openQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.openQRCodeToolStripMenuItem_Click);
             // 
             // captureQRCodeToolStripMenuItem
             // 
@@ -200,15 +182,6 @@
             this.captureQRCodeToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.captureQRCodeToolStripMenuItem.Text = "Capture from WebCam...";
             this.captureQRCodeToolStripMenuItem.Click += new System.EventHandler(this.captureQRCodeToolStripMenuItem_Click);
-            // 
-            // saveQRCodeToolStripMenuItem2
-            // 
-            this.saveQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.barcode2d;
-            this.saveQRCodeToolStripMenuItem2.Name = "saveQRCodeToolStripMenuItem2";
-            this.saveQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(251, 22);
-            this.saveQRCodeToolStripMenuItem2.Text = "&Save QR Code";
-            this.saveQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.saveQRCodeToolStripMenuItem_Click);
             // 
             // getURLToolStripMenuItem
             // 
@@ -222,15 +195,6 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(248, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::DenpaQRCodeEditor.Properties.Resources.door_in;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -306,18 +270,6 @@
             // 
             this.splitContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer.Panel1.Controls.Add(this.hexBox1);
-            this.splitContainer.Panel1.Controls.Add(this.picBox13);
-            this.splitContainer.Panel1.Controls.Add(this.picBox12);
-            this.splitContainer.Panel1.Controls.Add(this.picBox11);
-            this.splitContainer.Panel1.Controls.Add(this.picBox10);
-            this.splitContainer.Panel1.Controls.Add(this.picBox9);
-            this.splitContainer.Panel1.Controls.Add(this.picBox8);
-            this.splitContainer.Panel1.Controls.Add(this.picBox7);
-            this.splitContainer.Panel1.Controls.Add(this.picBox6);
-            this.splitContainer.Panel1.Controls.Add(this.picBox5);
-            this.splitContainer.Panel1.Controls.Add(this.picBox4);
-            this.splitContainer.Panel1.Controls.Add(this.picBox3);
             this.splitContainer.Panel1.Controls.Add(this.label13);
             this.splitContainer.Panel1.Controls.Add(this.cboGlasses);
             this.splitContainer.Panel1.Controls.Add(this.label9);
@@ -333,6 +285,18 @@
             this.splitContainer.Panel1.Controls.Add(this.cboColor);
             this.splitContainer.Panel1.Controls.Add(this.cboHeadShape);
             this.splitContainer.Panel1.Controls.Add(this.label2);
+            this.splitContainer.Panel1.Controls.Add(this.hexBox1);
+            this.splitContainer.Panel1.Controls.Add(this.picBox13);
+            this.splitContainer.Panel1.Controls.Add(this.picBox12);
+            this.splitContainer.Panel1.Controls.Add(this.picBox11);
+            this.splitContainer.Panel1.Controls.Add(this.picBox10);
+            this.splitContainer.Panel1.Controls.Add(this.picBox9);
+            this.splitContainer.Panel1.Controls.Add(this.picBox8);
+            this.splitContainer.Panel1.Controls.Add(this.picBox7);
+            this.splitContainer.Panel1.Controls.Add(this.picBox6);
+            this.splitContainer.Panel1.Controls.Add(this.picBox5);
+            this.splitContainer.Panel1.Controls.Add(this.picBox4);
+            this.splitContainer.Panel1.Controls.Add(this.picBox3);
             this.splitContainer.Panel1.Controls.Add(this.picBox2);
             // 
             // splitContainer.Panel2
@@ -390,10 +354,10 @@
             this.hexBox1.GroupSeparatorVisible = true;
             this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
             this.hexBox1.LineInfoVisible = true;
-            this.hexBox1.Location = new System.Drawing.Point(32, 0);
+            this.hexBox1.Location = new System.Drawing.Point(0, 0);
             this.hexBox1.Name = "hexBox1";
             this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox1.Size = new System.Drawing.Size(400, 228);
+            this.hexBox1.Size = new System.Drawing.Size(432, 228);
             this.hexBox1.StringViewVisible = true;
             this.hexBox1.TabIndex = 5;
             this.hexBox1.UseFixedBytesPerLine = true;
@@ -401,105 +365,6 @@
             this.hexBox1.VScrollBarVisible = true;
             this.hexBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hexBox1_KeyPress);
             this.hexBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hexBox1_KeyUp);
-            // 
-            // picBox13
-            // 
-            this.picBox13.Location = new System.Drawing.Point(323, 149);
-            this.picBox13.Name = "picBox13";
-            this.picBox13.Size = new System.Drawing.Size(90, 70);
-            this.picBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox13.TabIndex = 48;
-            this.picBox13.TabStop = false;
-            // 
-            // picBox12
-            // 
-            this.picBox12.Location = new System.Drawing.Point(39, 149);
-            this.picBox12.Name = "picBox12";
-            this.picBox12.Size = new System.Drawing.Size(90, 70);
-            this.picBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox12.TabIndex = 47;
-            this.picBox12.TabStop = false;
-            // 
-            // picBox11
-            // 
-            this.picBox11.Location = new System.Drawing.Point(229, 149);
-            this.picBox11.Name = "picBox11";
-            this.picBox11.Size = new System.Drawing.Size(90, 70);
-            this.picBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox11.TabIndex = 46;
-            this.picBox11.TabStop = false;
-            // 
-            // picBox10
-            // 
-            this.picBox10.Location = new System.Drawing.Point(134, 149);
-            this.picBox10.Name = "picBox10";
-            this.picBox10.Size = new System.Drawing.Size(90, 70);
-            this.picBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox10.TabIndex = 45;
-            this.picBox10.TabStop = false;
-            // 
-            // picBox9
-            // 
-            this.picBox9.Location = new System.Drawing.Point(323, 73);
-            this.picBox9.Name = "picBox9";
-            this.picBox9.Size = new System.Drawing.Size(90, 70);
-            this.picBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox9.TabIndex = 44;
-            this.picBox9.TabStop = false;
-            // 
-            // picBox8
-            // 
-            this.picBox8.Location = new System.Drawing.Point(229, 73);
-            this.picBox8.Name = "picBox8";
-            this.picBox8.Size = new System.Drawing.Size(90, 70);
-            this.picBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox8.TabIndex = 43;
-            this.picBox8.TabStop = false;
-            // 
-            // picBox7
-            // 
-            this.picBox7.Location = new System.Drawing.Point(134, 73);
-            this.picBox7.Name = "picBox7";
-            this.picBox7.Size = new System.Drawing.Size(90, 70);
-            this.picBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox7.TabIndex = 42;
-            this.picBox7.TabStop = false;
-            // 
-            // picBox6
-            // 
-            this.picBox6.Location = new System.Drawing.Point(39, 73);
-            this.picBox6.Name = "picBox6";
-            this.picBox6.Size = new System.Drawing.Size(90, 70);
-            this.picBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox6.TabIndex = 41;
-            this.picBox6.TabStop = false;
-            // 
-            // picBox5
-            // 
-            this.picBox5.Location = new System.Drawing.Point(323, 0);
-            this.picBox5.Name = "picBox5";
-            this.picBox5.Size = new System.Drawing.Size(90, 70);
-            this.picBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox5.TabIndex = 40;
-            this.picBox5.TabStop = false;
-            // 
-            // picBox4
-            // 
-            this.picBox4.Location = new System.Drawing.Point(229, 0);
-            this.picBox4.Name = "picBox4";
-            this.picBox4.Size = new System.Drawing.Size(90, 70);
-            this.picBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox4.TabIndex = 39;
-            this.picBox4.TabStop = false;
-            // 
-            // picBox3
-            // 
-            this.picBox3.Location = new System.Drawing.Point(134, 0);
-            this.picBox3.Name = "picBox3";
-            this.picBox3.Size = new System.Drawing.Size(90, 70);
-            this.picBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox3.TabIndex = 38;
-            this.picBox3.TabStop = false;
             // 
             // label13
             // 
@@ -690,9 +555,9 @@
             this.tbEditor.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbEditor.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tbEditor.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.tbEditor.Location = new System.Drawing.Point(0, 0);
+            this.tbEditor.Location = new System.Drawing.Point(0, 228);
             this.tbEditor.Name = "tbEditor";
-            this.tbEditor.Size = new System.Drawing.Size(32, 454);
+            this.tbEditor.Size = new System.Drawing.Size(32, 226);
             this.tbEditor.TabIndex = 4;
             // 
             // cboColor
@@ -771,15 +636,6 @@
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "Color:";
-            // 
-            // picBox2
-            // 
-            this.picBox2.Location = new System.Drawing.Point(39, 0);
-            this.picBox2.Name = "picBox2";
-            this.picBox2.Size = new System.Drawing.Size(90, 70);
-            this.picBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox2.TabIndex = 37;
-            this.picBox2.TabStop = false;
             // 
             // maskedTextBox1
             // 
@@ -1111,15 +967,6 @@
             this.btnSwitchPicBox.Visible = false;
             this.btnSwitchPicBox.Click += new System.EventHandler(this.btnSwitchPicBox_Click);
             // 
-            // picBox
-            // 
-            this.picBox.Location = new System.Drawing.Point(1, 0);
-            this.picBox.Name = "picBox";
-            this.picBox.Size = new System.Drawing.Size(200, 200);
-            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBox.TabIndex = 4;
-            this.picBox.TabStop = false;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -1329,6 +1176,159 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
+            // picBox13
+            // 
+            this.picBox13.Location = new System.Drawing.Point(321, 150);
+            this.picBox13.Name = "picBox13";
+            this.picBox13.Size = new System.Drawing.Size(90, 75);
+            this.picBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox13.TabIndex = 48;
+            this.picBox13.TabStop = false;
+            // 
+            // picBox12
+            // 
+            this.picBox12.Location = new System.Drawing.Point(39, 150);
+            this.picBox12.Name = "picBox12";
+            this.picBox12.Size = new System.Drawing.Size(90, 75);
+            this.picBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox12.TabIndex = 47;
+            this.picBox12.TabStop = false;
+            // 
+            // picBox11
+            // 
+            this.picBox11.Location = new System.Drawing.Point(227, 150);
+            this.picBox11.Name = "picBox11";
+            this.picBox11.Size = new System.Drawing.Size(90, 75);
+            this.picBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox11.TabIndex = 46;
+            this.picBox11.TabStop = false;
+            // 
+            // picBox10
+            // 
+            this.picBox10.Location = new System.Drawing.Point(133, 150);
+            this.picBox10.Name = "picBox10";
+            this.picBox10.Size = new System.Drawing.Size(90, 75);
+            this.picBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox10.TabIndex = 45;
+            this.picBox10.TabStop = false;
+            // 
+            // picBox9
+            // 
+            this.picBox9.Location = new System.Drawing.Point(321, 75);
+            this.picBox9.Name = "picBox9";
+            this.picBox9.Size = new System.Drawing.Size(90, 75);
+            this.picBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox9.TabIndex = 44;
+            this.picBox9.TabStop = false;
+            // 
+            // picBox8
+            // 
+            this.picBox8.Location = new System.Drawing.Point(227, 75);
+            this.picBox8.Name = "picBox8";
+            this.picBox8.Size = new System.Drawing.Size(90, 75);
+            this.picBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox8.TabIndex = 43;
+            this.picBox8.TabStop = false;
+            // 
+            // picBox7
+            // 
+            this.picBox7.Location = new System.Drawing.Point(133, 75);
+            this.picBox7.Name = "picBox7";
+            this.picBox7.Size = new System.Drawing.Size(90, 75);
+            this.picBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox7.TabIndex = 42;
+            this.picBox7.TabStop = false;
+            // 
+            // picBox6
+            // 
+            this.picBox6.Location = new System.Drawing.Point(39, 75);
+            this.picBox6.Name = "picBox6";
+            this.picBox6.Size = new System.Drawing.Size(90, 75);
+            this.picBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox6.TabIndex = 41;
+            this.picBox6.TabStop = false;
+            // 
+            // picBox5
+            // 
+            this.picBox5.Location = new System.Drawing.Point(321, 0);
+            this.picBox5.Name = "picBox5";
+            this.picBox5.Size = new System.Drawing.Size(90, 75);
+            this.picBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox5.TabIndex = 40;
+            this.picBox5.TabStop = false;
+            // 
+            // picBox4
+            // 
+            this.picBox4.Location = new System.Drawing.Point(227, 0);
+            this.picBox4.Name = "picBox4";
+            this.picBox4.Size = new System.Drawing.Size(90, 75);
+            this.picBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox4.TabIndex = 39;
+            this.picBox4.TabStop = false;
+            // 
+            // picBox3
+            // 
+            this.picBox3.Location = new System.Drawing.Point(133, 0);
+            this.picBox3.Name = "picBox3";
+            this.picBox3.Size = new System.Drawing.Size(90, 75);
+            this.picBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox3.TabIndex = 38;
+            this.picBox3.TabStop = false;
+            // 
+            // picBox2
+            // 
+            this.picBox2.Location = new System.Drawing.Point(39, 0);
+            this.picBox2.Name = "picBox2";
+            this.picBox2.Size = new System.Drawing.Size(90, 75);
+            this.picBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox2.TabIndex = 37;
+            this.picBox2.TabStop = false;
+            // 
+            // picBox
+            // 
+            this.picBox.Location = new System.Drawing.Point(1, 0);
+            this.picBox.Name = "picBox";
+            this.picBox.Size = new System.Drawing.Size(200, 200);
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox.TabIndex = 4;
+            this.picBox.TabStop = false;
+            // 
+            // newDenpaToolStripMenuItem1
+            // 
+            this.newDenpaToolStripMenuItem1.Image = global::DenpaQRCodeEditor.Properties.Resources.page_white;
+            this.newDenpaToolStripMenuItem1.Name = "newDenpaToolStripMenuItem1";
+            this.newDenpaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newDenpaToolStripMenuItem1.Size = new System.Drawing.Size(251, 22);
+            this.newDenpaToolStripMenuItem1.Text = "&New Denpa";
+            this.newDenpaToolStripMenuItem1.Click += new System.EventHandler(this.menuFileNew_Click);
+            // 
+            // openQRCodeToolStripMenuItem2
+            // 
+            this.openQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.folder_picture;
+            this.openQRCodeToolStripMenuItem2.Name = "openQRCodeToolStripMenuItem2";
+            this.openQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.openQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(251, 22);
+            this.openQRCodeToolStripMenuItem2.Text = "Open &QR Code";
+            this.openQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.openQRCodeToolStripMenuItem_Click);
+            // 
+            // saveQRCodeToolStripMenuItem2
+            // 
+            this.saveQRCodeToolStripMenuItem2.Image = global::DenpaQRCodeEditor.Properties.Resources.barcode2d;
+            this.saveQRCodeToolStripMenuItem2.Name = "saveQRCodeToolStripMenuItem2";
+            this.saveQRCodeToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveQRCodeToolStripMenuItem2.Size = new System.Drawing.Size(251, 22);
+            this.saveQRCodeToolStripMenuItem2.Text = "&Save QR Code";
+            this.saveQRCodeToolStripMenuItem2.Click += new System.EventHandler(this.saveQRCodeToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::DenpaQRCodeEditor.Properties.Resources.door_in;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.menuFileExit_Click);
+            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1354,6 +1354,13 @@
             this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox11)).EndInit();
@@ -1366,14 +1373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStats)).EndInit();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,105 +1,214 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
-using System.Text;
-using DenpaQRCodeEditor.WebCam;
+using IntelligentLevelEditor.Capture;
 using com.google.zxing;
 using com.google.zxing.common;
 using com.google.zxing.qrcode;
 
-
-namespace DenpaQRCodeEditor
+namespace IntelligentLevelEditor
 {
     public partial class CameraCapture : Form
     {
-        private QRCodeReader _reader = new QRCodeReader();
+        public delegate void ByteArrayReceivedCallback(byte[] result);
+
+        public class CheckBitmapForQR
+        {
+            private ByteArrayReceivedCallback _callback;
+            private bool _running;
+            private Thread _thread;
+            private Bitmap _examinedBitmap = null;
+            private QRCodeReader _reader = new QRCodeReader();
+
+            public CheckBitmapForQR(ByteArrayReceivedCallback callback)
+            {
+                _callback = callback;
+                _thread = new Thread(new ThreadStart(Run));
+                _thread.Name = "CheckBitmapForQR";
+                _running = true;
+                _thread.Start();
+            }
+
+            public void Kill()
+            {
+                _running = false;
+            }
+
+            public void Check(Bitmap bmp)
+            {
+                if (_examinedBitmap == null) //only if not busy
+                    _examinedBitmap = bmp;
+            }
+
+            public void Run()
+            {
+                while (_running)
+                {
+                    if (_examinedBitmap != null)
+                    {
+                        try
+                        {
+                            var binary = new BinaryBitmap(new HybridBinarizer(new RGBLuminanceSource(_examinedBitmap, _examinedBitmap.Width, _examinedBitmap.Height)));
+                            var result = _reader.decode(binary);
+                            byte[] byteArray;
+
+                            if (((ArrayList)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS]) != null)
+                                byteArray = (byte[])((ArrayList)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS])[0];
+                            else
+                                byteArray = System.Text.Encoding.ASCII.GetBytes(result.Text);
+
+                            if (_callback != null)
+                                _callback(byteArray);
+                        }
+                        catch// (ReaderException ex)
+                        {
+                            //Nothing was found apperatnly
+                        }
+
+                    }
+                    //finished checking this bitmap
+                    _examinedBitmap = null; //dispose of examined bitmap
+                }
+            }
+        }
+
+        private Capture.CaptureDevice _camera;
+        private short _deviceIndex = -1;
         public byte[] ByteArray;
-        public byte[] previous_bytes = null;
-        public bool AutoReturn = false;
+        public CheckBitmapForQR _checker;
+        private static bool autoreturnqrdata = false;
 
         public CameraCapture()
         {
             InitializeComponent();
         }
 
-        public static byte[] GetByteArray(bool autoreturn = false, Byte[] previous_data = null )
+        public static byte[] GetByteArray(bool autoreturn = true)
         {
             var capture = new CameraCapture();
-            capture.AutoReturn = autoreturn;
-            capture.previous_bytes = previous_data;
+            autoreturnqrdata = autoreturn;
             return capture.ShowDialog() == DialogResult.OK ? capture.ByteArray : null;
         }
 
-        private void WebCamCaptureImageCaptured(object source, WebcamEventArgs e)
+        private void Start(short deviceIndex = -1)
         {
-            pictureCamera.Image = e.WebCamImage;
-
-            try
+            _deviceIndex = _camera.Start(deviceIndex);
+            if (_camera.IsRunning())
             {
-                var bmp = new Bitmap(pictureCamera.Image);
-                var binary = new BinaryBitmap(new HybridBinarizer(new RGBLuminanceSource(bmp, bmp.Width, bmp.Height)));
+                menuDeviceStart.Enabled = false;
+                menuDeviceStop.Enabled = true;
 
-                var result = _reader.decode(binary);
-                if (((ArrayList)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS]) != null)
-                    ByteArray = (byte[])((ArrayList)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS])[0];
-                else
-                    ByteArray = System.Text.Encoding.ASCII.GetBytes(result.Text);
-                if (previous_bytes != null)
-                {
-                    if (previous_bytes.Length == ByteArray.Length)
-                    {
-                        bool data_same_as_previous = true;
-                        for (int i = 0; (i < previous_bytes.Length) && data_same_as_previous; i++)
-                            if (previous_bytes[i] != ByteArray[i])
-                                data_same_as_previous = false;
-                        if(data_same_as_previous)
-                            throw new Exception("Data captures is same as previous data");
-                    }
-                }
-                if (AutoReturn)
-                    DialogResult = DialogResult.OK;
-                else
-                    if (MessageBox.Show(@"Data captured, Do you want to return it?", "Data Captured", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-                    {
-                        DialogResult = DialogResult.OK;
-                    }
+                var cap = _camera.GetCapabilities();
+                menuVideoCompression.Enabled = true;
+                menuVideoDisplay.Enabled = cap.fHasDlgVideoDisplay != 0;
+                menuVideoSource.Enabled = cap.fHasDlgVideoSource != 0;
+                menuVideoFormat.Enabled = cap.fHasDlgVideoFormat != 0;
             }
-            catch// (ReaderException ex)
-            {
-                ByteArray = null;
-            }
+        }
+
+        private void Stop()
+        {
+            _camera.Stop();
+
+            menuDeviceStart.Enabled = true;
+            menuDeviceStop.Enabled = false;
+
+            menuVideoCompression.Enabled = false;
+            menuVideoDisplay.Enabled = false;
+            menuVideoSource.Enabled = false;
+            menuVideoFormat.Enabled = false;
+        }
+
+        private void OnRecievedFrame(Bitmap bmp)
+        {
+            _checker.Check(bmp); //send bitmap to checking
         }
 
         private void CameraCapture_Load(object sender, System.EventArgs e)
         {
-            webcamCapture.CaptureWidth = pictureCamera.Width;
-            webcamCapture.CaptureHeight = pictureCamera.Height;
+            var dict = CAP.ListDevices();
 
-            webcamCapture.TimeToCapture_milliseconds = 40;
+            if (dict.Count > 0)
+            {
+                menuDeviceSelect.DropDownItems.Clear();
+                foreach (var key in dict.Keys)
+                {
+                    menuDeviceSelect.DropDownItems.Add(dict[key].Name, null, menuDeviceSelect_Click).Tag = key;
+                }
+            }
 
-            // Start the video capture. let the control handle the frame numbers.
-            webcamCapture.Start(0);
+            _camera = new CaptureDevice(pictureCamera.Handle, pictureCamera.Width, pictureCamera.Height, 50, OnRecievedFrame);
+            Start();
+            _checker = new CheckBitmapForQR(OnByteArrayReceived);
         }
 
         private void CameraCapture_FormClosing(object sender, FormClosingEventArgs e)
         {
-            webcamCapture.Stop();
+            _checker.Kill();
+            _camera.Stop();
         }
 
-        private void btnStartStop_Click(object sender, System.EventArgs e)
+        #region Menus
+
+        private void menuDeviceStart_Click(object sender, System.EventArgs e)
         {
-            if (webcamCapture.IsRunning())
+            Start(_deviceIndex);
+        }
+
+        private void menuDeviceStop_Click(object sender, System.EventArgs e)
+        {
+            Stop();
+        }
+
+        private void menuDeviceSelect_Click(object sender, System.EventArgs e)
+        {
+            var item = (ToolStripItem)sender;
+
+            Stop();
+            Start((short)item.Tag);
+        }
+        private void menuDeviceCancel_Click(object sender, System.EventArgs e)
+        {
+            ByteArray = null;
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void menuVideoSource_Click(object sender, System.EventArgs e)
+        {
+            _camera.OpenVideoSourceDialog();
+        }
+
+        private void menuVideoFormat_Click(object sender, System.EventArgs e)
+        {
+            _camera.OpenVideoFormatDialog();
+        }
+
+        private void menuVideoDisplay_Click(object sender, System.EventArgs e)
+        {
+            _camera.OpenVideoDisplayDialog();
+        }
+
+        private void menuVideoCompression_Click(object sender, System.EventArgs e)
+        {
+            _camera.OpenVideoCompressionDialog();
+        }
+
+        #endregion
+
+        private void OnByteArrayReceived(byte[] array)
+        {
+            if (autoreturnqrdata)
             {
-                webcamCapture.Stop();
-                btnStartStop.Text = @"Start";
+                DialogResult = DialogResult.OK;
+                ByteArray = array;
+                return;
             }
-            else
+            if (MessageBox.Show(@"Data captured, Do you want to return it?", "Data Captured", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                webcamCapture.Start(0);
-                btnStartStop.Text = @"Stop";
+                DialogResult = DialogResult.OK;
+                ByteArray = array;
             }
         }
     }
-
 }
